@@ -3,7 +3,7 @@
 # omarchy:summary=Open the Algebra Lab (Jupyter) in the default browser
 # omarchy:args=[port]
 
-LAB_DIR="${ALGEBRA_LAB_DIR:-$HOME/Work/algebra-lab}"
+LAB_DIR="${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}"
 port="${1:-8888}"
 url="http://127.0.0.1:${port}/lab/tree/Algebra_Lab.ipynb"
 

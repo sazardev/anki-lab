@@ -3,7 +3,7 @@
 # omarchy:summary=Open the Algebra Rules Bible cheatsheet (LaTeX rendered)
 # omarchy:args=[]
 
-LAB="${ALGEBRA_LAB_DIR:-$HOME/Work/algebra-lab}"
+LAB="${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}"
 SRC="$LAB/CHEATSHEET.md"
 CONV="$LAB/md2html.py"
 OUT="$LAB/cheatsheet.html"

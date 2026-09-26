@@ -95,6 +95,22 @@ python3 anki_decks.py --load     # idempotent: 0 new / 0 updated on a rerun
 Close Anki before `--load`; if the collection is locked the script aborts
 rather than corrupting it, and it takes a backup first.
 
+### Anki shows only 20 new cards/day by default
+
+That is Anki's default, and it means 20 of the 511 cards ever appear. These
+cards are factual recall rather than prose, so the rate can be much higher:
+
+```bash
+python3 set_anki_limits.py            # 60 new/day on the decks in this repo
+python3 set_anki_limits.py --new 40   # or any number
+python3 set_anki_limits.py --show     # which config group each deck uses
+```
+
+The limit lives in a deck *config group*, which every deck in a collection
+shares by default. Editing that shared group would change your other decks
+too, so this creates a group named **Anki Lab** and points only the 48 decks
+owned by this repo at it. Anything else in your collection is left alone.
+
 ---
 
 ## Why the validator is so picky
@@ -176,6 +192,8 @@ normalises the LaTeX as described above.
   ever reaching a JSON file.
 - `fix_physics_json.py` is a one-off repair for the two hand-written physics
   files. Already applied; kept so the normalisation is reproducible.
+- `set_anki_limits.py` needs Anki closed, and reads `ANKI_COLLECTION` if your
+  profile is somewhere unusual.
 - `mathjax/` is **not** in the repo (4 MB, third-party). `anki_preview.py`
   and `md2html.py` fall back to the jsDelivr CDN automatically. Drop a local
   copy in `algebra-lab/mathjax/` if you want to work offline.
