@@ -1,0 +1,61 @@
+name: validate
+
+# The decks are the product here, so every push re-runs the validator and
+# re-renders the maths in a real browser. A card whose LaTeX MathJax silently
+# drops still passes --check; only the headless render catches it.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate every card
+        working-directory: algebra-lab
+        run: python3 anki_decks.py --check
+
+      - name: Deck counts
+        working-directory: algebra-lab
+        run: python3 anki_decks.py --stats
+
+      - name: Regenerating from the builders must be a no-op
+        working-directory: algebra-lab
+        run: |
+          set -e
+          for b in build_cards_*.py; do python3 "$b" >/dev/null; done
+          if ! git diff --quiet -- '*.json'; then
+            echo "::error::cards_*.json differ from what the builders produce."
+            echo "Run the builders and commit the result."
+            git --no-pager diff --stat -- '*.json'
+            exit 1
+          fi
+          echo "generated JSON is in sync with the builders"
+
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install a headless Chromium
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends chromium-browser
+          command -v chromium-browser || command -v chromium || true
+
+      - name: Render every formula and count what MathJax typeset
+        working-directory: algebra-lab
+        run: python3 anki_preview.py

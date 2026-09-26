@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algebra Rules Bible</title>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],
+      processEscapes: true
+    },
+    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+  };
+</script>
+<!-- Local MathJax first (works offline); CDN only as a fallback. -->
+<script defer src="./mathjax/tex-chtml-full.js"></script>
+<script>
+  if (!window.MathJax || !window.MathJax.version) {
+    document.write('<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"><\/script>');
+  }
+</script>
+<style>
+  :root {
+    --bg: #14161a; --fg: #d7dae0; --dim: #8b929e; --rule: #262a31;
+    --acc: #7aa2f7; --warn: #e0af68; --code: #1c1f26;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#fbfbfd; --fg:#1a1c20; --dim:#5c6370; --rule:#e3e6ea;
+            --acc:#2f5fd0; --warn:#8a6100; --code:#f2f4f7; }
+  }
+  body {
+    background: var(--bg); color: var(--fg); margin: 0;
+    font: 16px/1.65 -apple-system, "GeistMono Nerd Font", system-ui, sans-serif;
+  }
+  main { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 6rem; }
+  h1 { font-size: 2rem; letter-spacing: -.02em; margin: 0 0 .3em; }
+  h2 { font-size: 1.3rem; margin: 2.6em 0 .6em; padding-bottom: .3em;
+       border-bottom: 1px solid var(--rule); }
+  h3 { font-size: 1.05rem; margin: 1.9em 0 .5em; color: var(--acc); }
+  p, li { color: var(--fg); }
+  a { color: var(--acc); }
+  strong { color: #fff; }
+  @media (prefers-color-scheme: light) { strong { color: #000; } }
+  code { background: var(--code); padding: .12em .38em; border-radius: 4px;
+         font-family: "GeistMono Nerd Font", ui-monospace, monospace; font-size: .9em; }
+  pre { background: var(--code); padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  pre code { background: none; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1.1em 0; font-size: .95em; }
+  th, td { border: 1px solid var(--rule); padding: .5em .7em; text-align: left;
+           vertical-align: top; }
+  th { background: var(--code); font-weight: 600; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5em 0; }
+  blockquote { border-left: 3px solid var(--warn); margin: 1.2em 0;
+               padding: .1em 0 .1em 1em; color: var(--dim); }
+  mjx-container[display="true"] { margin: 1.1em 0 !important; overflow-x: auto; }
+  .note { color: var(--dim); font-size: .88em; }
+</style>
+</head>
+<body><main>
+<h1>Algebra Rules Bible — expanded</h1>
+
+<p>Everything you need before linear algebra, in the order you actually need it. The original was missing the decision procedures — <em>which method do I use?</em> — which is the part that makes factoring feel arbitrary. That is section 2.</p>
+
+<hr>
+
+<h2>1. The one-page core</h2>
+
+<h3>Order of operations</h3>
+
+<p>\[\text{Parentheses} \to \text{Exponents} \to \text{Mult/Div} \to \text{Add/Sub}\]</p>
+
+<p>\[3+2(5^2-4) = 3+2(25-4) = 3+42 = 45\]</p>
+
+<h3>Signs</h3>
+
+<table>
+<tr><th></th><th></th></tr>
+<tr><td>\((+) (+)\)</td><td>\(+\)</td></tr>
+<tr><td>\((-)(-)\)</td><td>\(+\)</td></tr>
+<tr><td>\((+)(-)\)</td><td>\(-\)</td></tr>
+<tr><td>\((-)(+)\)</td><td>\(-\)</td></tr>
+</table>
+
+<p>Same signs → positive. Different → negative. <strong>Division follows multiplication.</strong></p>
+
+<h3>Combine like terms</h3>
+
+<p>Only terms with the <strong>same variable and same exponent</strong>:</p>
+
+<p>\[3x + 5x = 8x \qquad 7x^2 - 2x^2 = 5x^2\]</p>
+
+<p>\[3x + 4y \;\text{cannot combine} \qquad 3x^2 + 4x \;\text{cannot combine}\]</p>
+
+<h3>The distributive property</h3>
+
+<p>\[a(b+c) = ab + ac \qquad a(b-c) = ab - ac\]</p>
+
+<p>The negative sign distributes to <strong>every</strong> term:</p>
+
+<p>\[-(x+3) = -x-3 \qquad -(x-3) = -x+3\]</p>
+
+<h3>Exponent rules</h3>
+
+<table>
+<tr><th>Rule</th><th></th></tr>
+<tr><td>multiply</td><td>\(x^a x^b = x^{a+b}\)</td></tr>
+<tr><td>divide</td><td>\(\dfrac{x^a}{x^b} = x^{a-b}\)</td></tr>
+<tr><td>power of power</td><td>\((x^a)^b = x^{ab}\)</td></tr>
+<tr><td>power of product</td><td>\((xy)^n = x^n y^n\)</td></tr>
+<tr><td>zero</td><td>\(x^0 = 1\)</td></tr>
+<tr><td>negative</td><td>\(x^{-n} = \dfrac{1}{x^n}\)</td></tr>
+</table>
+
+<blockquote><strong>Trap:</strong> adding exponents happens in a <em>product</em>. <code>2x² + x³</code> is already simplified.</blockquote>
+
+<h3>Three identities — memorise</h3>
+
+<p>\[\boxed{(a+b)^2 = a^2 + 2ab + b^2}\] \[\boxed{(a-b)^2 = a^2 - 2ab + b^2}\] \[\boxed{(a+b)(a-b) = a^2 - b^2}\]</p>
+
+<hr>
+
+<h2>2. Which factoring method? (the decision tree)</h2>
+
+<p>This is the part that was missing. Walk it top to bottom.</p>
+
+<pre>
+Start
+  │
+  ├─ Is there a common factor in EVERY term?   → GCF        (§3.1)
+  │     (numbers, and lowest power of each variable)
+  │
+  ├─ Is it a difference of squares a²−b²?     → §3.2
+  │     (both terms perfect squares, MINUS between)
+  │
+  ├─ Is it a perfect square trinomial?         → §3.3
+  │     a² ± 2ab + b²   (first &amp; last are squares,
+  │                      middle is exactly ±2ab)
+  │
+  ├─ Is it 3 terms with leading 1?  x²+bx+c   → §3.4
+  │
+  ├─ Is it 3 terms, leading ≠ 1?  ax²+bx+c   → §3.5 (the ac trick)
+  │
+  ├─ Is it 4+ terms?                           → grouping   (§3.6)
+  │
+  ├─ Is it a sum/difference of cubes?          → §3.7
+  │
+  └─ Is the variable inside a power?           → substitution (§3.8)
+</pre>
+
+<p><strong>Order matters.</strong> GCF first, always. Factoring <code>9x⁴−4x²</code> by squares first gives <code>x²(3x−2)(3x+2)</code>… which is right, but doing GCF first is what keeps you from forgetting the <code>x²</code>.</p>
+
+<hr>
+
+<h2>3. Factoring — the six methods</h2>
+
+<h3>3.1 Greatest common factor</h3>
+
+<p>Take the GCF of the <strong>numbers</strong> and the <strong>lowest power of each variable</strong>.</p>
+
+<p>\[12x^3 + 18x^2 = \mathbf{6x^2}(2x + 3)\]</p>
+
+<p>\[15x^4y^2 + 10x^2y = \mathbf{5x^2y}(3x^2y + 2)\]</p>
+
+<blockquote><strong>Check:</strong> after dividing, the bracket must have <strong>no</strong> common factor. If it</blockquote>
+<blockquote>does, you didn't finish.</blockquote>
+
+<h3>3.2 Difference of squares</h3>
+
+<p>\[a^2 - b^2 = (a-b)(a+b)\]</p>
+
+<p>\[x^2 - 49 = (x-7)(x+7)\] \[4x^2 - 25 = (2x-5)(2x+5)\] \[9x^4 - 4x^2 = x^2(3x-2)(3x+2)\]</p>
+
+<blockquote><strong>Trap:</strong> \(a^2 + b^2\) does <strong>not</strong> factor. <code>4x² + 25</code> is already complete.</blockquote>
+<blockquote>The \(+\) form has no middle term to supply.</blockquote>
+
+<h3>3.3 Perfect square trinomial</h3>
+
+<p>\[a^2 \pm 2ab + b^2 = (a \pm b)^2\]</p>
+
+<p>\[x^2 + 10x + 25 = (x+5)^2 \qquad x^2 - 14x + 49 = (x-7)^2\]</p>
+
+<p>Test it: is the middle term exactly \(\pm 2ab\)? <code>x² − 2x + 1</code> → yes. <code>x² + 2x + 1</code> → yes.</p>
+
+<h3>3.4 Trinomial \(x^2 + bx + c\) — find two numbers</h3>
+
+<p>You need \(m, n\) with:</p>
+
+<p>\[m + n = b \qquad mn = c\]</p>
+
+<table>
+<tr><th>\(c\)</th><th>\(b\)</th><th>signs</th><th>example</th></tr>
+<tr><td>\(+\)</td><td>\(+\)</td><td>both \(+\)</td><td>\(x^2+5x+6 \to (x+2)(x+3)\)</td></tr>
+<tr><td>\(+\)</td><td>\(-\)</td><td>both \(-\)</td><td>\(x^2-5x+6 \to (x-2)(x-3)\)</td></tr>
+<tr><td>\(-\)</td><td>any</td><td>opposite</td><td>\(x^2+x-6 \to (x+3)(x-2)\)</td></tr>
+</table>
+
+<p><em>Why it works:</em> \((x+m)(x+n) = x^2 + (m+n)x + mn\). The expansion <strong>forces</strong> both conditions. If no pair satisfies both, it does not factor.</p>
+
+<h3>3.5 Trinomial \(ax^2 + bx + c\) — the \(ac\) trick</h3>
+
+<li>Compute \(a \cdot c\).</li>
+<li>Find two numbers with <strong>that product</strong> and with <strong>sum \(b\)</strong>.</li>
+<li>Split the middle term into those two.</li>
+<li>Group, factor each group.</li>
+
+<p>\[6x^2 + 11x + 3\]</p>
+
+<p>\[ac = 6\cdot3 = 18 \qquad \text{product }18,\ \text{sum }11 \;\Rightarrow\; 9 \text{ and } 2\]</p>
+
+<p>\[6x^2 + \underbrace{9x + 2x}_{9+2=11} + 3 = 3x(2x+3) + 1(2x+3) = (3x+1)(2x+3)\]</p>
+
+<p>More:</p>
+
+<p>\[2x^2+7x+3:\ ac=6,\ \{6,1\} \Rightarrow 2x(x+3)+1(x+3) = (2x+1)(x+3)\] \[3x^2-10x+8:\ ac=24,\ \{-6,-4\} \Rightarrow 3x(x-2)-4(x-2) = (3x-4)(x-2)\]</p>
+
+<blockquote><strong>Trap:</strong> splitting \(b\) arbitrarily. <code>4x² + 4x − 3</code> has \(ac = -12\) and \(b = 4\),</blockquote>
+<blockquote>so the split is \(6 + (-2)\), <strong>not</strong> \(1 + 3\). Always list the pairs of \(ac\).</blockquote>
+
+<p><em>Why \(ac\) works:</em> splitting \(b\) into \(m+n\) only produces a factorable quadratic when \(mn = ac\).</p>
+
+<h3>3.6 Grouping (four or more terms)</h3>
+
+<p>\[x^3 + 5x^2 + 2x + 10 = x^2(x+5) + 2(x+5) = (x^2+2)(x+5)\] \[2x^3 - 8x^2 - 5x + 20 = 2x^2(x-4) - 5(x-4) = (x-4)(2x^2-5)\]</p>
+
+<blockquote><strong>Rule:</strong> pair \(x^3\) with \(x^2\), and \(x\) with the constant. Pairing \(x^3\) with</blockquote>
+<blockquote>the constant shares nothing.</blockquote>
+
+<h3>3.7 Sum and difference of cubes</h3>
+
+<p>\[a^3 + b^3 = (a+b)(a^2 - ab + b^2)\] \[a^3 - b^3 = (a-b)(a^2 + ab + b^2)\]</p>
+
+<p>The signs <strong>inside</strong> are opposite to the sign <strong>outside</strong>.</p>
+
+<p>\[x^3 - 27 = (x-3)(x^2+3x+9)\] \[8x^3 + 125 = (2x+5)(4x^2-10x+25)\]</p>
+
+<h3>3.8 Substitution</h3>
+
+<p>If the variable sits inside a power, let the power be the new variable.</p>
+
+<p>\[x^4 - 10x^2 + 9\]</p>
+
+<p>Let \(u = x^2\), so \(u^2 - 10u + 9 = (u-1)(u-9)\).</p>
+
+<p>Substitute back:</p>
+
+<p>\[= (x^2-1)(x^2-9) = (x-1)(x+1)(x-3)(x+3)\]</p>
+
+<blockquote>This is the same \(x^2+bx+c\) method wearing a disguise. It appears constantly in</blockquote>
+<blockquote>linear algebra (diagonalisation), so learn it now.</blockquote>
+
+<hr>
+
+<h2>4. Rational expressions</h2>
+
+<p><strong>Cancel factors, never sums.</strong></p>
+
+<p>\[\frac{3x}{x} = 3 \qquad\qquad \frac{x+2}{x} \neq 2\]</p>
+
+<p>\[\frac{x^2+4}{x^2} = 1 + \frac{4}{x^2}\]</p>
+
+<p>Simplify by splitting numbers and variables:</p>
+
+<p>\[\frac{12x^5y^3}{4x^2y} = \frac{12}{4}\cdot x^{5-2} y^{3-1} = 3x^3y^2\]</p>
+
+<p>\[\frac{2x^3y^2}{4xy^5} = \frac{x^2}{2y^3}\]</p>
+
+<p><strong>Multiplying and dividing:</strong></p>
+
+<p>\[\frac{a}{b}\cdot\frac{c}{d} = \frac{ac}{bd} \qquad
+\frac{a}{b}\div\frac{c}{d} = \frac{a}{b}\cdot\frac{d}{c}\]</p>
+
+<p><strong>Rationalising</strong> (getting rid of a radical denominator):</p>
+
+<p>\[\frac{1}{\sqrt2}\cdot\frac{\sqrt2}{\sqrt2} = \frac{\sqrt2}{2}\]</p>
+
+<hr>
+
+<h2>5. Radicals and absolute value</h2>
+
+<p>\[\sqrt{ab} = \sqrt a\,\sqrt b \qquad \sqrt{25x^2} = 5|x|\]</p>
+
+<blockquote>The \(|x|\) is not optional. \(\sqrt{x^2} = x\) is <strong>false</strong> for \(x<0\).</blockquote>
+
+<p>\[\sqrt{12} = 2\sqrt3 \qquad \sqrt{50} = 5\sqrt2\]</p>
+
+<p>\[|x| = \text{distance from } 0 \qquad |5| = 5 \qquad |-5| = 5\]</p>
+
+<p>\[|x| = 5 \;\Rightarrow\; x = 5 \text{ or } x = -5\]</p>
+
+<hr>
+
+<h2>6. Logarithms</h2>
+
+<p>\[\log_b(x) = y \iff b^y = x\]</p>
+
+<p>\[\log_b(xy) = \log_b x + \log_b y \qquad
+\log_b\!\left(\frac{x}{y}\right) = \log_b x - \log_b y \qquad
+\log_b(x^n) = n\log_b x\]</p>
+
+<hr>
+
+<h2>7. Solving equations</h2>
+
+<table>
+<tr><th>type</th><th>move</th></tr>
+<tr><td>\(3x+5=20\)</td><td>subtract 5, divide 3</td></tr>
+<tr><td>\(2(x-3)=4x+8\)</td><td>expand first, then collect</td></tr>
+<tr><td>\(\dfrac{x+2}{3}=\dfrac{2x-1}{5}\)</td><td>cross-multiply: \(5(x+2)=3(2x-1)\)</td></tr>
+<tr><td>\(-2x > 6\)</td><td>dividing by a negative <strong>flips</strong> the inequality</td></tr>
+</table>
+
+<p><strong>Quadratic formula</strong> (when factoring fails):</p>
+
+<p>\[x = \frac{-b \pm \sqrt{b^2-4ac}}{2a} \qquad \Delta = b^2-4ac\]</p>
+
+<p>\(\Delta > 0\) two roots, \(=0\) one root, \(<0\) no real roots.</p>
+
+<hr>
+
+<h2>8. Completing the square — the bridge to linear algebra</h2>
+
+<p>Worth learning now because it is <em>the</em> idea behind orthogonal projection and least squares later.</p>
+
+<p>\[x^2 + 6x + 5\]</p>
+
+<p>Complete: take half the coefficient of \(x\), square it, add and subtract.</p>
+
+<p>\[= \left(x^2 + 6x + 9\right) - 9 + 5 = (x+3)^2 - 4 = 0\]</p>
+
+<p>\[(x+3)^2 = 4 \;\Rightarrow\; x = -3 \pm 2 \;\Rightarrow\; x = -1 \text{ or } -5\]</p>
+
+<blockquote>You have seen this before: "completing the square" is the same move as</blockquote>
+<blockquote>"finding the \(R\) in \(QR\) decomposition", i.e. orthogonalisation.</blockquote>
+
+<hr>
+
+<h2>9. Systems of linear equations</h2>
+
+<h3>The three cases</h3>
+
+<table>
+<tr><th>condition</th><th>result</th><th>looks like</th></tr>
+<tr><td>\(\det(A)\neq 0\)</td><td><strong>unique</strong> solution</td><td>pivots in every column</td></tr>
+<tr><td>\(\det(A)=0\), consistent</td><td><strong>infinitely many</strong></td><td>a \(0=0\) row</td></tr>
+<tr><td>\(\det(A)=0\), inconsistent</td><td><strong>no</strong> solution</td><td>a \(0=k\), \(k\neq0\) row</td></tr>
+</table>
+
+<p>Geometrically: lines <strong>cross once</strong>, are the <strong>same line twice</strong>, or are <strong>parallel</strong>.</p>
+
+<h3>Substitution</h3>
+
+<p>\[\begin{cases} 2x + 3y = 7 \\ 4x - y = 5 \end{cases}\]</p>
+
+<p>From (2): \(y = 4x-5\). Into (1):</p>
+
+<p>\[2x + 3(4x-5) = 7 \;\Rightarrow\; 14x = 22 \;\Rightarrow\; x = \tfrac{11}{7},\quad y = \tfrac{9}{7}\]</p>
+
+<h3>Elimination</h3>
+
+<p>Multiply rows to make a column match, then add (or subtract) to kill it.</p>
+
+<p>\[\begin{cases} 2x + 3y = 7 \\ 4x - y = 5 \end{cases}
+\;\xrightarrow{\;R_2 \to R_2 - 2R_1\;}\;
+\begin{cases} 2x + 3y = 7 \\ 0x - 7y = -9 \end{cases}
+\;\Rightarrow\; y = \tfrac97,\; x = \tfrac{11}{7}\]</p>
+
+<h3>Cramer's rule (2×2 only)</h3>
+
+<p>\[x = \frac{\begin{vmatrix} b_1 & a_{12} \\ b_2 & a_{22}\end{vmatrix}}{\det A}
+\qquad
+y = \frac{\begin{vmatrix} a_{11} & b_1 \\ a_{21} & b_2\end{vmatrix}}{\det A}\]</p>
+
+<p>Only valid when \(\det A \neq 0\).</p>
+
+<hr>
+
+<h2>10. Matrices — the basics you need first</h2>
+
+<h3>What a matrix <em>is</em></h3>
+
+<p>A rectangular array of numbers. Nothing more. Row \(i\), column \(j\) is the entry \(a_{ij}\).</p>
+
+<p>\[A = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}\]</p>
+
+<h3>Matrix multiplication</h3>
+
+<p>\[\begin{bmatrix} a & b \\ c & d \end{bmatrix}
+\begin{bmatrix} e & f \\ g & h \end{bmatrix}
+=
+\begin{bmatrix} ae+bg & af+bh \\ ce+dg & cf+dh \end{bmatrix}\]</p>
+
+<p>Row-by-column. Not commutative: \(AB \neq BA\) in general.</p>
+
+<h3>Transpose</h3>
+
+<p>\[A^T = \begin{bmatrix} a & c \\ b & d \end{bmatrix}
+\quad\text{iff}\quad
+A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}\]</p>
+
+<p>\[(AB)^T = B^TA^T \qquad (A^T)^T = A\]</p>
+
+<h3>Identity and inverse</h3>
+
+<p>\[I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+\qquad AI = IA = A\]</p>
+
+<p>\[A^{-1} = \frac{1}{\det A}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
+\quad\text{(2×2 only)}\]</p>
+
+<p>\(A\) is invertible <strong>iff</strong> \(\det A \neq 0\).</p>
+
+<h3>Row reduction</h3>
+
+<p>Augment with a bar, then only these three moves (all preserve the solution set):</p>
+
+<li>swap two rows</li>
+<li>multiply a row by a nonzero scalar</li>
+<li>add a multiple of one row to another</li>
+
+<p>\[\left[\begin{array}{cc|c} 1 & 2 & 5 \\ 2 & -1 & 3 \end{array}\right]
+\xrightarrow{R_2 - 2R_1}
+\left[\begin{array}{cc|c} 1 & 2 & 5 \\ 0 & -5 & -7 \end{array}\right]
+\xrightarrow{-\frac{1}{5}R_2}
+\left[\begin{array}{cc|c} 1 & 2 & 5 \\ 0 & 1 & \tfrac{7}{5} \end{array}\right]
+\xrightarrow{R_1 - 2R_2}
+\left[\begin{array}{cc|c} 1 & 0 & \tfrac{1}{5} \\ 0 & 1 & \tfrac{7}{5} \end{array}\right]\]</p>
+
+<p>Read the solution off the last column: \(x = \tfrac{1}{5}\), \(y = \tfrac{7}{5}\).</p>
+
+<blockquote><strong>You may swap and scale rows, never columns.</strong> Row operations preserve the</blockquote>
+<blockquote>solution set; column operations change the problem.</blockquote>
+
+<hr>
+
+<h2>11. Vectors</h2>
+
+<p>\[\mathbf{v} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}\]</p>
+
+<p>An <strong>arrow</strong>: magnitude <em>and</em> direction. Order matters — \(\begin{bmatrix}3\\2\end{bmatrix} \neq \begin{bmatrix}2\\3\end{bmatrix}\).</p>
+
+<table>
+<tr><th></th><th></th></tr>
+<tr><td>magnitude</td><td>\(\|\mathbf{v}\| = \sqrt{v_1^2 + v_2^2 + \cdots}\)</td></tr>
+<tr><td>dot product</td><td>\(\mathbf{u}\cdot\mathbf{v} = u_1v_1 + u_2v_2 + \cdots\)</td></tr>
+<tr><td>orthogonal</td><td>\(\mathbf{u}\cdot\mathbf{v} = 0\)</td></tr>
+<tr><td>linear combination</td><td>\(a\mathbf{v}_1 + b\mathbf{v}_2\)</td></tr>
+<tr><td>span</td><td>all linear combinations</td></tr>
+</table>
+
+<p>\[\begin{bmatrix}3\\2\end{bmatrix}\cdot\begin{bmatrix}4\\-6\end{bmatrix} = 12 - 12 = 0\]</p>
+
+<h3>Span, independence, basis, dimension</h3>
+
+<li><strong>Span</strong> of a set: every linear combination of them.</li>
+<li><strong>Independent</strong>: no vector in the set is a combination of the others.</li>
+<li><strong>Basis</strong>: \(n\) independent vectors in \(\mathbb{R}^n\).</li>
+<li><strong>Dimension</strong>: size of a basis — always \(n\) in \(\mathbb{R}^n\).</li>
+
+<h3>Linear transformation</h3>
+
+<p>Preserves addition and scalar multiplication:</p>
+
+<p>\[T(\mathbf{u}+\mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})
+\qquad T(c\mathbf{u}) = c\,T(\mathbf{u})\]</p>
+
+<p>Every linear map on \(\mathbb{R}^n\) <strong>is</strong> multiplication by a single matrix. The matrix is the transformation.</p>
+
+<hr>
+
+<h2>12. Determinants</h2>
+
+<p>Expand along a row. For \(3\times3\), expand along the first row — signs alternate:</p>
+
+<p>\[+ \;\; - \;\; +\]</p>
+
+<p>\[\det\begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix}
+= a(ei-fh) - b(di-fg) + c(dh-eg)\]</p>
+
+<p>\(\det = 0\) means: <strong>singular</strong>, rows/columns linearly dependent, not invertible, and \(A\mathbf{x}=\mathbf{b}\) has no unique solution.</p>
+
+<hr>
+
+<h2>13. Eigenvalues and eigenvectors</h2>
+
+<p><strong>Eigenvalues</strong> come from the determinant:</p>
+
+<p>\[\det(A - \lambda I) = 0 \qquad \text{use } A-\lambda I, \text{ not } A+\lambda I\]</p>
+
+<p><strong>Eigenvectors</strong> come from the null space:</p>
+
+<p>\[(A - \lambda I)\mathbf{v} = \mathbf{0}\]</p>
+
+<p>Row reduce \(A-\lambda I\) and read off the free variable. Any nonzero multiple works.</p>
+
+<p><strong>Geometrically:</strong> \(A\mathbf{v} = \lambda\mathbf{v}\) means \(\mathbf{v}\) is only <strong>scaled</strong> — the direction is unchanged. Every other direction gets rotated or sheared. A negative \(\lambda\) flips that direction \(180°\).</p>
+
+<p>A repeated eigenvalue may give only one independent eigenvector — then the matrix is <strong>not diagonalisable</strong>.</p>
+
+<hr>
+
+<h2>14. The bridge</h2>
+
+<p>This is the conceptual jump that trips everyone.</p>
+
+<table>
+<tr><th></th><th>Elementary algebra</th><th>Linear algebra</th></tr>
+<tr><td>question</td><td>what is \(x\)?</td><td>what happens to a whole space?</td></tr>
+<tr><td>object</td><td>a number</td><td>a vector, a subspace</td></tr>
+<tr><td>notation</td><td>\(3x+5=20\)</td><td>\(A\mathbf{x}=\mathbf{b}\)</td></tr>
+<tr><td>method</td><td>manipulate one equation</td><td>transform \(\mathbb{R}^n\)</td></tr>
+<tr><td>answer</td><td>a value</td><td>a mapping</td></tr>
+</table>
+
+<p>The path:</p>
+
+<pre>
+arithmetic
+  → variables, equations
+    → systems of equations          ← 2 unknowns now
+      → matrices                     ← store the coefficients
+        → row reduction              ← solve many systems at once
+          → vectors &amp; subspaces      ← the objects themselves
+            → linear transformations ← matrices as actions
+              → eigenvalues          ← the directions that survive
+</pre>
+
+<p>You do <strong>not</strong> need to master all of mathematics first. You need: arithmetic → elementary algebra → functions → coordinate geometry. Then this sheet is enough.</p>
+
+<hr>
+
+<h2>15. Error table — the ones that actually happen</h2>
+
+<table>
+<tr><th>what you did</th><th>why it's wrong</th><th>instead</th></tr>
+<tr><td>\(\frac{x+2}{x} = 2\)</td><td>you cancelled a sum</td><td>\(1 + \frac{2}{x}\)</td></tr>
+<tr><td>\((x+2)^2 = x^2+4\)</td><td>dropped the middle term</td><td>\(x^2+4x+4\)</td></tr>
+<tr><td>\(\sqrt{x^2} = x\)</td><td>only true for \(x \ge 0\)</td><td>\(5\|x\|\) style: \(\sqrt{25x^2}=5\|x\|\)</td></tr>
+<tr><td>\(2x^2 + x^3 = 3x^5\)</td><td>added exponents in a sum</td><td>leave it; it's simplified</td></tr>
+<tr><td>\(-(x-3) = -x-3\)</td><td>minus didn't distribute</td><td>\(-x+3\)</td></tr>
+<tr><td>\(-2x > 6 \Rightarrow x > -3\)</td><td>didn't flip</td><td>\(x < -3\)</td></tr>
+<tr><td>\(\frac{2x^3}{4x^2} = \frac{x^2}{2}\)</td><td>mixed up which way</td><td>\(x^{3-2}\cdot\frac{2}{4} = \frac{x}{2}\)</td></tr>
+<tr><td>split \(b\) as \(1+3\) when \(ac=-12\)</td><td>arbitrary split</td><td>list the pairs of \(ac\)</td></tr>
+</table>
+
+<hr>
+
+<h2>16. Where to practise</h2>
+
+<table>
+<tr><th>what</th><th>where</th></tr>
+<tr><td>infinite problems, graded, worked steps</td><td><code>./run.sh</code> in <code>~/Work/algebra-lab</code></td></tr>
+<tr><td>same thing in the terminal</td><td><code>./run.sh factoring --practice</code></td></tr>
+<tr><td>rules under time pressure</td><td>Anki, deck <code>Algebra Lab</code></td></tr>
+<tr><td>see what a matrix <em>does</em></td><td>GeoGebra, menu → Math</td></tr>
+</table>
+
+<p>Start at section 2 and work down. Drill section 3 until the decision tree is automatic — that is the whole game.</p>
+</main></body>
+</html>

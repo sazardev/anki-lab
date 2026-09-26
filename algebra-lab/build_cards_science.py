@@ -1,0 +1,235 @@
+#!/usr/bin/env python3
+"""Builds cards_science.json -- scientific method, measurement, statistics.
+
+Source of truth is this file; the JSON is generated. r"" strings keep single
+backslashes; json.dumps escapes them. HTML tags stay OUTSIDE \\( ... \\).
+"""
+
+from cards_lib import write_json
+
+DECKS: dict[str, list[dict]] = {}
+
+
+def card_to(deck_name: str, front: str, back: str, *tags: str) -> None:
+    DECKS.setdefault(deck_name, []).append(
+        {"f": front, "b": back, "t": " ".join(tags)})
+
+
+# ============================================================ Method
+F = "Science::Method"
+
+card_to(F, "What are the steps of the scientific method?",
+        "Observation, question, hypothesis, prediction, experiment, analysis, and iteration. The "
+        "loop is not a straight line: a failed prediction is a useful result, and the method is "
+        "self-correcting precisely because the prediction is falsifiable.",
+        "q::what", "sci::method")
+
+card_to(F, "What makes a hypothesis scientifically useful?",
+        "It must be <b>falsifiable</b>: it must make a prediction that some observation could "
+        "contradict. An unfalsifiable claim can absorb any outcome and therefore explains nothing, "
+        "which is a criterion of demarcation, not a moral judgement.",
+        "q::what", "sci::method")
+
+card_to(F, "What is the difference between a hypothesis and a theory?",
+        "A hypothesis is a specific testable claim, and a theory is a large body of such claims that "
+        "has survived repeated testing. In science a theory is <b>stronger</b> than a hypothesis, the "
+        "opposite of the everyday use of the word.",
+        "q::pitfall", "sci::method")
+
+card_to(F, "What is a controlled experiment, and what does each group isolate?",
+        "Change one variable at a time. The <b>control</b> group receives no treatment, giving a "
+        "baseline to compare against; the <b>treatment</b> group receives it. Random assignment "
+        "distributes uncontrolled differences (confounders) across both groups, so they cancel on "
+        "average rather than being left to chance.",
+        "q::how", "sci::method")
+
+card_to(F, "What is a confounding variable?",
+        "A third factor that varies with the independent variable and so offers an alternative "
+        "explanation for the result. Randomisation is the general defence, because it breaks the "
+        "correlation on average; blocking and within-subject designs are the others.",
+        "q::what", "sci::method")
+
+card_to(F, "What is a negative result worth?",
+        "It is data. A well-designed study that finds no effect is informative, and it narrows the "
+        "hypothesis space; publication bias arises precisely because negative results are less likely "
+        "to be written up, which makes the literature look more positive than the evidence.",
+        "q::pitfall", "sci::method")
+
+card_to(F, "What is a model, scientifically?",
+        "A deliberately simplified representation that keeps the features needed for a prediction and "
+        "discards the rest. Its value is judged by how well it predicts and by what it lets you "
+        "control, not by how much detail it contains. Ideal gas and point-mass models are not wrong; "
+        "they are valid in a stated regime.",
+        "q::what", "sci::method")
+
+# ============================================================ Measurement
+F = "Science::Measurement"
+
+card_to(F, "What is a measurement, formally?",
+        "An operation that maps a physical quantity to a number, together with a stated "
+        "<b>uncertainty</b>. The number alone is not the measurement; the pair is. A result quoted "
+        "without an uncertainty is incomplete.",
+        "q::what", "sci::measurement")
+
+card_to(F, "What are the seven SI base units, and how are they now defined?",
+        "metre, kilogram, second, ampere, kelvin, mole, candela.<br>"
+        "Since the 2019 redefinition all seven are fixed by <b>exact defining constants</b>: the "
+        "metre by \\(c\\), the kilogram by Planck's constant, the second by \\(\\mathrm{Ce}\\). So the "
+        "units no longer depend on physical artefacts, and their accuracy is limited only by how well "
+        "we know those constants.",
+        "q::what", "sci::measurement")
+
+card_to(F, "What is significant figures, and how do you use it?",
+        "A number such as \\(2.5\\) carries two significant figures and means a value between 2.45 "
+        "and 2.55. The convention is that the last digit is uncertain, so a product takes the count "
+        "of the least precise factor. Two significant figures does not mean two digits of accuracy; "
+        "trailing zeros after a decimal point are significant.",
+        "q::how", "sci::measurement")
+
+card_to(F, "What are the two types of measurement error?",
+        "<b>Random</b> error varies unpredictably between repeats and averages down, "
+        "\\(\\sigma/\\sqrt{n}\\). <b>Systematic</b> error is the same every time and is biased, so it "
+        "does not average down. Repeating measurements fixes the first and only measures the second, "
+        "which is why they need different remedies.",
+        "q::what", "sci::measurement")
+
+card_to(F, "What is a calibration error, and how is it different from precision?",
+        "A constant offset, so every reading is wrong by a similar amount. Calibration corrects it, "
+        "and it is invisible if you only look at repeated readings. Precision is about repeatability "
+        "and says nothing about accuracy: a tightly clustered set can be badly off-centre.",
+        "q::pitfall", "sci::measurement")
+
+card_to(F, "How do uncertainties propagate?",
+        "For independent errors, add the squares and take the root: "
+        r"\\[ \\sigma_{\\text{tot}} = \\sqrt{\\sum_i \\sigma_i^2} \\]"
+        "<br>For a product or quotient, relative errors add in quadrature: "
+        r"\\(\\sigma_z/z = \\sqrt{(\\sigma_a/a)^2 + (\\sigma_b/b)^2}\\). Add the errors linearly only "
+        "for a worst case, and only when the errors are perfectly correlated.",
+        "q::how", "sci::measurement")
+
+card_to(F, "What is the difference between accuracy and precision?",
+        "Accuracy is closeness to the true value; precision is closeness of repeated readings to each "
+        "other. They are independent: a good instrument used carelessly can be precise and not "
+        "accurate, and improving precision on a miscalibrated device makes the answer more confidently "
+        "wrong.",
+        "q::what", "sci::measurement")
+
+card_to(F, "What is order-of-magnitude estimation good for?",
+        "A rough number within a factor of about ten, computed in seconds with dimensional analysis. "
+        "It is a sanity check before committing to a calculation, and it catches unit errors and "
+        "missed factors of ten, which are the commonest real errors in physics.",
+        "q::how", "sci::measurement")
+
+card_to(F, "What is dimensional analysis good for?",
+        "Checks that an equation is dimensionally consistent, which catches errors in algebra or "
+        "units, and can suggest the form of a relation. It cannot detect a wrong <b>dimensionless</b> "
+        "factor: 4\\(\\pi\\) and 2 are both dimensionless, so a dimensionally sound formula can still "
+        "be off by a constant.",
+        "q::how", "sci::measurement")
+
+# ============================================================ Statistics
+F = "Science::Statistics"
+
+card_to(F, "What does a p-value actually mean?",
+        r"The probability of getting a result this extreme, <b>assuming the null hypothesis is "
+        r"true</b>. It is not the probability the null is true, and not the probability that the "
+        r"result happened by chance. Frequentist p-values need \\(|p| \\leq 0.05\\) to be taken as "
+        r"evidence, and there is no sharp threshold at \\(p = 0.049\\).",
+        "q::what", "sci::statistics")
+
+card_to(F, "What is the difference between statistical significance and practical significance?",
+        "Statistical significance says the result is unlikely by chance under the null; practical "
+        "significance says the effect is large enough to matter. With a large enough sample almost "
+        "any effect becomes significant, so a clinically useless difference can be highly "
+        "significant. Always report the effect size, not just the p-value.",
+        "q::pitfall", "sci::statistics")
+
+card_to(F, "What is the difference between a population and a sample?",
+        "The population is the entire set under study; the sample is the subset actually observed. "
+        "Inference estimates population parameters from sample statistics, and the standard error "
+        r"\\(\\sigma/\\sqrt{n}\\) is the expected spread of the sample mean. The \\(\\sqrt{n}\\) is why "
+        "precision improves slowly.",
+        "q::what", "sci::statistics")
+
+card_to(F, "What is the 68-95-99.7 rule?",
+        "For a normal distribution, about 68% of values lie within one standard deviation, 95% "
+        "within two and 99.7% within three. It is a quick way to judge whether an outlier is "
+        "remarkable, and it is exactly true only for the normal distribution.",
+        "q::what", "sci::statistics")
+
+card_to(F, "What does correlation not tell you?",
+        "Correlation is not causation: a shared cause (confounder) produces it, and so does reverse "
+        "causation. Correlation is also not linear, and \\(r\\) only captures linear association. It is "
+        "symmetric, so it does not tell you the direction, and it is sensitive to outliers.",
+        "q::pitfall", "sci::statistics")
+
+card_to(F, "What is the difference between mean, median and mode?",
+        "The mean uses all values and is pulled by outliers; the median is the middle value and is "
+        "robust; the mode is the most frequent value and is the only one usable for categorical data. "
+        "For strongly skewed data, the mean and median can differ a lot, and the mean is often the "
+        "worse summary.",
+        "q::what", "sci::statistics")
+
+card_to(F, "What is Simpson's paradox?",
+        "A trend in every subgroup reverses when the groups are pooled, because of a lurking "
+        "confounder. Simpson's famous real case is UC Berkeley's 1973 graduate admissions: within "
+        "each department women applied at a higher acceptance rate, yet overall they were rejected "
+        "more, purely from how applications were distributed across departments.",
+        "q::what", "sci::statistics")
+
+card_to(F, "What is the difference between confidence interval and prediction interval?",
+        r"A confidence interval covers the <b>population parameter</b>, e.g. "
+        r"\(\bar{x} \pm 1.96\,\sigma/\sqrt{n}\) at 95%."
+        "<br>A prediction interval covers a single future <b>observation</b>, so it must "
+        "additionally account for the spread of the individual data, and is much wider. Quoting the "
+        "wrong one understates the uncertainty.",
+        "q::what", "sci::statistics")
+
+card_to(F, "What is a Type I versus a Type II error?",
+        "A <b>Type I</b> error is a false positive: rejecting a true null, whose rate is \\(\\alpha\\), "
+        "the significance level. A <b>Type II</b> error is a false negative: failing to reject a false "
+        "null, whose rate is \\(\\beta\\). Power is \\(1-\\beta\\). Lowering \\(\\alpha\\) to reduce "
+        "false positives raises \\(\\beta\\), so they trade off.",
+        "q::what", "sci::statistics")
+
+card_to(F, "Why do we randomise in an experiment, and not merely sample?",
+        "Sampling makes the groups representative on average. <b>Random assignment</b> is what makes "
+        "confounders independent of treatment, which is the condition for causal inference. Without "
+        "it, a difference between groups is indistinguishable from a difference in who was in them.",
+        "q::pitfall", "sci::statistics")
+
+card_to(F, "What is a p-value of 0.05 not telling you?",
+        "That there is a 5% chance the null is true, or that the result is 'almost certainly real'. "
+        "Even \\(p = 0.001\\) is not a probability that the effect exists, only evidence against the "
+        "null. The correct reading: the data are hard to explain if the null holds, which is not the "
+        "same as establishing the alternative.",
+        "q::pitfall", "sci::statistics")
+
+card_to(F, "What is the law of large numbers, and what does it not say?",
+        r"With independent, identically distributed samples, the sample mean converges to the true "
+        r"mean almost surely: \\(\\bar x_n \\to \\mu\\). It says nothing about how <b>fast</b> that "
+        r"happens, nor does it apply to dependent samples, where autocorrelation can make the "
+        r"effective sample size far smaller than \\(n\\).",
+        "q::what", "sci::statistics")
+
+card_to(F, "What is a bootstrap estimate?",
+        r"Resample the data with replacement many times, recompute the statistic each time, and use "
+        r"the spread of the results as the uncertainty. It makes no distributional assumption, so it "
+        r"works for arbitrary statistics, but it cannot see outside the observed range and it "
+        r"reproduces any bias already in the sample.",
+        "q::how", "sci::statistics")
+
+card_to(F, "What is the central limit theorem?",
+        r"The distribution of the sample mean approaches a normal distribution as \\(n\\) grows, "
+        r"whatever the shape of the original distribution, provided the variance is finite. This is "
+        r"why the normal distribution appears everywhere in measurement, and it is why confidence "
+        r"intervals built on \\(\\sigma/\\sqrt{n}\\) work even for non-normal data.",
+        "q::what", "sci::statistics")
+
+
+def main() -> None:
+    write_json("cards_science", DECKS)
+
+
+if __name__ == "__main__":
+    main()

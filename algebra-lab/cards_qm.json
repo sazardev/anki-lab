@@ -1,0 +1,500 @@
+{
+  "decks": {
+    "QM::Foundations": [
+      {
+        "f": "What is quantum mechanics?",
+        "b": "The theory of matter at atomic scales, where <b>classical</b> quantities like energy and angular momentum take only <b>discrete</b> values, and states are described by a vector in an abstract vector space rather than by position and momentum.",
+        "t": "q::what qm::foundations"
+      },
+      {
+        "f": "State the five postulates of quantum mechanics.",
+        "b": "1. A state is a ray in a Hilbert space \\(|\\psi\\rangle\\).<br>2. Observables are self-adjoint (Hermitian) operators.<br>3. Possible outcomes are the eigenvalues; a measurement returns one of them.<br>4. Probabilities are \\(P(a) = |\\langle a|\\psi\\rangle|^2\\) (Born rule).<br>5. Between measurements, \\(|\\psi\\rangle\\) evolves by \\(|\\psi(t)\\rangle = U(t)|\\psi(0)\\rangle\\), with \\(U\\) unitary.",
+        "t": "q::what qm::foundations qm::postulates"
+      },
+      {
+        "f": "What does the wavefunction actually represent?",
+        "b": "Not a material wave. It encodes the <b>amplitude</b> for every possible measurement outcome; only its <b>squared magnitude</b> is directly observable. The complex phase is unobservable on its own but matters through interference.",
+        "t": "q::pitfall qm::foundations"
+      },
+      {
+        "f": "What is the Born rule?",
+        "b": "The probability of measuring outcome \\(a\\) is \\(P(a) = |\\langle a|\\psi\\rangle|^2\\).<br>Probabilities of mutually exclusive outcomes add, so amplitudes add only when states are superposed.",
+        "t": "q::what qm::born-rule"
+      },
+      {
+        "f": "How is a wavefunction normalised?",
+        "b": "Require \\(\\int |\\psi(\\mathbf{x},t)|^2 d^3x = 1\\). For a normalised state this equals \\(\\langle \\psi|\\psi\\rangle = 1\\).",
+        "t": "q::how qm::normalisation"
+      },
+      {
+        "f": "What is superposition?",
+        "b": "A linear combination of states: \\(|\\psi\\rangle = c_1|1\\rangle + c_2|0\\rangle\\) with \\(|c_1|^2 + |c_2|^2 = 1\\).",
+        "t": "q::what qm::superposition"
+      },
+      {
+        "f": "What happens on measurement?",
+        "b": "The state collapses (projects) onto the eigenstate of the operator measured, with probability given by the Born rule. Immediately after, the system is again in a definite state.",
+        "t": "q::what qm::measurement"
+      },
+      {
+        "f": "Does measurement destroy every correlation?",
+        "b": "No. <b>Local</b> entanglement is destroyed, but a <b>global</b> correlation survives; that is the whole basis of Bell tests and quantum teleportation.",
+        "t": "q::pitfall qm::measurement"
+      },
+      {
+        "f": "State the uncertainty principle.",
+        "b": "For any two observables \\(A\\) and \\(B\\): \\[ \\Delta A\\,\\Delta B \\geq \\frac{1}{2}\\big|\\langle [A,B] \\rangle\\big| \\]<br>For position and momentum this is \\[ \\Delta x\\,\\Delta p \\geq \\frac{\\hbar}{2} \\]",
+        "t": "q::what qm::uncertainty"
+      },
+      {
+        "f": "Where does the uncertainty principle come from?",
+        "b": "Not measurement disturbance. It is a property of the algebra: a state with a definite value of \\(A\\) is not also a state with a definite value of \\(B\\), because \\(\\Delta A\\,\\Delta B\\) is bounded by the commutator.",
+        "t": "q::how qm::uncertainty"
+      },
+      {
+        "f": "Is the uncertainty principle a limit on measurement accuracy?",
+        "b": "No. It is a limit on how <b>sharply</b> a state can be prepared with respect to two incompatible quantities, independent of how good the instrument is.",
+        "t": "q::pitfall qm::uncertainty"
+      },
+      {
+        "f": "What is complementarity?",
+        "b": "Certain pairs of properties (position/momentum, polarisation paths) cannot both be assigned definite values to the same system. Which one is sharp is decided by the measurement you choose.",
+        "t": "q::what qm::complementarity"
+      },
+      {
+        "f": "Planck's quantum hypothesis",
+        "b": "Energy is exchanged in discrete quanta \\(E = h\\nu\\), not continuously. This is what blackbody radiation forced, and it is the seed of the whole theory.",
+        "t": "q::what qm::foundations"
+      },
+      {
+        "f": "Classify the hydrogen spectrum into series, and give the Lyman limit.",
+        "b": "Lyman \\(n\\to1\\) (UV), Balmer \\(n\\to2\\) (visible), Paschen \\(n\\to3\\) (IR).<br>The Lyman series converges to \\(\\nu \\to \\frac{m e^4}{8\\varepsilon_0^2 h^3 c}\\), the series limit.",
+        "t": "q::what qm::spectrum"
+      },
+      {
+        "f": "Why is classical physics recovered from quantum mechanics?",
+        "b": "For actions \\(S \\gg \\hbar\\) the interference phase over a region is tiny, so amplitudes add to an ordinary classical integral. This is the <b>semiclassical</b> (correspondence) limit.",
+        "t": "q::what qm::correspondence"
+      }
+    ],
+    "QM::Math": [
+      {
+        "f": "What is a Hilbert space?",
+        "b": "A complete inner-product space. The state space of a quantum system is a Hilbert space: a vector space where lengths and angles come from an inner product and all Cauchy sequences converge.",
+        "t": "q::what qm::hilbert"
+      },
+      {
+        "f": "What does Dirac notation mean?",
+        "b": "A ket \\(|\\psi\\rangle\\) is a vector; a bra \\(\\langle\\phi|\\) is its dual covector. Their product \\(\\langle\\phi|\\psi\\rangle\\) is the inner product; it is linear in \\(|\\psi\\rangle\\) and conjugate-linear in \\(|\\phi\\rangle\\).",
+        "t": "q::what qm::dirac"
+      },
+      {
+        "f": "What is a self-adjoint (Hermitian) operator?",
+        "b": "\\(\\hat A = \\hat A^\\dagger\\), i.e. \\(\\langle\\psi|\\hat A|\\phi\\rangle = \\langle\\phi|\\hat A^\\dagger|\\psi\\rangle\\). Only self-adjoint operators have an orthonormal set of real eigenvalues, so they are exactly the observables.",
+        "t": "q::what qm::operators"
+      },
+      {
+        "f": "How do you compute an expectation value?",
+        "b": "\\[ \\langle A \\rangle = \\langle\\psi|\\hat A|\\psi\\rangle \\]<br>In position space \\[ \\langle A \\rangle = \\int \\psi^*(x)\\,\\hat A\\,\\psi(x)\\,dx \\]",
+        "t": "q::how qm::operators"
+      },
+      {
+        "f": "What is a commutator?",
+        "b": "\\[ [A,B] = \\hat A\\hat B - \\hat B\\hat A \\]<br>A non-zero commutator means the two observables cannot share eigenstates, so both cannot be sharp at once.",
+        "t": "q::what qm::commutators"
+      },
+      {
+        "f": "Why must position and momentum not commute?",
+        "b": "\\[ [\\hat x,\\hat p] = i\\hbar \\]<br>Position and momentum are conjugate, so no state is sharp in both. The value \\(i\\hbar\\), not zero, is what makes Planck's constant physical.",
+        "t": "q::what qm::commutators"
+      },
+      {
+        "f": "What is the completeness relation?",
+        "b": "\\[ \\sum_i |a_i\\rangle\\langle a_i| = \\mathbb{1} \\]<br>It is the resolution of the identity in terms of any orthonormal eigenbasis, and it is how you expand an arbitrary state.",
+        "t": "q::what qm::basis"
+      },
+      {
+        "f": "What is a product state for two particles?",
+        "b": "\\(|\\psi\\rangle = |a\\rangle_1 \\otimes |b\\rangle_2\\). Equivalently \\(|a\\rangle|b\\rangle\\). The factorised form is what separability means.",
+        "t": "q::what qm::tensor"
+      },
+      {
+        "f": "What is the trace, and what is it good for?",
+        "b": "\\[ \\mathrm{Tr}(A) = \\sum_i \\langle i|A|i\\rangle = \\sum_i \\lambda_i \\]<br>It is basis-independent, invariant under cyclic permutations of operators, and a pure state has \\(\\mathrm{Tr}(\\rho^2) = 1\\).",
+        "t": "q::what qm::density"
+      },
+      {
+        "f": "What is a density matrix?",
+        "b": "\\(\\rho = \\sum_k p_k |\\psi_k\\rangle\\langle\\psi_k|\\) with \\(p_k \\geq 0\\) and \\(\\mathrm{Tr}\\rho = 1\\). It describes states where you do not (or cannot) know which pure state was prepared.",
+        "t": "q::what qm::density"
+      },
+      {
+        "f": "Pure or mixed? How do you tell?",
+        "b": "Pure states have \\(\\mathrm{Tr}(\\rho^2) = 1\\); mixed states give a value strictly less than 1, the <b>purity</b>. A maximally mixed state of dimension \\(d\\) has \\(\\mathrm{Tr}(\\rho^2) = 1/d\\).",
+        "t": "q::how qm::density"
+      },
+      {
+        "f": "Why must a density matrix be a density matrix?",
+        "b": "It must be Hermitian, positive semi-definite, and have unit trace. Hermiticity and trace one make probabilities real and normalised; positivity is what makes every \\(P(a) = \\mathrm{Tr}(\\rho\\,E_a)\\) non-negative.",
+        "t": "q::how qm::density"
+      }
+    ],
+    "QM::Schrodinger": [
+      {
+        "f": "State the time-dependent Schrodinger equation.",
+        "b": "\\[ i\\hbar \\frac{\\partial}{\\partial t}|\\psi\\rangle = \\hat H |\\psi\\rangle \\]<br>In position space it is a first-order PDE in time and second order in space.",
+        "t": "q::what qm::schrodinger"
+      },
+      {
+        "f": "What is a stationary state?",
+        "b": "A state of definite energy: \\(\\hat H|\\psi_n\\rangle = E_n|\\psi_n\\rangle\\). It only acquires a phase, \\(|\\psi_n(t)\\rangle = e^{-iE_nt/\\hbar}|\\psi_n\\rangle\\), so every measurable probability is time independent.",
+        "t": "q::what qm::stationary"
+      },
+      {
+        "f": "What is the time-independent Schrodinger equation?",
+        "b": "\\[ \\hat H\\psi = E\\psi \\]<br>Equivalently, for a potential that does not depend on time, \\(\\left[-\\frac{\\hbar^2}{2m}\\nabla^2 + V(\\mathbf{x})\\right]\\psi = E\\psi\\). Finding the spectrum means solving this eigenvalue problem.",
+        "t": "q::what qm::schrodinger"
+      },
+      {
+        "f": "How do you separate the Schrodinger equation?",
+        "b": "Assume \\(|\\psi(\\mathbf{x},t)\\rangle = \\phi(\\mathbf{x})T(t)\\). Substitution gives \\(T\\hat H\\phi = \\phi \\hat H T\\), so both must equal the same constant \\(E\\). Then \\(T = e^{-iEt/\\hbar}\\) and \\(\\hat H\\phi = E\\phi\\).",
+        "t": "q::how qm::separation"
+      },
+      {
+        "f": "Which operators represent x, p and H?",
+        "b": "\\[ \\hat x = x, \\qquad \\hat p = -i\\hbar\\nabla, \\qquad \\hat H = -\\frac{\\hbar^2}{2m}\\nabla^2 + V(\\mathbf{x}) \\]",
+        "t": "q::what qm::operators"
+      },
+      {
+        "f": "State the energy-time uncertainty principle.",
+        "b": "\\[ \\Delta H\\,\\Delta t \\geq \\frac{\\hbar}{2} \\]<br>Unlike the \\(x\\)–\\(p\\) case, \\(t\\) is not an operator, so this is not a statement about commutators; it says short-lived states have broad energy spread.",
+        "t": "q::what qm::uncertainty"
+      },
+      {
+        "f": "What is the probability current?",
+        "b": "\\[ \\mathbf{j} = \\frac{\\hbar}{m}\\mathrm{Im}\\left(\\psi^*\\nabla\\psi\\right) \\]<br>It satisfies the continuity equation \\(\\partial_t |\\psi|^2 + \\nabla\\cdot\\mathbf{j} = 0\\), so probability is locally conserved.",
+        "t": "q::what qm::current"
+      },
+      {
+        "f": "What is the physical difference between a global and an energy measurement?",
+        "b": "An energy measurement returns a <b>time average</b> because the phase drops out; a measurement of a general observable can be instantaneous. Energy is the only observable commuting with \\(\\hat H\\).",
+        "t": "q::pitfall qm::measurement"
+      },
+      {
+        "f": "How do you solve a Schrodinger problem numerically?",
+        "b": "Discretise space on a grid, replace \\(\\nabla^2\\) by a finite-difference stencil, and build a symmetric tridiagonal Hamiltonian. Then diagonalise it (Lanczos, or sparse methods for large grids) to get the spectrum and eigenvectors.",
+        "t": "q::how qm::numerics"
+      },
+      {
+        "f": "What is a wave packet, and why do we need it?",
+        "b": "A localised superposition of energy eigenstates, \\(|\\psi\\rangle = \\int dE\\,\\tilde\\psi(E)|E\\rangle\\). Plane waves are delocalised and useless for particles with a definite position, so free particles are described by packets that spread with time.",
+        "t": "q::what qm::wavepackets"
+      },
+      {
+        "f": "How fast does a free Gaussian packet spread?",
+        "b": "For initial width \\(\\Delta x_0\\), after time \\(t\\): \\[ \\Delta x(t) = \\Delta x_0\\sqrt{1 + \\left(\\frac{\\hbar t}{2m\\Delta x_0^2}\\right)^2} \\]<br>The spreading time \\(2m\\Delta x_0^2/\\hbar\\) is why macroscopic superpositions look classical.",
+        "t": "q::how qm::wavepackets"
+      }
+    ],
+    "QM::Potentials": [
+      {
+        "f": "Energies of a particle in a one-dimensional infinite well.",
+        "b": "For a well of width \\(L\\) on \\([0,L]\\):\\[ E_n = \\frac{n^2\\pi^2\\hbar^2}{2mL^2}, \\qquad n = 1,2,3,\\dots \\]<br>The ground state is \\(n=1\\), never \\(n=0\\): a zero-energy wavefunction is not normalisable.",
+        "t": "q::what qm::infinite-well"
+      },
+      {
+        "f": "Wavefunctions inside an infinite well.",
+        "b": "\\[ \\psi_n(x) = \\sqrt{\\frac{2}{L}}\\sin\\!\\left(\\frac{n\\pi x}{L}\\right), \\quad 0&lt;x&lt;L, \\]<br>Zero outside. The sine is not arbitrary: the walls force \\(\\psi = 0\\) at the boundaries.",
+        "t": "q::what qm::infinite-well"
+      },
+      {
+        "f": "Scaling rule for a particle in a box.",
+        "b": "Halving \\(L\\) multiplies every energy by 4 (since \\(E \\propto L^{-2}\\)), and multiplies the momentum scale by 2. Conversely, doubling the mass has no effect on the energies at all.",
+        "t": "q::pitfall qm::infinite-well"
+      },
+      {
+        "f": "Expectation value of x in the ground state of a well on [0,L].",
+        "b": "The density is \\(2/L\\sin^2(\\pi x/L)\\), symmetric about \\(L/2\\), so \\[ \\langle x\\rangle = L/2 \\]<br>yet \\(\\langle p\\rangle = 0\\): the particle is confined, not stationary.",
+        "t": "q::how qm::infinite-well"
+      },
+      {
+        "f": "What is a delta-function potential?",
+        "b": "\\(V = \\lambda\\,\\delta(x)\\). It is the cleanest non-smooth potential: a bound state exists iff \\(\\lambda &lt; 0\\), with \\(E = -m\\lambda^2/(2\\hbar^2)\\). Useful because it can be solved exactly and models a point defect.",
+        "t": "q::what qm::delta"
+      },
+      {
+        "f": "What is tunnelling, qualitatively?",
+        "b": "A particle with energy below the barrier still has a non-zero amplitude on the far side, because the wavefunction decays as an exponential rather than stopping. Non-zero, but exponentially small, and it falls off hard with barrier width.",
+        "t": "q::what qm::tunnelling"
+      },
+      {
+        "f": "Transmission through a rectangular barrier.",
+        "b": "For \\(E &lt; V_0\\), width \\(a\\):\\[ T \\approx \\frac{16E(V_0-E)}{V_0^2} e^{-2\\kappa a}, \\qquad \\kappa = \\frac{\\sqrt{2m(V_0-E)}}{\\hbar} \\]<br>The exponential is what makes tunnelling negligible in everyday mechanics but dominant in STM junctions and alpha decay.",
+        "t": "q::what qm::tunnelling"
+      },
+      {
+        "f": "Derive alpha decay from tunnelling.",
+        "b": "\\(\\kappa = \\sqrt{2m_\\alpha(V_0-E)/Q}\\), and the decay rate is a \\(\\kappa\\propto \\sqrt{1/\\hbar}\\) barrier penetration. The Geiger-Nuttall law \\(T_{1/2} \\propto 1/Z^2\\)-ish exponential sensitivity is the empirical fingerprint.",
+        "t": "q::how qm::tunnelling"
+      },
+      {
+        "f": "Energies of the quantum harmonic oscillator.",
+        "b": "\\[ E_n = \\hbar\\omega\\left(n + \\tfrac{1}{2}\\right), \\qquad n = 0,1,2,\\dots \\]<br>Levels are <b>equally spaced</b> by \\(\\hbar\\omega\\), exactly like a classical oscillator. The ground state is \\(n=0\\) with energy \\(\\hbar\\omega/2\\).",
+        "t": "q::what qm::harmonic-oscillator"
+      },
+      {
+        "f": "What are the ladder operators, and what do they do?",
+        "b": "\\[ a = \\sqrt{\\frac{m\\omega}{2\\hbar}}\\left(\\hat x + \\frac{i\\hat p}{m\\omega}\\right),\\qquad a^\\dagger = \\sqrt{\\frac{m\\omega}{2\\hbar}}\\left(\\hat x - \\frac{i\\hat p}{m\\omega}\\right) \\]<br>\\(a|n\\rangle = \\sqrt{n}\\,|n-1\\rangle\\) and \\(a^\\dagger|n\\rangle = \\sqrt{n+1}\\,|n+1\\rangle\\). They step through the ladder, which is why the spectrum is linear in \\(n\\).",
+        "t": "q::how qm::harmonic-oscillator"
+      },
+      {
+        "f": "Why can the number operator not be negative?",
+        "b": "\\(n = a^\\dagger a \\geq 0\\) because \\(\\|a|\\psi\\rangle\\|^2 \\geq 0\\). The state \\(|n=-1\\rangle\\) is killed by \\(a\\), i.e. it is the zero vector, so negative indices simply do not exist.",
+        "t": "q::pitfall qm::harmonic-oscillator"
+      },
+      {
+        "f": "Does the harmonic oscillator have a zero-energy state?",
+        "b": "No. The ground state has \\(E_0 = \\hbar\\omega/2\\), the <b>zero-point energy</b>, which is the minimum permitted by the uncertainty relation \\(\\Delta x\\,\\Delta p \\geq \\hbar/2\\). This has real consequences: \\({}^4\\mathrm{He}\\) stays liquid at 0 K.",
+        "t": "q::pitfall qm::harmonic-oscillator"
+      },
+      {
+        "f": "What does the classical limit of the oscillator look like?",
+        "b": "For large \\(n\\), the spacing \\(\\hbar\\omega\\) is negligible against \\(E_n \\approx \\hbar\\omega n\\), so the ladder becomes a continuum. The probability density then tends to the classical distribution \\(\\propto 1/\\sqrt{E - E_{\\min}}\\).",
+        "t": "q::pitfall qm::harmonic-oscillator"
+      },
+      {
+        "f": "How many states lie below a given energy?",
+        "b": "The number of states with \\(E_n \\leq E\\) is \\(n+1 \\leq 1 + E/(\\hbar\\omega) - 1/2 = E/(\\hbar\\omega) + 1/2\\). This counting is the seed of statistical mechanics and the Planck blackbody result.",
+        "t": "q::how qm::harmonic-oscillator"
+      }
+    ],
+    "QM::AngularMomentum": [
+      {
+        "f": "What is the eigenvalue equation of L squared?",
+        "b": "\\[ \\hat L^2 |l,m\\rangle = \\hbar^2 l(l+1)|l,m\\rangle, \\qquad l = 0,1,2,\\dots \\]<br>Because of the \\(l(l+1)\\) factor, angular momentum never has a sharp magnitude and a sharp component at the same time.",
+        "t": "q::what qm::angular-momentum"
+      },
+      {
+        "f": "Eigenvalues of Lz and their degeneracy.",
+        "b": "\\[ \\hat L_z |l,m\\rangle = \\hbar m|l,m\\rangle, \\qquad m = -l,-l+1,\\dots,l \\]<br>So \\(m\\) has \\(2l+1\\) values, and each eigenvalue is degenerate in \\(l\\).",
+        "t": "q::what qm::angular-momentum"
+      },
+      {
+        "f": "What are the allowed values of l, and what is each called?",
+        "b": "Integers \\(l = 0,1,2,3,\\dots\\) are called s, p, d, f, g, h. The letters are only labels, not values: an f electron has \\(l=3\\).",
+        "t": "q::what qm::quantum-numbers"
+      },
+      {
+        "f": "Give the four quantum numbers for an atomic electron.",
+        "b": "\\(n = 1,2,\\dots\\); \\(l = 0,\\dots,n-1\\); \\(m = -l,\\dots,l\\); \\(m_s = \\pm \\tfrac12\\). The count \\(\\sum 2(2l+1) = 2n^2\\) gives the shell capacity.",
+        "t": "q::what qm::quantum-numbers"
+      },
+      {
+        "f": "What are spherical harmonics?",
+        "b": "Eigenfunctions of \\(\\hat L^2\\) and \\(\\hat L_z\\): \\[ Y_l^m(\\theta,\\varphi) \\propto P_l^m(\\cos\\theta)\\,e^{im\\varphi} \\]<br>They are the angular part of the hydrogen wavefunction, and \\(|Y_l^m|^2\\) is the probability of finding the electron at those angles.",
+        "t": "q::what qm::angular-momentum"
+      },
+      {
+        "f": "What is spin half, and what are its states?",
+        "b": "Intrinsic angular momentum with \\(s = \\tfrac12\\), so \\(\\hat S^2 = \\frac{3}{4}\\hbar^2\\) and \\(m_s = \\pm \\tfrac12\\). It is <b>not</b> a tiny spinning ball: it has no classical counterpart and appears even in a stationary particle.",
+        "t": "q::what qm::spin"
+      },
+      {
+        "f": "Give the spin-1/2 operators as matrices.",
+        "b": "\\[ S_x = \\frac{\\hbar}{2}\\begin{pmatrix}0 & 1 \\\\ 1 & 0\\end{pmatrix}, \\quad S_y = \\frac{\\hbar}{2}\\begin{pmatrix}0 & -i \\\\ i & 0\\end{pmatrix}, \\quad S_z = \\frac{\\hbar}{2}\\begin{pmatrix}1 & 0 \\\\ 0 & -1\\end{pmatrix} \\]<br>These are the Pauli matrices times \\(\\hbar/2\\).",
+        "t": "q::what qm::spin"
+      },
+      {
+        "f": "Give the spin-up and spin-down states in Dirac notation.",
+        "b": "\\[ |\\uparrow\\rangle = \\begin{pmatrix}1\\\\0\\end{pmatrix} = |\\tfrac12, +\\tfrac12\\rangle, \\qquad |\\downarrow\\rangle = \\begin{pmatrix}0\\\\1\\end{pmatrix} = |\\tfrac12, -\\tfrac12\\rangle \\]",
+        "t": "q::what qm::spin"
+      },
+      {
+        "f": "What are the singlet and triplet states of two spin-1/2 particles?",
+        "b": "Symmetric (triplet, \\(S=1\\)): \\(|\\uparrow\\uparrow\\rangle, |\\uparrow\\downarrow\\rangle + |\\downarrow\\uparrow\\rangle, |\\downarrow\\downarrow\\rangle\\).<br>Antisymmetric (singlet, \\(S=0\\)): \\(|\\uparrow\\downarrow\\rangle - |\\downarrow\\uparrow\\rangle\\).",
+        "t": "q::what qm::spin"
+      },
+      {
+        "f": "What is the total spin of two spin-1/2 particles?",
+        "b": "\\(\\hat{\\mathbf S}_1\\cdot\\hat{\\mathbf S}_2\\) has eigenvalues \\(\\frac{\\hbar^2}{4}(S(S+1) - 3)\\), so \\(S=0\\) gives \\(-\\frac{3}{4}\\hbar^2\\) and \\(S=1\\) gives \\(+\\frac{1}{4}\\hbar^2\\). Ferromagnetism comes from choosing the triplet.",
+        "t": "q::how qm::spin"
+      },
+      {
+        "f": "How do you add two angular momenta?",
+        "b": "\\(|j_1-j_2| \\leq j \\leq j_1 + j_2\\) in integer steps, so for two spin-1/2, \\(j = 0\\) or 1. The Clebsch-Gordan coefficients give the weights of each product state in the coupled basis.",
+        "t": "q::how qm::angular-momentum"
+      },
+      {
+        "f": "What is the Zeeman effect?",
+        "b": "A magnetic field \\(B\\) along \\(z\\) splits a level by \\[ \\Delta E = \\mu_B B\\,g\\,m_j, \\qquad \\mu_B = \\frac{e\\hbar}{2m_e} \\]<br>Weak fields: the anomalous effect includes the Landé factor \\(g_J\\) from the total angular momentum.",
+        "t": "q::what qm::zeeman"
+      }
+    ],
+    "QM::Atoms": [
+      {
+        "f": "The hydrogen Hamiltonian and potential.",
+        "b": "A proton and electron separated by \\(r = |\\mathbf{x}|\\):\\[ \\hat H = -\\frac{\\hbar^2}{2m_e}\\nabla^2 - \\frac{\\hbar^2}{2m_p}\\nabla_p^2 - \\frac{e^2}{4\\pi\\varepsilon_0 r} \\]<br>Separating the centre of mass leaves a relative motion with reduced mass \\(\\mu = m_em_p/(m_e+m_p) \\approx 0.9995\\,m_e\\).",
+        "t": "q::what qm::hydrogen"
+      },
+      {
+        "f": "Energy levels of hydrogen.",
+        "b": "\\[ E_n = -\\frac{\\mu e^4}{2(4\\pi\\varepsilon_0)^2\\hbar^2 n^2} = -\\frac{13.6\\ \\mathrm{eV}}{n^2} \\]<br>Bound states have \\(n \\geq 1\\); the continuum is \\(E \\geq 0\\). The negative sign is what makes ionisation cost energy.",
+        "t": "q::what qm::hydrogen"
+      },
+      {
+        "f": "What is the Bohr radius?",
+        "b": "\\[ a_0 = \\frac{4\\pi\\varepsilon_0\\hbar^2}{\\mu e^2} = 0.529\\ \\text{\\u00c5} \\]<br>It is the most probable distance of the electron from the proton in the ground state, and it sets the size of every hydrogen-like atom.",
+        "t": "q::what qm::hydrogen"
+      },
+      {
+        "f": "How does the hydrogen energy scale with nuclear charge?",
+        "b": "\\(E_n \\propto -Z^2/n^2\\) for a hydrogen-like ion. So \\(\\mathrm{He}^+\\) has four times the binding energy of \\(\\mathrm{H}\\), and \\(\\mathrm{Fe}^{25+}\\) is X-ray scale. This is the basis of X-ray spectroscopy.",
+        "t": "q::pitfall qm::hydrogen"
+      },
+      {
+        "f": "Hydrogen wavefunctions and their labels.",
+        "b": "\\[ \\psi_{nlm}(\\mathbf{r}) = R_{nl}(r)\\,Y_l^m(\\theta,\\varphi) \\]<br>Labels: \\(1s\\) is \\(n=1,l=0\\); \\(2s\\) is \\(n=2,l=0\\); \\(2p\\) is \\(n=2,l=1\\). Angular momentum and magnetic moment are conserved, so \\(l\\) and \\(m\\) do not mix.",
+        "t": "q::what qm::hydrogen"
+      },
+      {
+        "f": "Why is hydrogen degenerate in l?",
+        "b": "In a pure Coulomb field, the potential is rotationally symmetric, so all \\(l\\) with the same \\(n\\) have the same energy. The degeneracy is lifted by fine structure, spin-orbit coupling and the Lamb shift.",
+        "t": "q::why qm::hydrogen"
+      },
+      {
+        "f": "State the electric-dipole selection rules.",
+        "b": "\\((\\Delta l = \\pm 1)\\), \\((\\Delta m = 0, \\pm 1)\\), and spin must be conserved \\((\\Delta s = 0)\\). Parity changes. So \\(1s \\to 1s\\) and \\(1s \\to 2s\\) are <b>forbidden</b> by electric dipole, even though 2s lies below 2p.",
+        "t": "q::what qm::selection-rules"
+      },
+      {
+        "f": "Why does effective nuclear charge replace Z in multi-electron atoms?",
+        "b": "Inner electrons shield the outer ones, so an outer electron feels roughly \\[ Z_{\\text{eff}} = Z - \\sigma \\]<br>with \\(\\sigma\\) close to the number of core electrons. This is why the periodic table is built from a modified hydrogen.",
+        "t": "q::what qm::many-electron"
+      },
+      {
+        "f": "State the Aufbau order of orbital filling.",
+        "b": "1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p, 5s, 4d, 5p, 6s, 4f, 5d, 6p, 7s, 5f, 6d, 7p.<br>It follows the Madelung rule \\(n + l\\) with ties broken by smaller \\(n\\): fill every \\((n+l)\\) combination before moving to the next, so 4s fills before 3d.",
+        "t": "q::what qm::many-electron"
+      },
+      {
+        "f": "Why does the Madelung rule really work?",
+        "b": "Because 4s and 3d overlap in energy, and in a many-electron atom 3d electrons shield weakly. Quantum-mechanically the order is a many-body result, not a one-electron fact; the rule is a very good approximation, not a theorem.",
+        "t": "q::pitfall qm::many-electron"
+      },
+      {
+        "f": "State Hund's rules.",
+        "b": "1. Fill degenerate orbitals singly with parallel spins before pairing.<br>2. If the subshell stays half full or fully full it is especially stable.<br>3. For a subshell with less than half filling, the term with the <b>smallest</b> \\(J\\) is lowest; with more than half filling, the <b>largest</b> \\(J\\).",
+        "t": "q::what qm::hund"
+      },
+      {
+        "f": "What is exchange energy?",
+        "b": "Two electrons of opposite spin in overlapping orbitals have wavefunctions that partly cancel between the nuclei, which <b>raises</b> the energy. Placing them in different orbitals avoids this, so parallel-spin pairs in different orbitals are preferred. It is the origin of the \\(\\mathrm{H}_2\\) bond and of Hund's first rule.",
+        "t": "q::what qm::exchange"
+      },
+      {
+        "f": "Compare the magnitude of exchange splitting.",
+        "b": "Exchange is a <b>correction</b>, not a competitor: splittings run from a fraction of an electronvolt to a few eV, against hartree-scale (\\(\\approx 27\\) eV) electrostatic repulsion and similar orbital energies. So exchange refines a result you already had, and in Hund's rule it sets the sign of a small splitting between nearly degenerate states.",
+        "t": "q::pitfall qm::exchange"
+      }
+    ],
+    "QM::IdenticalParticles": [
+      {
+        "f": "What is exchange symmetry?",
+        "b": "Permuting identical particles is a symmetry of the Hamiltonian, so the wavefunction is an eigenfunction of the exchange operator: either symmetric (bosons) or antisymmetric (fermions). No other option exists for a scalar symmetry.",
+        "t": "q::what qm::identical"
+      },
+      {
+        "f": "What does antisymmetry imply physically?",
+        "b": "Two fermions cannot share all quantum numbers, because the symmetric part of their common orbital must vanish. That single fact produces the periodic table, atomic stability, and the \\(\\varepsilon_0\\) in the hydrogen problem.",
+        "t": "q::why qm::pauli"
+      },
+      {
+        "f": "Write the symmetric and antisymmetric combinations of two states.",
+        "b": "\\[ |\\psi_\\pm\\rangle = \\frac{1}{\\sqrt{2}}\\left(|ab\\rangle \\pm |ba\\rangle\\right) \\]<br>Plus for bosons, minus for fermions.",
+        "t": "q::how qm::identical"
+      },
+      {
+        "f": "What is degeneracy pressure?",
+        "b": "Exclusion forces fermions into higher momentum states at \\(T \\to 0\\), generating pressure without any thermal motion, \\(P \\sim n^{5/3}\\). It is what keeps white dwarfs and neutron stars from collapsing, and it is why helium needs pressure to freeze.",
+        "t": "q::what qm::degeneracy"
+      },
+      {
+        "f": "What is Bose-Einstein condensation?",
+        "b": "Below a critical temperature, an ideal Bose gas accumulates a macroscopic population in the ground state, \\(\\mu \\to 0\\) and \\(n_0/N \\to 1\\). The condensate has no classical analogue and is a macroscopic quantum state.",
+        "t": "q::what qm::bec"
+      },
+      {
+        "f": "Compare chemical potentials at zero temperature.",
+        "b": "Fermions: \\(\\mu \\to E_F > 0\\), the Fermi energy, which is where the sea is full.<br>Bosons: \\(\\mu \\to 0\\) from below, because the ground state is degenerate and can be filled without limit.",
+        "t": "q::pitfall qm::bec"
+      },
+      {
+        "f": "Why is exchange a large effect in a solid but a small one in free atoms?",
+        "b": "In a free atom the same spatial orbital already forbids two electrons in it, so exchange only reshuffles states within a shell. In a solid, orbitals from many atoms overlap, so the occupied combination is a coherent superposition and exchange gains a macroscopic factor, setting the observed bonding in noble-gas solids.",
+        "t": "q::why qm::exchange"
+      }
+    ],
+    "QM::Approximation": [
+      {
+        "f": "State the variational principle.",
+        "b": "For any trial state \\(|\\psi\\rangle\\),\\[ E_{\\text{GS}} \\leq \\langle\\psi|\\hat H|\\psi\\rangle \\]<br>Equality only for a true eigenstate, so minimising the energy over a family of trial states always approaches the ground energy from above and never below it.",
+        "t": "q::what qm::variational"
+      },
+      {
+        "f": "Why does the variational principle hold?",
+        "b": "Expanding any state in the energy basis, \\(\\langle H\\rangle = \\sum_n w_n E_n\\) with \\(w_n \\geq 0\\) and \\(\\sum w_n = 1\\), so it is a weighted average of the spectrum and can never fall below its smallest value.",
+        "t": "q::how qm::variational"
+      },
+      {
+        "f": "What is the Born-Oppenheimer approximation?",
+        "b": "Electrons are so much lighter than nuclei (\\(\\sim 1/1836\\)) that the nuclear kinetic energy is negligible on the electronic timescale. Solve for \\(\\psi(\\mathbf{x};\\mathbf{R})\\) with nuclei frozen at \\(\\mathbf{R}\\), then treat the resulting electronic energy as a potential surface for nuclear motion.",
+        "t": "q::what qm::born-oppenheimer"
+      },
+      {
+        "f": "Beyond Born-Oppenheimer: what is a PES?",
+        "b": "The electronic energy \\(E_{\\text{el}}(\\mathbf{R})\\) is a potential energy surface for the nuclei. Minima give equilibrium geometries, transition states are saddle points, and chemical reaction dynamics is nuclear motion on these surfaces.",
+        "t": "q::what qm::born-oppenheimer"
+      },
+      {
+        "f": "State first-order non-degenerate perturbation theory.",
+        "b": "For \\(\\hat H = \\hat H_0 + \\lambda\\hat V\\) with unperturbed states \\(|n\\rangle\\):\\[ E_n \\approx E_n^{(0)} + \\lambda\\langle n|\\hat V|n\\rangle \\]<br>Corrections are second order in the small parameter, so the first-order shift is the expectation value in the unperturbed state.",
+        "t": "q::what qm::perturbation"
+      },
+      {
+        "f": "First-order correction to the wavefunction.",
+        "b": "\\[ |n\\rangle \\approx |n^{(0)}\\rangle + \\lambda\\sum_{m \\neq n} \\frac{\\langle m|\\hat V|n\\rangle}{E_n^{(0)} - E_m^{(0)}} |m\\rangle \\]<br>It mixes in states of <b>different</b> symmetry only, since the matrix element vanishes otherwise.",
+        "t": "q::how qm::perturbation"
+      },
+      {
+        "f": "What must change in degenerate perturbation theory?",
+        "b": "If the unperturbed level is degenerate, diagonalise the perturbation <b>inside</b> the degenerate subspace. Any basis choice outside it is arbitrary, and the naive expectation value \\(\\langle n|\\hat V|n\\rangle\\) is basis dependent.",
+        "t": "q::what qm::perturbation"
+      },
+      {
+        "f": "What does WKB quantisation give?",
+        "b": "In classically allowed and forbidden regions solve \\(\\psi \\sim e^{\\pm \\frac{1}{\\hbar}\\int\\sqrt{2m(E-V)}\\,dx}\\), then impose smoothness: the action across a full oscillation cycle is quantised, \\(\\oint p\\,dq = 2\\pi\\hbar(n + \\tfrac12)\\) (Maslov).",
+        "t": "q::what qm::wkb"
+      },
+      {
+        "f": "When is WKB valid?",
+        "b": "Only where the wavelength is short compared to the scale on which the potential varies, i.e. \\(|\\kappa'^{-1}| \\ll |\\kappa^{-1}|\\) with \\(\\kappa = \\sqrt{2m(E-V)}/\\hbar\\). It recovers the harmonic oscillator only if the Maslov index \\(1/2\\) is included, and it is what explains the hydrogen \\(n\\) degeneracy and the radial quantum number \\(l+1\\).",
+        "t": "q::pitfall qm::wkb"
+      },
+      {
+        "f": "What is the tight-binding (LCAO) model?",
+        "b": "Replace an extended orbital by orbitals localised on each site and let them combine: \\(|\\psi_k\\rangle = \\sum_j e^{ikx_j}|j\\rangle\\). This gives a band, a dispersion, and band gaps, which is why it describes metals, insulators and semiconductors qualitatively.",
+        "t": "q::what qm::tight-binding"
+      },
+      {
+        "f": "What is the Hubbard model?",
+        "b": "\\(\\hat H = -t\\sum\\langle ij\\rangle c^\\dagger_i c_j + U\\sum_i n_i(n_i-1)\\) with \\(t\\) hopping and \\(U\\) repulsion. It is minimal but captures the competition between kinetic and potential energy that drives Mott insulators, and it is the standard starting point for strongly correlated electrons.",
+        "t": "q::what qm::strong-correlation"
+      },
+      {
+        "f": "What is Lindblad's equation?",
+        "b": "\\(\\frac{d\\rho}{dt} = -\\frac{i}{\\hbar}[H,\\rho] + \\sum_k \\gamma_k \\left(L_k\\rho L_k^\\dagger - \\tfrac12\\{L_k^\\dagger L_k,\\rho\\}\\right)\\)<br>Unitary evolution conserves purity; the dissipative terms do not, and are required to model decoherence and open quantum systems.",
+        "t": "q::what qm::open-systems"
+      }
+    ]
+  }
+}

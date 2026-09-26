@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# omarchy:summary=Launch Anki (spaced repetition)
+# omarchy:args=[]
+
+exec setsid uwsm-app -- anki "$@"

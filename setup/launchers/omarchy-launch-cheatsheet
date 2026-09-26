@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# omarchy:summary=Open the Algebra Rules Bible cheatsheet (LaTeX rendered)
+# omarchy:args=[]
+
+LAB="${ALGEBRA_LAB_DIR:-$HOME/Work/algebra-lab}"
+SRC="$LAB/CHEATSHEET.md"
+CONV="$LAB/md2html.py"
+OUT="$LAB/cheatsheet.html"
+
+if [[ ! -f $SRC ]]; then
+  echo "cheatsheet not found: $SRC" >&2
+  exit 1
+fi
+
+# Omarchy opens .md in a plain text editor, so the LaTeX shows up as raw
+# source. Convert to HTML with MathJax and open that in the browser instead.
+py=""
+for cand in /usr/bin/python3 "$LAB/.venv/bin/python"; do
+  [[ -x $cand ]] && { py=$cand; break; }
+done
+if [[ -z $py ]]; then
+  echo "no python3 found" >&2
+  exit 1
+fi
+
+"$py" "$CONV" || { echo "conversion failed" >&2; exit 1; }
+
+exec omarchy-launch-webapp "file://$OUT"

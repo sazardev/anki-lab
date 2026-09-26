@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# omarchy:summary=Open Maxima (computer algebra system) in a terminal
+# omarchy:args=[]
+
+exec setsid uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title=Maxima -e maxima

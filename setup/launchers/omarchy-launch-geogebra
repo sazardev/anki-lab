@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# omarchy:summary=Launch GeoGebra (dynamic mathematics / linear algebra viewer)
+# omarchy:args=[file]
+
+# JAVA_TOOL_OPTIONS silences GeoGebra's AWT font warnings on Hyprland.
+export _JAVA_OPTIONS="${_JAVA_OPTIONS:-} -Dawt.useSystemAAFontSettings=on"
+
+if [[ -n ${1-} ]]; then
+  exec setsid uwsm-app -- geogebra "$1"
+fi
+exec setsid uwsm-app -- geogebra

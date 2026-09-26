@@ -1,0 +1,30 @@
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# jupyter
+.ipynb_checkpoints/
+
+# generated output
+anki_preview.html
+*.apkg
+
+# vendored third-party (4 MB); the scripts fall back to the jsDelivr CDN
+mathjax/
+
+# the original per-user Anki collection, never commit this
+*.anki2
+*.anki2-wal
+*.anki2-shm
+collection.anki2*
+
+# editors / OS
+.DS_Store
+*.swp
+.idea/
+.vscode/

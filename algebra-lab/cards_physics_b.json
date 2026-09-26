@@ -1,0 +1,566 @@
+{
+  "decks": {
+    "Physics::Thermal": [
+      {
+        "t": "q::what therm::what",
+        "f": "What is temperature, physically?",
+        "b": "A measure of the <b>average kinetic energy per degree of freedom</b> of microscopic motion.<br>For an ideal gas, \\(\\langle K\\rangle = \\tfrac32 k_B T\\).<br>It is <b>not</b> heat &mdash; heat is energy <i>transferred</i>."
+      },
+      {
+        "t": "q::what therm::what",
+        "f": "State the ideal gas law and define each symbol.",
+        "b": "\\[ PV = nRT = Nk_BT \\]<br>\n\\(P\\) pressure, \\(V\\) volume, \\(n\\) moles, \\(N\\) particle number.<br>\n\\(R = 8.314\\ \\mathrm{J/(mol\\,K)}\\), \\(k_B = 1.381\\times10^{-23}\\ \\mathrm{J/K}\\).<br>Note \\(R = N_A k_B\\)."
+      },
+      {
+        "t": "q::do therm::gas",
+        "f": "At constant temperature, doubling the pressure of a gas does what to its volume?",
+        "b": "\\[ PV = \\text{const} \\Rightarrow V \\propto \\frac1P \\]<br>Halves it. This is <b>Boyle's law</b>, and it assumes a fixed amount of gas."
+      },
+      {
+        "t": "q::do therm::gas",
+        "f": "At constant pressure, doubling the absolute temperature of a gas does what to its volume?",
+        "b": "\\[ V \\propto T \\Rightarrow \\text{doubles} \\]<br><b>Charles's law</b>. Crucially \\(T\\) must be in <b>kelvin</b> &mdash; Celsius is not proportional, which is why gas laws need absolute temperature."
+      },
+      {
+        "t": "q::what therm::kinetic",
+        "f": "What does the equipartition theorem say?",
+        "b": "In <b>classical</b> statistical mechanics, each quadratic degree of freedom carries \\(\\tfrac12 k_B T\\) of average energy.<br>For a monatomic ideal gas: \\(3\\) translational degrees, so \\(\\langle E\\rangle = \\tfrac32 k_BT\\)."
+      },
+      {
+        "t": "q::pitfall therm::kinetic",
+        "f": "A 3D monatomic ideal gas: how many degrees of freedom, and what is the mean energy?",
+        "b": "\\(\\tfrac32 k_B T\\)<br>Just the <b>three</b> translations &mdash; monatomic particles have no rotation or vibration.<br>For a <b>diatomic</b> gas near room temperature it is \\(\\tfrac52 k_BT\\) (rotations on, vibrations off)."
+      },
+      {
+        "t": "q::pitfall therm::kinetic",
+        "f": "What is the heat capacity ratio \\(\\gamma\\), and what is it for mono- and diatomic gases?",
+        "b": "\\[ \\gamma = \\frac{C_P}{C_V} = 1 + \\frac{R}{C_V} \\]<br>Monatomic (3 translational only): \\(\\gamma = \\tfrac{5}{3} \\approx 1.667\\)<br>Diatomic (3 translational + 2 rotational at room temperature): \\(\\gamma = \\tfrac{7}{5} = 1.4\\)<br>Each rotational degree of freedom adds \\(R\\) to \\(C_V\\) and \\(C_P\\), so \\(\\gamma\\) falls as more modes free up."
+      },
+      {
+        "t": "q::what therm::what",
+        "f": "What is the zeroth law of thermodynamics and why does it matter?",
+        "b": "If \\(A\\) and \\(B\\) are each in thermal equilibrium with \\(C\\), then \\(A\\) and \\(B\\) are in equilibrium with each other.<br>It is what makes a <b>thermometer</b> possible at all &mdash; it defines temperature as a transitive relation."
+      },
+      {
+        "t": "q::what therm::what",
+        "f": "What does the first law say, and what is the sign convention?",
+        "b": "\\[ \\Delta U = Q - W \\]<br>\\(Q\\) heat <b>added to</b> the system (positive in), \\(W\\) work done <b>by</b> the system (positive out).<br>It is conservation of energy. The alternative convention \\(\\Delta U = Q + W\\) exists &mdash; pick one and be consistent."
+      },
+      {
+        "t": "q::what therm::what",
+        "f": "What does the second law say?",
+        "b": "Heat does not spontaneously flow from cold to hot.<br>Equivalently, the entropy of an isolated system never decreases.<br>It is a <b>one-way</b> statement: it explains why the reverse never happens spontaneously, without needing to know the microscopic state."
+      },
+      {
+        "t": "q::what therm::entropy",
+        "f": "Define entropy.",
+        "b": "\\[ S = k_B \\ln\\Omega \\]<br>Boltzmann: entropy is the logarithm of the number of microstates consistent with the macrostate.<br>\\(S\\) has units of \\(\\mathrm{J/K}\\) and quanta are \\(k_B\\ln 2\\) for a bit."
+      },
+      {
+        "t": "q::do therm::entropy",
+        "f": "What is the thermodynamic definition of entropy change?",
+        "b": "\\[ \\Delta S = \\int \\frac{\\delta Q_{\\text{rev}}}{T} \\]<br>For a reversible path. For an irreversible one use \\(\\Delta S \\ge \\int \\delta Q/T\\).<br>This is the only route to entropy changes in practice."
+      },
+      {
+        "t": "q::do therm::entropy",
+        "f": "Entropy change when \\(m\\) kg of water goes from \\(T_1\\) to \\(T_2\\).",
+        "b": "\\[ \\Delta S = mc\\ln\\frac{T_2}{T_1} \\]<br>With \\(c = 4186\\ \\mathrm{J/(kg\\,K)}\\) for water. Temperatures <b>must</b> be in kelvin &mdash; the log of Celsius is meaningless."
+      },
+      {
+        "t": "q::do therm::entropy",
+        "f": "Entropy change when \\(n\\) moles of an ideal gas expand isothermally and reversibly.",
+        "b": "\\[ \\Delta S = nR\\ln\\frac{V_2}{V_1} \\]<br>Positive because the gas can reach more microstates. Same formula for an isothermal free expansion &mdash; irreversibility does not change \\(\\Delta S\\), only \\(\\delta Q_{\\text{rev}}\\)."
+      },
+      {
+        "t": "q::what therm::thermo",
+        "f": "What are the four thermodynamic processes?",
+        "b": "**Isothermal** \\(dT = 0\\) &middot; **Adiabatic** \\(\\delta Q = 0\\) &middot; <br>**Isobaric** \\(dP = 0\\) &middot; **Isochoric** \\(dV = 0\\)<br>Adiabatic is the one that matters in nature: compression heats a gas even with no heat input."
+      },
+      {
+        "t": "q::how therm::process",
+        "f": "For an ideal gas, what is \\(W\\) in an isothermal expansion?",
+        "b": "\\[ W = nRT\\ln\\frac{V_2}{V_1} = Q \\]<br>Isothermal means \\(\\Delta U = 0\\) (internal energy depends only on temperature), so all the heat in leaves as work.<br>Note the formula is just <b>ln</b> of the volume ratio &mdash; no minus 1. The ln&minus;1 form belongs to a <b>reversible adiabatic</b> process, which is a different case."
+      },
+      {
+        "t": "q::how therm::process",
+        "f": "For an ideal gas, work done in a constant-pressure expansion?",
+        "b": "\\[ W = P\\Delta V \\]<br>With \\(\\Delta U = Q - W\\) and \\(Q = nC_P\\Delta T\\) this gives \\(W = nR\\Delta T\\)."
+      },
+      {
+        "t": "q::do therm::adiabatic",
+        "f": "What is the adiabatic relation for an ideal gas?",
+        "b": "\\[ PV^\\gamma = \\text{const}, \\qquad TV^{\\gamma-1} = \\text{const} \\]<br>Derived from \\(PV^\\gamma = \\text{const}\\) plus the ideal gas law."
+      },
+      {
+        "t": "q::do therm::adiabatic",
+        "f": "Why does \\(Q \\to 0\\) give \\(PV^\\gamma = \\text{const}\\) when \\(\\delta Q = 0\\)?",
+        "b": "Start from \\(\\delta Q = dU + P\\,dV = 0\\) with \\(dU = nC_VdT\\) and \\(P = nRT/V\\):<br>\\[ nC_V\\,dT = -\\frac{nRT}{V}\\,dV \\;\\Rightarrow\\; \\frac{dT}{T} = -\\frac{R}{C_V}\\frac{dV}{V} \\]<br>Integrating gives \\(T\\,V^{R/C_V} = \\text{const}\\). Since \\(R/C_V = \\gamma-1\\), this is \\(TV^{\\gamma-1} = \\text{const}\\), which with \\(PV = nRT\\) becomes \\(PV^\\gamma = \\text{const}\\)."
+      },
+      {
+        "t": "q::what therm::cycles",
+        "f": "What does a heat engine efficiency look like, and what sets the limit?",
+        "b": "\\[ \\eta = 1 - \\frac{T_C}{T_H} \\]<br>For a <b>reversible</b> (Carnot) engine, with absolute temperatures.<br>No engine between two reservoirs can beat this &mdash; that is the second law. Real engines are far worse because of irreversibility."
+      },
+      {
+        "t": "q::do therm::cycles",
+        "f": "Carnot engine between 600 K and 300 K: efficiency?",
+        "b": "\\[ \\eta = 1 - \\frac{300}{600} = \\mathbf{0.5} = \\mathbf{50\\%} \\]<br>Halves the input energy at most. Real engines reach 30&ndash;40% for a combined cycle."
+      },
+      {
+        "t": "q::pitfall therm::cycles",
+        "f": "What is the efficiency of a refrigerator?",
+        "b": "\\[ \\text{COP} = \\frac{Q_C}{W} = \\frac{T_C}{T_H - T_H} \\ldots = \\frac{T_C}{T_H - T_C} \\]<br>It is a <b>COP, not an efficiency</b>, and it can <b>exceed 1</b> &mdash; that is not a violation, it just means more heat leaves cold than work goes in."
+      },
+      {
+        "t": "q::what therm::thermo",
+        "f": "What is a phase change and what happens to temperature?",
+        "b": "Latent heat \\(L = Q/\\Delta m\\) is absorbed or released with <b>no temperature change</b>.<br>Melting \\(L_f\\approx 3.3\\times10^5\\ \\mathrm{J/kg}\\), vaporising water \\(L_v\\approx 2.26\\times10^6\\ \\mathrm{J/kg}\\).<br>Breaking <i>all</i> the bonds needs far more energy than melting."
+      },
+      {
+        "t": "q::do therm::kinetic",
+        "f": "What is Brownian motion, and what does it reveal?",
+        "b": "Random jitter of particles suspended in a fluid, from unequal molecular bombardment.<br>It was the first convincing evidence for the <b>existence of atoms</b> &mdash; visible even in a microscope (Perrin, 1909)."
+      }
+    ],
+    "Physics::EM": [
+      {
+        "t": "q::what em::what",
+        "f": "State Coulomb's law.",
+        "b": "\\[ F = k\\frac{|q_1q_2|}{r^2}, \\qquad k = \\frac{1}{4\\pi\\varepsilon_0} \\approx 8.99\\times10^9 \\]<br>\n\\(1/4\\pi\\varepsilon_0 = 8.99\\times10^9\\ \\mathrm{N\\,m^2/C^2}\\).<br>In a medium the field is reduced by the dielectric constant \\(\\kappa\\)."
+      },
+      {
+        "t": "q::what em::field",
+        "f": "What is the electric field, and how is it related to force?",
+        "b": "\\[ \\vec E = \\frac{\\vec F}{q}, \\qquad F = qE \\]<br>A force per unit charge. Direction is the direction a <b>positive</b> test charge would move; a negative charge feels the opposite force."
+      },
+      {
+        "t": "q::what em::field",
+        "f": "What is the electric field of a point charge?",
+        "b": "\\[ E = \\frac{1}{4\\pi\\varepsilon_0}\\frac{|q|}{r^2} \\]<br>Same \\(1/r^2\\) form as the force, and it is a <b>vector</b> field &mdash; superpose fields, not just magnitudes."
+      },
+      {
+        "t": "q::do em::field",
+        "f": "Electric field inside a conductor at electrostatic equilibrium?",
+        "b": "\\(\\mathbf{E = 0}\\)<br>If a field existed, free charges would move; since they are in equilibrium they have cancelled it. Excess charge sits entirely on the <b>surface</b>."
+      },
+      {
+        "t": "q::do em::gauss",
+        "f": "State Gauss's law.",
+        "b": "\\[ \\oint \\vec E\\cdot d\\vec A = \\frac{Q_{\\text{enc}}}{\\varepsilon_0} \\]<br>Total flux through a closed surface depends only on the <b>enclosed</b> charge &mdash; never on the charge outside.<br>Symmetry is what makes it <i>useful</i>: spherical, cylindrical, planar."
+      },
+      {
+        "t": "q::how em::gauss",
+        "f": "Field inside a uniformly charged spherical shell?",
+        "b": "\\(\\mathbf{0}\\) for \\(r &lt; R\\)<br>By symmetry the field is radial and constant on a concentric Gaussian sphere, so \\(E\\cdot 4\\pi r^2 = 0 \\Rightarrow E = 0\\).<br>The shell's field is <b>discontinuous</b> at \\(r = R\\) &mdash; a standard exam point."
+      },
+      {
+        "t": "q::how em::potential",
+        "f": "How is electric potential defined, and what is it for a point charge?",
+        "b": "\\[ V = -\\int_\\infty^{\\vec r} \\vec E \\cdot d\\vec l, \\qquad V(q) = \\frac{1}{4\\pi\\varepsilon_0}\\frac q r \\]<br>Potential is <b>scalar</b> and path-independent (electrostatics is conservative); field is \\(\\vec E = -\\nabla V\\)."
+      },
+      {
+        "t": "q::pitfall em::potential",
+        "f": "Potential at the centre of a charged spherical shell?",
+        "b": "\\[ V = k\\frac{Q}{R} = \\mathbf{kQ/R} \\]<br><b>Non-zero!</b> Even though \\(\\vec E = 0\\) there.<br>This is the classic trap: potential is a <b>scalar sum of contributions</b>, so it does not cancel the way vector components do."
+      },
+      {
+        "t": "q::do em::potential",
+        "f": "How much work to bring a charge \\(q\\) from infinity to potential \\(V\\)?",
+        "b": "\\(W = qV = \\Delta U\\)<br>Zero work in a region of constant potential &mdash; and the field there is zero too."
+      },
+      {
+        "t": "q::what em::capacitance",
+        "f": "What is capacitance and what sets it?",
+        "b": "\\[ C = \\frac{Q}{V} \\]<br>It grows with <b>plate area</b> and shrinks with <b>separation</b>: \\(C = \\varepsilon_0\\kappa A/d\\) for a parallel plate.<br>It is a property of the <b>geometry and dielectric</b> only, not of the charge."
+      },
+      {
+        "t": "q::do em::energy",
+        "f": "Energy stored in a capacitor?",
+        "b": "\\[ U = \\tfrac12 CV^2 = \\tfrac12 QV = \\frac{Q^2}{2C} \\]<br>Three forms, all equivalent. The \\(\\tfrac12\\) is not optional &mdash; it comes from integrating \\(V\\) as \\(Q\\) grows."
+      },
+      {
+        "t": "q::do em::energy",
+        "f": "What happens to the energy of a charged isolated capacitor when a dielectric is inserted?",
+        "b": "\\(C\\) rises, \\(V\\) falls, \\(Q\\) is fixed, so \\(U = Q^2/2C\\) <b>decreases</b>.<br>The missing energy is dissipated as heat in the dielectric &mdash; and it is why dielectrics warm up in a capacitor."
+      },
+      {
+        "t": "q::pitfall em::energy",
+        "f": "A charged isolated capacitor gains a dielectric. Does the voltage increase?",
+        "b": "<b>No, it decreases.</b> Fixed \\(Q\\), higher \\(C\\) &rArr; lower \\(V\\).<br>Voltage only rises if you keep \\(V\\) fixed by connecting to a battery. The word <b>isolated</b> is doing the work."
+      },
+      {
+        "t": "q::what em::current",
+        "f": "What is electric current and what sets its direction?",
+        "b": "\\[ I = \\frac{dQ}{dt} \\]<br>Defined by <b>positive</b> charge flow.<br>Conventional current flows from high to low potential; electron flow is opposite. They coincide only in metals."
+      },
+      {
+        "t": "q::what em::what",
+        "f": "State Ohm's law and what is ohmic.",
+        "b": "\\[ V = IR \\]<br>Ohmic means \\(R\\) is <b>constant</b> &mdash; a straight line on an \\(I\\)-\\(V\\) graph. Metals are ohmic; a diode is not."
+      },
+      {
+        "t": "q::what em::resistance",
+        "f": "What is resistivity, and what determines a wire's resistance?",
+        "b": "\\[ R = \\rho\\frac{L}{A}, \\qquad \\rho_{Cu}\\approx1.7\\times10^{-8}\\ \\Omega\\!\\cdot\\!\\text{m} \\]<br>Resistance grows with <b>length</b> and shrinks with <b>cross-section</b>.<br>Stretching a wire makes \\(L\\) and \\(A\\) change together, and the result is subtle."
+      },
+      {
+        "t": "q::do em::resistance",
+        "f": "You stretch a wire to twice its original length, volume constant. How does \\(R\\) change?",
+        "b": "\\(A\\) halves when \\(L\\) doubles (volume fixed), so \\(R = \\rho L/A\\) <b>quadruples</b>.<br>The easy wrong answer is \\(\\times 2\\) from looking at \\(L\\) alone."
+      },
+      {
+        "t": "q::what em::power",
+        "f": "What is Joule heating, and the power dissipated in a resistor?",
+        "b": "\\[ P = IV = I^2R = \\frac{V^2}{R} \\]<br>All four forms are correct; pick the one whose other variables you know.<br>Energy becomes heat because the drifting electrons collide with the lattice."
+      },
+      {
+        "t": "q::what em::power",
+        "f": "State the power of a source and what the internal resistance does.",
+        "b": "\\[ \\mathcal{E} = I(R + r) \\]<br>A real battery has internal resistance \\(r\\), so terminal voltage \\(&lt; \\mathcal E\\)<br>when delivering current. Maximum power transfer happens at \\(R = r\\)."
+      },
+      {
+        "t": "q::what em::magnetic",
+        "f": "What is the magnetic force on a moving charge?",
+        "b": "\\[ \\vec F = q\\vec v \\times \\vec B \\qquad F = |q|vB\\sin\\theta \\]<br>Zero for \\(v \\parallel B\\) or a stationary charge &mdash; a magnetic field does no <b>work</b>, only deflects."
+      },
+      {
+        "t": "q::what em::magnetic",
+        "f": "What is the force on a current-carrying wire in a magnetic field?",
+        "b": "\\[ \\vec F = I\\vec L \\times \\vec B \\]<br>Hence the motor effect and the definition of the tesla: \\(1\\ \\mathrm{T} = 1\\ \\mathrm{N/(A\\,m)}\\)<br>Direction by the right-hand rule."
+      },
+      {
+        "t": "q::do em::magnetic",
+        "f": "A proton moves east in a uniform northward magnetic field. Force direction?",
+        "b": "\\(\\vec v \\times \\vec B\\) with east \\(\\hat x\\), north \\(\\hat y\\): \\(\\hat x\\times\\hat y = \\hat z\\) &rarr; <b>upward</b>.<br>Positive charge; an electron would be downward."
+      },
+      {
+        "t": "q::what em::magnetic",
+        "f": "What is the magnetic field of a long straight wire?",
+        "b": "\\[ B = \\frac{\\mu_0 I}{2\\pi r} \\]<br>Circulates around the wire by the right-hand rule, and falls as \\(1/r\\).<br>Derive it from Ampere's law with a circular Amperian loop."
+      },
+      {
+        "t": "q::what em::magnetic",
+        "f": "State Ampere's law.",
+        "b": "\\[ \\oint \\vec B\\cdot d\\vec l = \\mu_0 I_{\\text{enc}} \\]<br>The magnetic analogue of Gauss's law: circulation of \\(\\vec B\\) is set by <b>enclosed current</b>."
+      },
+      {
+        "t": "q::what em::induction",
+        "f": "State Faraday's law and Lenz's law.",
+        "b": "\\[ \\mathcal E = -\\frac{d\\Phi_B}{dt} \\]<br>The minus sign is <b>Lenz's law</b>: the induced current opposes the <i>change</i> in flux, so energy is conserved.<br>It is why a heavy object resists being dropped into a gap in a strong magnet."
+      },
+      {
+        "t": "q::do therm::induction",
+        "f": "You drop a magnet into a copper ring. What happens, and why doesn't it fall freely?",
+        "b": "The changing flux induces a current whose magnetic field <b>opposes</b> the approach (Lenz), producing a repulsive force.<br>Energy comes from the reduced kinetic energy, which becomes heat in the ring &mdash; nothing violates energy conservation."
+      },
+      {
+        "t": "q::what em::induction",
+        "f": "What is self-inductance?",
+        "b": "\\[ \\mathcal E = -L\\frac{dI}{dt} \\]<br>A changing current in a coil changes its own flux, opposing the change. \\(L\\) depends on geometry and a permeability core, not on current."
+      },
+      {
+        "t": "q::what em::magnetic",
+        "f": "State Maxwell's displacement current and why it mattered.",
+        "b": "A <b>changing</b> electric field produces a magnetic field, exactly as a current does.<br>Without it, Ampere's law would fail for a charging capacitor and Maxwell's equations would be inconsistent. It predicted EM waves &mdash; and light is one."
+      },
+      {
+        "t": "q::what em::magnetic",
+        "f": "What is the energy density in an electromagnetic field?",
+        "b": "\\[ u = \\tfrac12\\varepsilon_0E^2 + \\frac{B^2}{2\\mu_0} \\]<br>Poynting's theorem gives the flow rate: \\(S = \\frac{1}{\\mu_0}\\vec E\\times\\vec B\\), in watts per square metre."
+      }
+    ],
+    "Physics::Optics": [
+      {
+        "t": "q::what optics::what",
+        "f": "State Snell's law.",
+        "b": "\\[ n_1\\sin\\theta_1 = n_2\\sin\\theta_2, \\qquad n = \\frac c v \\]<br>Towards the normal when entering a denser medium.<br>A refractive index below 1 (x-rays) is possible because \\(v > c\\) in phase velocity."
+      },
+      {
+        "t": "q::do optics::refraction",
+        "f": "Light enters glass (\\(n=1.5\\)) from air at 30°. Angle in the glass?",
+        "b": "\\[ n_1\\sin\\theta_1 = n_2\\sin\\theta_2 \\;\\Rightarrow\\; \\sin\\theta_2 = \\frac{1.0\\times\\sin 30^\\circ}{1.5} = \\frac{0.5}{1.5} = 0.333 \\Rightarrow \\theta_2 \\approx \\mathbf{19.5^\\circ} \\]<br>Always bends <b>towards</b> the normal when entering a denser medium, never away."
+      },
+      {
+        "t": "q::do optics::total",
+        "f": "What is total internal reflection and when does it occur?",
+        "b": "\\(\\sin\\theta_c = \\frac{n_2}{n_1}\\), requires \\(n_1 > n_2\\).<br>For glass to air \\(\\theta_c\\approx 42^\\circ\\). Above that, <b>all</b> light is reflected &mdash; the basis of optical fibres."
+      },
+      {
+        "t": "q::what optics::reflection",
+        "f": "State the law of reflection and the two angles involved.",
+        "b": "\\(\\theta_i = \\theta_r\\), measured from the <b>normal</b>, not the surface.<br>\\(\\theta_i + \\theta_r = 90^\\circ\\) is the relation to the surface &mdash; a frequent slip-up."
+      },
+      {
+        "t": "q::what optics::wave",
+        "f": "What is the difference between real and virtual images?",
+        "b": "<b>Real</b>: rays actually converge, so it can be caught on a screen; inverted.<br><b>Virtual</b>: only <i>apparent</i> convergence behind the surface; upright, never screen-projected.<br>Convex mirror and concave lens always give virtual images."
+      },
+      {
+        "t": "q::do optics::lens",
+        "f": "State the thin lens equation and define the sign convention in one line.",
+        "b": "\\[ \\frac1f = \\frac1d_o + \\frac1d_i \\]<br>Real-is-positive: \\(d_o > 0\\) for a real object, \\(d_i > 0\\) only for a <b>real</b> image on the far side.<br>\\(f > 0\\) converging, \\(f &lt; 0\\) diverging."
+      },
+      {
+        "t": "q::do optics::lens",
+        "f": "An object sits 30 cm from a lens of \\(f = 10\\) cm. Where is the image and what kind?",
+        "b": "\\[ \\frac1{d_i} = \\frac1{10} - \\frac1{30} = \\frac2{30} \\Rightarrow d_i = 15\\ \\text{cm} \\]<br>\\(d_i > 0\\) so it is a <b>real, inverted</b> image, magnification \\(-d_i/d_o = -0.5\\) &mdash; half size."
+      },
+      {
+        "t": "q::what optics::interference",
+        "f": "What is the condition for constructive interference in a double slit?",
+        "b": "\\[ d\\sin\\theta = m\\lambda, \\qquad m = 0, \\pm1, \\pm2\\dots \\]<br>Destructive at \\(d\\sin\\theta = (m+\\tfrac12)\\lambda\\).<br>Everything follows from the path difference \\(\\Delta = d\\sin\\theta\\)."
+      },
+      {
+        "t": "q::do optics::interference",
+        "f": "Double slit, \\(d = 0.5\\) mm, \\(\\lambda = 600\\) nm. Spacing of the bright fringes on a screen 1 m away?",
+        "b": "\\[ \\Delta y = \\frac{\\lambda L}{d} = \\frac{600\\times10^{-9}\\times 1}{0.5\\times10^{-3}} = \\mathbf{1.2\\ \\text{mm}} \\]<br>Spacing grows <b>linearly with \\(\\lambda\\)</b> &mdash; halving the wavelength halves the spacing, which is why white light smears the pattern into colours."
+      },
+      {
+        "t": "q::do optics::interference",
+        "f": "What happens to fringe spacing if you halve the wavelength?",
+        "b": "\\(\\Delta y \\propto \\lambda\\), so it <b>halves</b>.<br>And halving \\(d\\) also halves it. Both changes together leave it unchanged."
+      },
+      {
+        "t": "q::what optics::diffraction",
+        "f": "State the single-slit diffraction minima condition.",
+        "b": "\\[ a\\sin\\theta = m\\lambda, \\qquad m = \\pm1, \\pm2\\dots \\]<br>Note there is <b>no \\(m=0\\) minimum</b> &mdash; unlike double-slit interference, the centre is the brightest point."
+      },
+      {
+        "t": "q::do optics::diffraction",
+        "f": "When does diffraction become noticeable?",
+        "b": "When the aperture \\(a\\) is comparable to \\(\\lambda\\).<br>Ray optics is the \\(a \\gg \\lambda\\) limit. This is why you can see but not resolve wavelengths as objects."
+      },
+      {
+        "t": "q::what optics::polarisation",
+        "f": "What is polarisation and what does it prove about light?",
+        "b": "Restricting the oscillation direction of \\(\\vec E\\).<br>Only <b>transverse</b> waves can be polarised, so it proves light is transverse &mdash; and, in 1937, that it behaves as a wave (Bell's theorem extended to photons)."
+      },
+      {
+        "t": "q::what optics::polarisation",
+        "f": "What is Brewster's angle and what is special about it?",
+        "b": "\\[ \\theta_B = \\arctan\\frac{n_2}{n_1} \\]<br>Light at \\(\\theta_B\\) reflected at that angle is <b>completely polarised</b> perpendicular to the plane of incidence.<br>At \\(\\theta_B\\), reflected and refracted rays are perpendicular."
+      },
+      {
+        "t": "q::do optics::dispersion",
+        "f": "Why is the sky blue and sunsets red?",
+        "b": "Rayleigh scattering goes as \\(1/\\lambda^4\\).<br>Short blue wavelengths scatter far more than red, so the sky is blue; at sunset the light travels a longer path and the blue has scattered out, leaving red."
+      },
+      {
+        "t": "q::what optics::dispersion",
+        "f": "Why is a rainbow always circular for the observer?",
+        "b": "Each raindrop produces a fixed deviation angle, and it is the <b>minimum</b> deviation &mdash; all drops at that angle concentrate the same colour ray into the eye.<br>So every rainbow is centred exactly opposite the antisolar point."
+      }
+    ],
+    "Physics::Relativity": [
+      {
+        "t": "q::what rel::what",
+        "f": "State Einstein's two postulates.",
+        "b": "1. The laws of physics are the same in all inertial frames (<b>relativity principle</b>).<br>2. The speed of light in vacuum is the same for all inertial observers (\\(c\\), ~\\(3\\times10^8\\ \\mathrm{m/s}\\))."
+      },
+      {
+        "t": "q::do rel::what",
+        "f": "State the Lorentz factor.",
+        "b": "\\[ \\gamma = \\frac1{\\sqrt{1 - v^2/c^2}} = \\frac1{\\sqrt{1 - \\beta^2}} \\]<br>Always \\(\\ge 1\\), diverging as \\(v \\to c\\).<br>At everyday speeds \\(\\gamma\\) differs from 1 beyond the 8th significant figure."
+      },
+      {
+        "t": "q::do rel::what",
+        "f": "State the Lorentz transformations for time and space.",
+        "b": "\\[ \\Delta t' = \\gamma\\left(\\Delta t - \\frac{v\\Delta x}{c^2}\\right), \\qquad \\Delta x' = \\gamma(\\Delta x - v\\Delta t) \\]<br>With a frame moving at \\(v\\) along \\(x\\). Note they mix space and time &mdash; that mixing is the whole theory."
+      },
+      {
+        "t": "q::do rel::what",
+        "f": "At \\(v = 0.8c\\), what is the Lorentz factor?",
+        "b": "\\[ \\gamma = \\frac1{\\sqrt{1-0.64}} = \\frac1{0.6} \\approx \\mathbf{1.67} \\]<br>The easy slip is taking the root as \\(0.36\\) instead of \\(0.6\\)."
+      },
+      {
+        "t": "q::what rel::time",
+        "f": "What is time dilation, and what does it mean?",
+        "b": "\\[ \\Delta t = \\gamma \\Delta t_0 \\]<br>A moving clock runs <b>slower</b> as seen from another frame: it records less proper time.<br>This is not an illusion &mdash; it is measured by the observers meeting again."
+      },
+      {
+        "t": "q::what rel::length",
+        "f": "What is length contraction?",
+        "b": "\\[ L = \\frac{L_0}{\\gamma} \\]<br>A moving rod is shorter <b>along the direction of motion</b> only.<br>It is measured by simultaneous readings at both ends in the observer's frame &mdash; which is why the simultaneity assumption matters."
+      },
+      {
+        "t": "q::do rel::length",
+        "f": "A 20 m rod moves at \\(0.6c\\). Its length in the lab frame?",
+        "b": "\\[ \\gamma = \\frac1{\\sqrt{1-0.36}} = 1.25, \\qquad L = \\frac{20}{1.25} = \\mathbf{16\\ m} \\]<br>Never longer than the rest length in any frame."
+      },
+      {
+        "t": "q::what rel::momentum",
+        "f": "How is relativistic momentum defined?",
+        "b": "\\[ \\vec p = \\gamma m\\vec v \\]<br>More than \\(mv\\). The point is not the formula but that \\(\\vec p\\) is <b>frame-dependent</b>, so momentum is not a universal invariant the way Newtonian momentum was assumed to be."
+      },
+      {
+        "t": "q::do rel::energy",
+        "f": "State the relativistic energy and rest energy.",
+        "b": "\\[ E = \\gamma mc^2, \\qquad E_0 = mc^2 \\]<br>Rest energy: turning 1 kg completely into energy releases \\(9\\times10^{16}\\ \\mathrm{J}\\), equivalent to a 21 megaton bomb."
+      },
+      {
+        "t": "q::do rel::energy",
+        "f": "Relativistic kinetic energy, and why it is not \\(E\\)?",
+        "b": "\\[ K = E - E_0 = (\\gamma - 1)mc^2 \\]<br>You must <b>subtract the rest energy</b>; \\(\\gamma mc^2\\) is total energy, not kinetic. This is the most common relativity mistake."
+      },
+      {
+        "t": "q::do rel::energy",
+        "f": "An electron (\\(m_e c^2 = 0.511\\) MeV) moves at \\(\\gamma = 5\\). Total and kinetic energy?",
+        "b": "\\[ E = 5(0.511) = \\mathbf{2.56\\ MeV}, \\qquad K = 4(0.511) = \\mathbf{2.04\\ MeV} \\]<br>The remaining 0.511 MeV is rest energy and cannot be converted to kinetic."
+      },
+      {
+        "t": "q::do rel::momentum",
+        "f": "Show that \\(\\vec p = \\gamma m\\vec v\\) and \\(E^2 = p^2c^2 + m^2c^4\\) are consistent.",
+        "b": "\\[ E^2 = \\gamma^2m^2c^4, \\quad p^2c^2 = \\gamma^2m^2v^2c^2 \\]<br>\n\\(E^2 - p^2c^2 = \\gamma^2m^2c^2(c^2 - v^2) = m^2c^4\\), since \\(\\gamma^2(1-\\beta^2) = 1\\)."
+      },
+      {
+        "t": "q::do rel::velocity",
+        "f": "If you can go at \\(0.9c\\) and I at \\(0.9c\\) in opposite directions, how fast are we separating?",
+        "b": "\\[ u = \\frac{0.9c + 0.9c}{1 + 0.9\\cdot 0.9} = \\frac{1.8c}{1.81} \\approx \\mathbf{0.9945c} \\]<br>Velocity addition, <b>not</b> \\(1.8c\\). The laws of composition of velocities were Einstein's route to special relativity."
+      },
+      {
+        "t": "q::do rel::velocity",
+        "f": "Can anything reach or exceed \\(c\\)?",
+        "b": "<b>No.</b> From velocity addition, \\(u &lt; c\\) however close you start.<br>Energy, momentum and the speed of light are all consistent with this; \\(c\\) is not a speed you can outrun, it is part of the structure of space-time."
+      },
+      {
+        "t": "q::what rel::relativity",
+        "f": "What is the equivalence principle?",
+        "b": "Gravity and acceleration are <b>locally indistinguishable</b>.<br>A uniformly accelerating rocket is indistinguishable from one standing in a gravitational field &mdash; which is how Einstein got general relativity, and why a weightless astronaut in free fall feels no force."
+      },
+      {
+        "t": "q::what rel::gr",
+        "f": "What does general relativity say gravity is?",
+        "b": "Not a force but the <b>curvature of space-time</b>; free-falling objects follow geodesics.<br>Mass-energy curves space; curved space tells mass how to move &mdash; the two halves of the equivalence idea."
+      },
+      {
+        "t": "q::do rel::gr",
+        "f": "State the Schwarzschild radius.",
+        "b": "\\[ r_s = \\frac{2GM}{c^2} \\]<br>Below this radius, escape velocity exceeds \\(c\\) and nothing gets out &mdash; a black hole.<br>The Sun's is about 3 km, so the Sun is nowhere near one."
+      },
+      {
+        "t": "q::do rel::gr",
+        "f": "Does a clock at the top of a tower run faster or slower than one on the ground?",
+        "b": "<b>Faster.</b> It is deeper in the gravitational well, so less time dilation &mdash; a larger \\(g_{\\text{local}}\\).<br>This is real and measurable: GPS satellites run <i>faster</i> and must be corrected for it."
+      }
+    ],
+    "Physics::Atomic": [
+      {
+        "t": "q::what atomic::what",
+        "f": "What did Rutherford's alpha-scattering experiment show?",
+        "b": "The atom is <b>mostly empty space</b> with a tiny, massive, positively charged <b>nucleus</b>.<br>Most alpha particles passed straight through; a very small fraction deflected through large angles."
+      },
+      {
+        "t": "q::what atomic::what",
+        "f": "What are the neutron, proton and electron masses roughly?",
+        "b": "\\[ m_p \\approx 1836\\,m_e, \\qquad m_n \\approx 1839\\,m_e \\]<br>The electron is \\(\\sim 1/1836\\) of a proton, and the neutron is marginally heavier than the proton.<br>That tiny difference is what lets a free neutron decay."
+      },
+      {
+        "t": "q::what atomic::structure",
+        "f": "What are the electron shells and how many electrons fit in each?",
+        "b": "Shell \\(n\\) has quantised energy with \\(l = 0,1,\\dots,n-1\\), so it contains \\(n\\) subshells (<b>s, p, d, f</b>, ...).<br>Each subshell holds \\(2(2l+1)\\) electrons, giving a naive \\(2n^2\\) per shell. That matches the real occupancies \\(\\mathbf{2, 8, 18, 32}\\) for the first four shells, but it <b>over-counts later ones</b>, where the Madelung (Aufbau) ordering decides how full each level actually gets."
+      },
+      {
+        "t": "q::do atomic::energy",
+        "f": "What emits a continuous spectrum, an emission line spectrum, and an absorption spectrum?",
+        "b": "**Continuous** (hot dense source, e.g. filament), <b>emission</b> lines (excited atoms, discharge tube), <b>absorption</b> lines (cool gas over a hot continuum).<br>Kirchhoff's three rules, one per thermodynamic state."
+      },
+      {
+        "t": "q::what atomic::energy",
+        "f": "What does the Bohr model get right, and what does it fail at?",
+        "b": "It gets the hydrogen spectrum and quantised levels right by postulating \\(L = n\\hbar\\).<br>It fails for anything with more than one electron, because it treats electrons as following definite orbits &mdash; superseded by quantum mechanics, which has no orbits."
+      },
+      {
+        "t": "q::what atomic::radioactive",
+        "f": "What are the three main decay modes and what changes in each?",
+        "b": "**Alpha**: nucleus loses \\(2p + 2n\\), \\(A\\!\\downarrow 4\\), \\(Z\\!\\downarrow 2\\)<br>**Beta-minus**: \\(n \\to p + e^- + \\bar\\nu\\), \\(A\\) unchanged, \\(Z\\!\\uparrow 1\\)<br>**Gamma**: energy only, \\(A,Z\\) unchanged"
+      },
+      {
+        "t": "q::do atomic::radioactive",
+        "f": "A nucleus has \\(A = 200, Z = 80\\). After four alpha decays, what is it?",
+        "b": "\\[ A = 200 - 4(4) = \\mathbf{184}, \\qquad Z = 80 - 4(2) = \\mathbf{72} \\]<br>Alpha emission always moves the element <b>down</b> the periodic table."
+      },
+      {
+        "t": "q::what atomic::radioactive",
+        "f": "What is the half-life and why is it useful?",
+        "b": "Time for half the nuclei to decay; \\(N = N_0 2^{-t/T_{1/2}}\\).<br>Statistically invariant and independent of the environment &mdash; so carbon dating can date a once-living sample with no external clock."
+      },
+      {
+        "t": "q::do atomic::radioactive",
+        "f": "A sample has 1000 nuclei, half-life 5 days. How many after 20 days?",
+        "b": "\\[ N = 1000\\,2^{-20/5} = 1000\\cdot 2^{-4} = \\mathbf{62.5} \\approx 63 \\]<br>Four half-lives, so a sixteenth remains."
+      },
+      {
+        "t": "q::do atomic::binding",
+        "f": "Why is a neutron star stable against further collapse?",
+        "b": "Beyond the <b>neutron degeneracy</b> pressure, the strong force resists compression.<br>If gravity wins anyway, a black hole forms &mdash; there is no next stage."
+      },
+      {
+        "t": "q::what atomic::fusion",
+        "f": "What is nuclear fusion and what holds it back?",
+        "b": "Light nuclei combine, releasing energy because the product has <b>more binding energy per nucleon</b>.<br>The barrier is the enormous <b>Coulomb repulsion</b> between positive nuclei &mdash; the reason fusion requires \\(10^8\\) K or a pressure bomb."
+      }
+    ],
+    "Physics::Quantum-Intro": [
+      {
+        "t": "q::what qintro::what",
+        "f": "Why is classical mechanics unable to explain the atom?",
+        "b": "Accelerating charges <b>radiate</b>, so classical orbits should decay into the nucleus.<br>Also classical mechanics allows any continuous energy, yet atomic spectra are <b>discrete</b> lines."
+      },
+      {
+        "t": "q::what qintro::what",
+        "f": "State Planck's hypothesis.",
+        "b": "Energy is exchanged in discrete amounts \\(E = h\\nu\\), where \\(h = 6.626\\times10^{-34}\\ \\mathrm{J\\,s}\\).<br>He introduced it purely as a mathematical fix; treating \\(\\nu\\) as real light came later."
+      },
+      {
+        "t": "q::do qintro::what",
+        "f": "What is the photoelectric effect and what did it prove?",
+        "b": "Light ejects electrons from a metal, and the <b>maximum</b> kinetic energy depends on <b>frequency, not intensity</b>.<br>That is fatal for classical wave theory and is why \\(\\nu\\) must be real."
+      },
+      {
+        "t": "q::do qintro::what",
+        "f": "Einstein's photoelectric equation and the stopping potential?",
+        "b": "\\[ K_{\\max} = h\\nu - \\phi, \\qquad eV_s = h\\nu - \\phi \\]<br>Intensity controls only the <b>number</b> of electrons, never their energy."
+      },
+      {
+        "t": "q::do qintro::what",
+        "f": "What is the photon and what are its defining properties?",
+        "b": "\\[ E = h\\nu = \\frac{hc}{\\lambda}, \\qquad p = \\frac{h}{\\lambda} = \\frac{E}{c} \\]<br>Massless, neutral, and it behaves as both wave and particle. The momentum relation is the part usually forgotten."
+      },
+      {
+        "t": "q::do qintro::what",
+        "f": "What is the Compton effect and what does it measure?",
+        "b": "X-rays scatter off electrons and shift to longer \\(\\lambda\\).<br>From \\(\\Delta\\lambda = \\frac{h}{m_ec}(1-\\cos\\theta)\\) you measure the <b>electron rest mass</b> &mdash; direct evidence for the photon's momentum."
+      },
+      {
+        "t": "q::what qintro::what",
+        "f": "What is the de Broglie hypothesis?",
+        "b": "If light has particle momentum, matter should have wave properties:<br>\\[ \\lambda = \\frac h p \\]<br>Confirmed for electrons (Davisson&ndash;Germer), neutrons and even full molecules of \\(\\mathrm{C}_{60}\\)."
+      },
+      {
+        "t": "q::do qintro::matter",
+        "f": "De Broglie wavelength of an electron accelerated through 150 V?",
+        "b": "\\[ p = \\sqrt{2meV} = \\sqrt{2(9.11\\times10^{-31})(150)(1.6\\times10^{-19})} \\approx 6.6\\times10^{-24} \\]<br>\\(\\lambda = \\frac{h}{p} \\approx \\mathbf{1.0\\times10^{-10}\\ \\mathrm{m}}\\), comparable to atomic spacing &mdash; which is why the electron diffracts."
+      },
+      {
+        "t": "q::what qintro::matter",
+        "f": "What is Heisenberg's uncertainty principle, and why is it not an instrument defect?",
+        "b": "\\[ \\Delta x\\,\\Delta p \\ge \\frac{\\hbar}{2} \\]<br>A state <b>is</b> a wave packet, so it has no exact position and no exact momentum. It is an intrinsic property of nature, not a measurement failure."
+      },
+      {
+        "t": "q::do qintro::matter",
+        "f": "Smallest possible position uncertainty for an electron at \\(1\\ \\mathrm{m/s}\\)?",
+        "b": "\\[ \\Delta x \\ge \\frac{\\hbar}{2m_ev} = \\frac{1.055\\times10^{-34}}{2(9.11\\times10^{-31})} \\approx \\mathbf{5.8\\times10^{-5}\\ \\mathrm{m}} \\]<br>About \\(0.06\\) mm &mdash; and \\(\\Delta p\\) must be correspondingly huge."
+      },
+      {
+        "t": "q::what qintro::what",
+        "f": "How is a wavefunction normalised, and what does probability density mean?",
+        "b": "\\[ \\int |\\psi(\\mathbf r)|^2\\,d^3r = 1 \\]<br>\\(|\\psi|^2\\) is the probability density of finding the particle at \\(\\mathbf r\\).<br>Born's interpretation, and the reason \\(\\psi\\) itself is complex."
+      },
+      {
+        "t": "q::pitfall qintro::matter",
+        "f": "Does the uncertainty principle say you cannot know both precisely?",
+        "b": "It says a quantum state with small \\(\\Delta x\\) <b>cannot exist</b> with small \\(\\Delta p\\) &mdash; a property of the state, not of your knowledge.<br>Classical objects are exempt because \\(\\hbar\\) is absurdly small compared with their scales."
+      }
+    ]
+  }
+}

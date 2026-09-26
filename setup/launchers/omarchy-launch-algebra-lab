@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# omarchy:summary=Open the Algebra Lab (Jupyter) in the default browser
+# omarchy:args=[port]
+
+LAB_DIR="${ALGEBRA_LAB_DIR:-$HOME/Work/algebra-lab}"
+port="${1:-8888}"
+url="http://127.0.0.1:${port}/lab/tree/Algebra_Lab.ipynb"
+
+if [[ ! -d $LAB_DIR ]]; then
+  echo "Algebra Lab not found at $LAB_DIR" >&2
+  exit 1
+fi
+
+# Pick a python that really has sympy + jupyterlab: system first, then the
+# bundled venv, so this keeps working either way.
+py=""
+for cand in /usr/bin/python3 "$LAB_DIR/.venv/bin/python"; do
+  if [[ -x $cand ]] && "$cand" -c 'import sympy, jupyterlab' 2>/dev/null; then
+    py=$cand
+    break
+  fi
+done
+
+if [[ -z $py ]]; then
+  cat >&2 <<'EOF'
+error: no python with both sympy and jupyterlab was found.
+
+install it with:
+  omarchy install app 'Math Lab' 'jupyter-notebook python-sympy python-numpy python-matplotlib'
+EOF
+  exit 1
+fi
+
+# If the port is already serving, just focus the browser there.
+if curl -sf -o /dev/null --max-time 2 "$url" 2>/dev/null \
+   || curl -sf -o /dev/null --max-time 2 "http://127.0.0.1:${port}/lab" 2>/dev/null; then
+  exec omarchy-launch-webapp "$url"
+fi
+
+# Start the server in a floating terminal so the log stays visible, then open
+# the notebook once it answers.
+setsid uwsm-app -- xdg-terminal-exec \
+  --app-id=org.omarchy.terminal --title="Algebra Lab" \
+  --dir="$LAB_DIR" -e bash -c \
+  "omarchy-show-logo; '$py' -m jupyter lab --port '$port' --notebook-dir='$LAB_DIR'; echo; echo 'servidor cerrado'" \
+  >/dev/null 2>&1 &
+
+for _ in $(seq 1 40); do
+  sleep 1
+  if curl -sf -o /dev/null --max-time 2 "http://127.0.0.1:${port}/lab" 2>/dev/null; then
+    exec omarchy-launch-webapp "$url"
+  fi
+done
+
+echo "el servidor tardó demasiado en arrancar; mira la terminal flotante" >&2
+exit 1

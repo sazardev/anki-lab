@@ -1,0 +1,732 @@
+{
+  "decks": {
+    "Physics::Math": [
+      {
+        "t": "q::what phys::math",
+        "f": "What is dimensional analysis and what is it for?",
+        "b": "Checking that an equation is <b>physically</b> sensible by tracking dimensions (m, kg, s, A, K, mol).<br>\nEvery quantity is a power of the base units, and both sides of a valid equation must match. Catches errors no algebra can."
+      },
+      {
+        "t": "q::how phys::math",
+        "f": "What are the SI base units?",
+        "b": "\\[ \\text{m},\\ \\text{kg},\\ \\text{s},\\ \\text{A},\\ \\text{K},\\ \\text{mol},\\ \\text{cd} \\]<br>Everything else is derived: newtons, joules, watts, volts are all combinations of these seven."
+      },
+      {
+        "t": "q::how phys::math",
+        "f": "What are the dimensions of force, energy and power?",
+        "b": "\\[ [F] = M L T^{-2}, \\qquad [E] = M L^2 T^{-2}, \\qquad [P] = M L^2 T^{-3} \\]<br>Force is mass times acceleration; energy is force times distance; power is energy per time."
+      },
+      {
+        "t": "q::how phys::math",
+        "f": "What are the dimensions of pressure and the SI unit of pressure?",
+        "b": "\\[ [p] = M L^{-1} T^{-2} \\]<br>The unit is the <b>pascal</b>, \\(1\\ \\text{Pa} = 1\\ \\text{N/m}^2\\)."
+      },
+      {
+        "t": "q::do phys::math",
+        "f": "You derive \\(F = mv^2/w\\). What is wrong dimensionally?",
+        "b": "\\[ [F] = M L T^{-2} \\quad\\text{but}\\quad \\left[\\frac{mv^2}{w}\\right] = M L^2 T^{-2} \\]<br>Right has units of <b>energy</b>, not force. Dimensional analysis catches it instantly; plugging in numbers would not."
+      },
+      {
+        "t": "q::do phys::math",
+        "f": "What is the rule of thumb for scaling?",
+        "b": "Geometry \\(L \\sim r^a\\), time \\(T \\sim r^b\\) then:<br><b>volume</b> \\(\\sim r^{3a}\\)<br><b>area</b> \\(\\sim r^{2a}\\)<br><b>speed</b> \\(\\sim r^{a-b}\\)<br><b>acceleration</b> \\(\\sim r^{a-2b}\\)<br>Memorise this table; it answers half of physics scaling questions."
+      },
+      {
+        "t": "q::do phys::math",
+        "f": "Order of magnitude: roughly how big is a joule, in SI base units?",
+        "b": "\\[ 1\\ \\text{J} = 1\\ \\text{kg m}^2\\text{/s}^2 \\]<br>A person eating 2000 kcal a day uses about \\(8\\times10^7\\) J &mdash; roughly the energy content of a small car."
+      },
+      {
+        "t": "q::what phys::math",
+        "f": "What is a vector and what makes it different from a scalar?",
+        "b": "A vector has <b>magnitude and direction</b>; a scalar has magnitude only.<br>\nVelocity, force, momentum are vectors. Mass, temperature, energy are scalars.<br>Adding vectors needs geometry, not arithmetic."
+      },
+      {
+        "t": "q::do phys::math",
+        "f": "How do you add two vectors graphically?",
+        "b": "1. Draw both to a common origin<br>2. Complete the parallelogram (or triangle)<br>3. The <b>diagonal</b> is the sum<br>Head-to-tail, the order does not matter; tail-to-head, the order is reversed."
+      },
+      {
+        "t": "q::how phys::math",
+        "f": "Vector \\(\\vec a = 3\\hat i + 4\\hat j\\). Magnitude?",
+        "b": "\\[ |\\vec a| = \\sqrt{3^2+4^2} = \\mathbf{5} \\]<br>Pythagoras. The 3-4-5 triangle."
+      },
+      {
+        "t": "q::how phys::math",
+        "f": "Two vectors of magnitude 3 and 4 at right angles. Resultant magnitude?",
+        "b": "\\[ \\sqrt{3^2+4^2} = \\mathbf{5} \\]<br>Perpendicular components add in quadrature, not directly."
+      },
+      {
+        "t": "q::what phys::math",
+        "f": "What is the dot product and what does it measure?",
+        "b": "\\[ \\vec a \\cdot \\vec b = a b \\cos\\theta = a_xb_x + a_yb_y + a_zb_z \\]<br>Gives a <b>scalar</b>: the component of \\(\\vec a\\) along \\(\\vec b\\), scaled by \\(|\\vec b|\\).<br>Zero means <b>perpendicular</b>."
+      },
+      {
+        "t": "q::what phys::math",
+        "f": "What is the cross product and what does it give?",
+        "b": "\\[ \\vec a \\times \\vec b = (a_yb_z-a_zb_y,\\; a_zb_x-a_xb_z,\\; a_xb_y-a_yb_x) \\]<br>Gives a <b>vector</b> of magnitude \\(ab\\sin\\theta\\) pointing <b>perpendicular</b> to both, by the right-hand rule.<br>\\(\\vec a\\times\\vec b = -\\,\\vec b\\times\\vec a\\), unlike the dot product."
+      },
+      {
+        "t": "q::do phys::math",
+        "f": "How do you get the angle between two vectors?",
+        "b": "\\[ \\cos\\theta = \\frac{\\vec a\\cdot\\vec b}{|\\vec a||\\vec b|} \\]<br>Dot, divide by both magnitudes, take \\(\\arccos\\). Works for the angle in \\([0,\\pi]\\)."
+      },
+      {
+        "t": "q::do phys::math",
+        "f": "What is the difference between a scalar and vector product physically?",
+        "b": "Work \\(W = \\vec F\\cdot\\vec d\\) uses the <b>dot</b> product: only the <i>parallel</i> component does work, so pushing sideways does nothing.<br>Torque \\(\\vec\\tau = \\vec r\\times\\vec F\\) uses the <b>cross</b> product: it measures turning."
+      },
+      {
+        "t": "q::how phys::math",
+        "f": "Slope of a graph: what does it tell you, and the area?",
+        "b": "<b>Slope</b> = rate of change, \\(dy/dx\\). On an \\(x\\)-\\(t\\) graph it is <b>velocity</b>.<br><b>Area</b> \\(= \\int y\\,dx\\). On a \\(v\\)-\\(t\\) graph it is <b>displacement</b>."
+      },
+      {
+        "t": "q::do phys::math",
+        "f": "You have a formula in terms of \\(r\\). How do you get the units of a result?",
+        "b": "Substitute units for every symbol and simplify, keeping powers of \\(\\mathrm{m},\\mathrm{kg},\\mathrm{s}\\) separate.<br>Example: \\(v = \\sqrt{gL}\\): \\(\\sqrt{(\\mathrm{m/s^2})(\\mathrm{m})} = \\mathrm{m/s}\\). Correct."
+      }
+    ],
+    "Physics::Mechanics::Kinematics": [
+      {
+        "t": "q::what mech::kinematics",
+        "f": "What does <b>kinematics</b> describe?",
+        "b": "Motion <b>as a function of time</b> &mdash; position, velocity, acceleration &mdash; <b>without</b> asking what causes it.<br>Pure description. Dynamics adds the causes (forces)."
+      },
+      {
+        "t": "q::what mech::kinematics",
+        "f": "Define velocity and acceleration.",
+        "b": "\\[ \\vec v = \\frac{d\\vec r}{dt}, \\qquad \\vec a = \\frac{d\\vec v}{dt} = \\frac{d^2\\vec r}{dt^2} \\]<br>Velocity is the time derivative of position; acceleration is the derivative of velocity."
+      },
+      {
+        "t": "q::do mech::kinematics",
+        "f": "Which motion is <b>not</b> described by \\(s = ut + \\tfrac12 at^2\\)?",
+        "b": "Only motion with <b>constant acceleration</b>.<br>It also needs \\(v\\) to mean <i>initial</i> velocity \\(u\\), and it gives displacement \\(s\\), not position."
+      },
+      {
+        "t": "q::how mech::kinematics",
+        "f": "State the five constant-acceleration equations.",
+        "b": "\\(v = u + at\\)<br>\n\\(s = ut + \\tfrac12 at^2\\)<br>\n\\(v^2 = u^2 + 2as\\)<br>\n\\(s = \\tfrac{u+v}{2}\\,t\\)<br>\n\\(h = u - \\tfrac12 gt^2\\)<br>Note the symmetry: for <b>upward</b> motion take \\(a = -g\\)."
+      },
+      {
+        "t": "q::how mech::kinematics",
+        "f": "A ball is thrown straight up at \\(20\\ \\mathrm{m/s}\\). How high does it go?",
+        "b": "At the top \\(v = 0\\):<br>\n\\[ 0 = 20^2 + 2(-9.8)h \\;\\Rightarrow\\; h = \\frac{400}{19.6} \\approx \\mathbf{20.4\\ m} \\]<br>Time up is \\(20/9.8 \\approx 2.04\\ \\mathrm{s}\\); total flight about \\(4.1\\ \\mathrm{s}\\)."
+      },
+      {
+        "t": "q::do mech::kinematics",
+        "f": "What is the usual shortcut for \"time to reach the top\" of a vertical throw?",
+        "b": "\\[ t_{\\text{up}} = \\frac{u}{g} = \\frac{20}{9.8} \\approx \\mathbf{2.0\\ s} \\]<br>No need for the quadratic: at the apex \\(v = 0\\) and \\(a = -g\\)."
+      },
+      {
+        "t": "q::what mech::kinematics",
+        "f": "What is projectile motion?",
+        "b": "Motion under gravity with <b>no air resistance</b>: the only force is \\(mg\\).<br>Horizontal and vertical motions are <b>independent</b>.<br>Horizontal: constant velocity. Vertical: constant acceleration \\(-g\\)."
+      },
+      {
+        "t": "q::how mech::kinematics",
+        "f": "For a projectile, how do you find the time of flight?",
+        "b": "From the vertical motion only, with \\(a = -g\\) and \\(u_y = v\\sin\\theta\\):<br>\n\\[ 0 = v\\sin\\theta\\,t - \\tfrac12 gt^2 \\;\\Rightarrow\\; t = \\frac{2v\\sin\\theta}{g} \\]<br>The horizontal velocity is irrelevant to flight time."
+      },
+      {
+        "t": "q::how mech::kinematics",
+        "f": "What is the range and maximum height of a projectile?",
+        "b": "\\[ R = \\frac{v^2\\sin 2\\theta}{g}, \\qquad H = \\frac{v^2\\sin^2\\theta}{2g} \\]<br>Maximum range at \\(\\theta = 45^\\circ\\) in the absence of air resistance."
+      },
+      {
+        "t": "q::do mech::kinematics",
+        "f": "Why is \\(45^\\circ\\) the optimal launch angle for maximum range?",
+        "b": "Because \\(\\sin 2\\theta\\) peaks at \\(2\\theta = 90^\\circ\\), i.e. \\(\\theta = 45^\\circ\\).<br>The trade-off is symmetric: more height, less horizontal speed, and vice versa."
+      },
+      {
+        "t": "q::pitfall mech::kinematics",
+        "f": "Two objects, one dropped from rest, one thrown down. Which lands first?",
+        "b": "The <b>thrown</b> one. Both accelerate at \\(g\\), but the thrown one starts with a head start in velocity.<br>From the same height, the one with greater initial \\(|v_y|\\) lands first."
+      },
+      {
+        "t": "q::pitfall mech::kinematics",
+        "f": "If you drop a ball in a train, does it fall behind?",
+        "b": "<b>No.</b> It falls straight down, sharing the train's horizontal velocity.<br>This is the principle of <b>Galilean relativity</b>: uniform motion is indistinguishable from rest."
+      },
+      {
+        "t": "q::what mech::kinematics",
+        "f": "What is average velocity vs instantaneous velocity?",
+        "b": "\\(\\langle v\\rangle = \\Delta r/\\Delta t\\) &mdash; a <b>displacement</b> over an interval.<br>\n\\(v(t) = dr/dt\\) &mdash; the limit as \\(\\Delta t \\to 0\\).<br>They differ whenever velocity changes (they differ in <b>magnitude</b> whenever acceleration is present)."
+      },
+      {
+        "t": "q::pitfall mech::kinematics",
+        "f": "A car goes 60 km/h for 1 km, then 30 km/h for 1 km. Average speed?",
+        "b": "\\[ \\bar v = \\frac{2\\ \\text{km}}{\\frac{1}{60}+\\frac{1}{30}\\ \\text{h}} = \\frac{2}{0.05} = \\mathbf{40\\ km/h} \\]<br>Average speed is total distance over total <b>time</b> &mdash; the harmonic mean here, not the arithmetic one. Never just average the two speeds."
+      },
+      {
+        "t": "q::how mech::kinematics",
+        "f": "What is the sign of acceleration if velocity is positive but decreasing?",
+        "b": "<b>Negative.</b> \\(a = dv/dt\\); if \\(v\\) falls while positive, \\(dv/dt &lt; 0\\).<br>Acceleration opposes the motion here, which is why the object slows down."
+      },
+      {
+        "t": "q::do mech::kinematics",
+        "f": "What does the slope of a velocity-time graph give you?",
+        "b": "<b>Acceleration</b> (\\(dv/dt\\)).<br>The <b>area</b> under it gives displacement.<br>A horizontal line means zero acceleration &mdash; constant velocity, not 'at rest'."
+      },
+      {
+        "t": "q::do mech::kinematics",
+        "f": "On a position-time graph, what is special about the slope being zero?",
+        "b": "<b>Maximum</b> displacement (or minimum) &mdash; the object momentarily stops, so \\(v = 0\\).<br>It does <b>not</b> mean the object is stationary; only instantaneously."
+      },
+      {
+        "t": "q::what mech::kinematics",
+        "f": "What is the area under an acceleration-time graph?",
+        "b": "\\[ \\Delta v = \\int a\\,dt \\]<br>The <b>change in velocity</b>. Useful when \\(a\\) varies with time, where the constant-acceleration formulas no longer apply."
+      }
+    ],
+    "Physics::Mechanics::Newton": [
+      {
+        "t": "q::what mech::newton",
+        "f": "State Newton's first law.",
+        "b": "<b>Inertia law.</b> An object keeps constant velocity unless acted on by a net external force.<br>\\(\\sum F = 0 \\Rightarrow v\\) constant. This is the principle behind inertial reference frames."
+      },
+      {
+        "t": "q::what mech::newton",
+        "f": "State Newton's second law.",
+        "b": "\\[ \\boxed{\\vec F_{\\text{net}} = m\\vec a} \\]<br>Acceleration is <b>proportional</b> to net force and <b>inversely</b> proportional to mass, in the <b>direction</b> of the net force.<br>It is a vector equation: apply it per axis."
+      },
+      {
+        "t": "q::what mech::newton",
+        "f": "State Newton's third law.",
+        "b": "Forces come in <b>pairs</b>: \\(\\vec F_{A\\to B} = -\\vec F_{B\\to A}\\).<br>Equal magnitude, opposite direction, acting on <b>different</b> bodies.<br>They never cancel &mdash; different objects cannot act on each other."
+      },
+      {
+        "t": "q::pitfall mech::newton",
+        "f": "You stand on the ground. Which is larger: the ground on you, or you on the ground?",
+        "b": "<b>Exactly equal</b> &mdash; third law.<br>The reason you do not sink is that the ground is <i>rigid</i>: it compresses and its deformation provides the upward force. The <b>normal force is not \\(mg\\)</b> unless vertical acceleration is zero."
+      },
+      {
+        "t": "q::pitfall mech::newton",
+        "f": "Why does an action-reaction pair never cancel?",
+        "b": "Because the two forces act on <b>different objects</b>.<br>Forces only cancel when they act on the <i>same</i> object, which is what \\(\\sum F = 0\\) requires."
+      },
+      {
+        "t": "q::what mech::newton",
+        "f": "What is weight, and how does it differ from mass?",
+        "b": "\\[ \\vec W = m\\vec g \\]<br>Weight is a <b>force</b> (newtons), mass is an amount of matter (kilograms).<br>They are proportional via \\(g\\). On the Moon your mass is unchanged but your weight is \\(\\tfrac16\\) of it."
+      },
+      {
+        "t": "q::what mech::newton",
+        "f": "Define normal force and when is \\(N = mg\\) true?",
+        "b": "\\(N\\) is the contact force from a surface, <b>perpendicular</b> to it.<br>\\(N = mg\\) holds only if there is <b>no vertical acceleration</b>. On an accelerating lift \\(N \\neq mg\\)."
+      },
+      {
+        "t": "q::how mech::newton",
+        "f": "A lift accelerates upward at \\(a\\). What is the normal force on a passenger of mass \\(m\\)?",
+        "b": "\\[ N - mg = ma \\;\\Rightarrow\\; N = m(g+a) \\]<br>Heavier than \\(mg\\). If it accelerates <b>downward</b> at \\(a\\), then \\(N = m(g-a)\\) &mdash; lighter, and zero if \\(a = g\\) (total weightlessness)."
+      },
+      {
+        "t": "q::what mech::newton",
+        "f": "What is friction and what determines its magnitude?",
+        "b": "A resistive force opposing relative sliding motion.<br>\\(|f_k| = \\mu_k N\\) &mdash; proportional to the <b>normal</b> force, not to mass or velocity.<br>Static friction adjusts up to a maximum; it is not \\(\\mu N\\) until motion starts."
+      },
+      {
+        "t": "q::pitfall mech::newton",
+        "f": "A block sits on a ramp. Is the friction force \\(\\mu N\\)?",
+        "b": "Not while it is <b>at rest</b>. Static friction grows only as needed, up to \\(f_{s,\\max} = \\mu_s N\\).<br>On an incline, \\(f_s = mg\\sin\\theta\\) up to the point of slipping."
+      },
+      {
+        "t": "q::how mech::newton",
+        "f": "A block on a frictionless incline of angle \\(\\theta\\). What is its acceleration?",
+        "b": "\\[ a = g\\sin\\theta \\]<br>Component of gravity <b>along</b> the slope. The perpendicular component \\(g\\cos\\theta\\) is balanced by the normal force."
+      },
+      {
+        "t": "q::how mech::newton",
+        "f": "A frictionless block on an incline starts from rest. How far to slide down height \\(h\\)?",
+        "b": "With \\(a = g\\sin\\theta\\):<br>\n\\[ h = \\tfrac12 a t^2, \\;\\; t = \\sqrt{\\tfrac{2h}{g\\sin\\theta}} \\]<br>So \\(s = \\tfrac12 a t^2 = \\mathbf{h}\\) &mdash; the distance along the slope equals the vertical drop. (Energy, not kinematics, is the fast route: \\(mgh = \\tfrac12 mv^2\\).)"
+      },
+      {
+        "t": "q::do mech::newton",
+        "f": "At what angle does a block start to slip when \\(\\mu = 0.5\\)?",
+        "b": "\\[ \\tan\\theta_c = \\mu \\Rightarrow \\theta_c = \\arctan 0.5 \\approx \\mathbf{26.6^\\circ} \\]<br>Independence of mass is the neat part &mdash; it cancels."
+      },
+      {
+        "t": "q::what mech::newton",
+        "f": "What is tension and a key property of a massless string?",
+        "b": "Tension is the pulling force transmitted along a string or cable.<br>For an <b>ideal</b> (massless) string, the tension is <b>the same at every point</b>. For a massive rope it decreases along the rope."
+      },
+      {
+        "t": "q::what mech::newton",
+        "f": "What is an Atwood machine and why is it useful?",
+        "b": "Two masses over a pulley on a frictionless string.<br>\\[\n a = \\frac{m_2 - m_1}{m_1 + m_2} g\n\\]<br>It lets you measure \\(g\\) and study tension &mdash; with equal masses the system is in equilibrium and the tension is simply \\(mg\\)."
+      },
+      {
+        "t": "q::do mech::newton",
+        "f": "How do you set up a pulley problem with two masses?",
+        "b": "Write \\(F = ma\\) for each mass separately, with the tension <b>the same magnitude</b> in both but the signs opposite (one up, one down).<br>Add the equations so \\(T\\) cancels. The common system acceleration is the answer."
+      },
+      {
+        "t": "q::what mech::newton",
+        "f": "What is apparent weight, and when is it zero?",
+        "b": "The normal force &mdash; what a scale reads.<br>It is zero in <b>free fall</b>, regardless of \\(g\\). An astronaut in the ISS is weightless because the station and they fall together at the same rate."
+      },
+      {
+        "t": "q::do mech::newton",
+        "f": "Why is there artificial gravity in a spinning space station?",
+        "b": "Centrifugal effect supplies a normal force at the outer wall:<br>\\[ a = \\frac{v^2}{r} = \\omega^2 r \\]<br>It mimics gravity's constant \\(g\\), but it is <b>not</b> identical: the effective \\(g\\) decreases toward the axis, which astronauts report as disorienting."
+      },
+      {
+        "t": "q::do mech::newton",
+        "f": "What is drag force and how does it scale?",
+        "b": "\\(F_d \\propto v\\) (Stokes, viscous) or \\(F_d \\propto v^2\\) (inertial, air).<br>It always opposes motion. Since it grows with \\(v\\), it becomes dominant at high speed &mdash; hence terminal velocity."
+      },
+      {
+        "t": "q::how mech::newton",
+        "f": "What is terminal velocity?",
+        "b": "The speed where drag exactly balances weight, so \\(a = 0\\).<br>Reached asymptotically, never abruptly.<br>For <b>quadratic</b> drag \\(F_d = kv^2\\): \\(v_t = \\sqrt{mg/k}\\), so \\(v_t \\propto \\sqrt{m}\\) &mdash; doubling the mass multiplies terminal speed by \\(\\sqrt{2} \\approx 1.41\\), <b>not</b> 2.<br>For <b>linear</b> drag \\(F_d = bv\\): \\(v_t = mg/b\\), so doubling the mass <i>does</i> double it."
+      }
+    ],
+    "Physics::Mechanics::Energy": [
+      {
+        "t": "q::what mech::energy",
+        "f": "What is kinetic energy?",
+        "b": "\\[ K = \\tfrac12 mv^2 \\]<br>Energy of <b>motion</b>. Non-negative and frame-dependent &mdash; a moving object is at rest in its own rest frame."
+      },
+      {
+        "t": "q::what mech::energy",
+        "f": "What is potential energy and when can you compute it?",
+        "b": "Energy stored by position in a field. The two you need most:<br><b>Gravity</b>: \\(U = mgy\\)<br><b>Spring</b>: \\(U = \tfrac12 kx^2\\)<br>It is defined <b>up to an additive constant</b>, so only <b>differences</b> are physical."
+      },
+      {
+        "t": "q::what mech::energy",
+        "f": "State the work-energy principle.",
+        "b": "\\[ W_{\\text{net}} = \\Delta K = \\tfrac12 mv_f^2 - \\tfrac12 mv_i^2 \\]<br>Work equals the <b>change</b> in kinetic energy. Conservative forces do work that depends only on endpoints, and have \\(W = -\\Delta U\\)."
+      },
+      {
+        "t": "q::what mech::energy",
+        "f": "What is conservative force and what defines it?",
+        "b": "One whose work depends only on the <b>initial and final</b> positions, not on the path &mdash; equivalently, one with a <b>path-independent</b> potential energy.<br>Gravity and the spring force are conservative; friction and drag are not."
+      },
+      {
+        "t": "q::what mech::energy",
+        "f": "What is a conservative force's work in terms of potential energy?",
+        "b": "\\[ W = -\\Delta U = U_i - U_f \\]<br>For gravity with \\(U = mgy\\): work done falling from \\(y_i\\) to \\(y_f\\) is \\(mg(y_i - y_f)\\), positive when falling."
+      },
+      {
+        "t": "q::do mech::energy",
+        "f": "What is mechanical energy conserved?",
+        "b": "\\[ E_{\\text{mech}} = K + U \\]<br>Conserved when <b>all</b> forces are conservative. With friction, \\(\\Delta E_{\\text{mech}} = W_{\\text{friction}} &lt; 0\\) &mdash; mechanical energy converts to thermal energy, but <b>total</b> energy is still conserved."
+      },
+      {
+        "t": "q::do mech::energy",
+        "f": "A ball of mass \\(m\\) falls from rest through height \\(h\\). What is its speed at the bottom?",
+        "b": "\\[ mgh = \\tfrac12 mv^2 \\;\\Rightarrow\\; v = \\mathbf{\\sqrt{2gh}} \\]<br>Mass cancels &mdash; the Galileo result that heavy and light objects fall alike (ignoring drag)."
+      },
+      {
+        "t": "q::how mech::energy",
+        "f": "A block of mass \\(m\\) slides down a frictionless ramp of height \\(h\\). Its speed at the bottom?",
+        "b": "\\[ mgh = \\tfrac12 mv^2 \\;\\Rightarrow\\; v = \\sqrt{2gh} \\]<br>Same as free fall. The ramp's shape is irrelevant &mdash; a classic case where energy beats trigonometry."
+      },
+      {
+        "t": "q::what mech::energy",
+        "f": "What is the work done by a constant force?",
+        "b": "\\[ W = \\vec F\\cdot\\vec d = Fd\\cos\\theta \\]<br>Only the <b>component along the displacement</b> does work. \\(\\theta = 90^\\circ \\Rightarrow W = 0\\) &mdash; a force perpendicular to motion does nothing."
+      },
+      {
+        "t": "q::what mech::energy",
+        "f": "What is the spring potential energy and Hooke's law?",
+        "b": "\\[ U = \\tfrac12 kx^2, \\qquad F = -kx \\]<br>The minus sign in the force is what makes the spring <b>restoring</b> &mdash; it always pushes back toward equilibrium."
+      },
+      {
+        "t": "q::do mech::energy",
+        "f": "A spring of constant \\(k\\) is compressed by \\(x\\) and released. What is the maximum speed?",
+        "b": "At equilibrium, where all stored energy is kinetic:<br>\\[\n \\tfrac12 kx^2 = \\tfrac12 mv^2 \\;\\Rightarrow\\; v = x\\sqrt{k/m}\n\\]<br>Energy is conserved throughout the oscillation."
+      },
+      {
+        "t": "q::pitfall mech::energy",
+        "f": "Does kinetic energy depend on the frame of reference?",
+        "b": "<b>Yes.</b> \\(K = \\tfrac12 mv^2\\) uses the velocity in the chosen frame, so different observers disagree.<br>Total energy is conserved; kinetic energy alone is not frame-invariant."
+      },
+      {
+        "t": "q::what mech::energy",
+        "f": "What is power?",
+        "b": "\\[ P = \\frac{dE}{dt} = \\vec F \\cdot \\vec v \\]<br>Rate of energy transfer. Units: watts \\((\\mathrm{J/s})\\).<br>Note \\(P = Fv\\) &mdash; a small force applied fast can still be powerful."
+      },
+      {
+        "t": "q::how mech::energy",
+        "f": "A 60 kg person climbs stairs raising their centre of mass 8 m in 3 s. Average power?",
+        "b": "\\[ P = \\frac{mgh}{t} = \\frac{60\\times 9.8\\times 8}{3} = \\mathbf{1.57\\ kW} \\]<br>Compare with a car engine (~50 kW) &mdash; the human is inefficient, not weak."
+      },
+      {
+        "t": "q::do mech::energy",
+        "f": "What is the efficiency of a system?",
+        "b": "\\[ \\eta = \\frac{\\text{useful output}}{\\text{input}} \\times 100\\% \\]<br>Always \\(\\le 100\\%\\) for a real device, because some energy degrades into heat. This is the second law of thermodynamics at work."
+      }
+    ],
+    "Physics::Mechanics::Momentum": [
+      {
+        "t": "q::what mech::momentum",
+        "f": "What is linear momentum?",
+        "b": "\\[ \\vec p = m\\vec v \\]<br>Vector, direction along velocity. It is <b>conserved</b> in all collisions, whereas kinetic energy is only conserved in <b>elastic</b> ones."
+      },
+      {
+        "t": "q::what mech::momentum",
+        "f": "State the law of conservation of momentum.",
+        "b": "\\[ \\sum \\vec p_{\\text{before}} = \\sum \\vec p_{\\text{after}} \\]<br>Total momentum is conserved in an <b>isolated</b> system &mdash; one with no net external force.<br>It holds in <b>every</b> collision, including inelastic and explosive ones."
+      },
+      {
+        "t": "q::do mech::momentum",
+        "f": "Why is momentum conserved but kinetic energy is not, in a car crash?",
+        "b": "Momentum is tied to Newton's third law, which is always valid.<br>Kinetic energy converts to heat, sound and deformation &mdash; the <i>total</b> energy is conserved, but mechanical KE is not."
+      },
+      {
+        "t": "q::what mech::momentum",
+        "f": "What is the impulse-momentum relation?",
+        "b": "\\[ \\vec J = \\int \\vec F\\,dt = \\Delta \\vec p \\]<br>Force acting for a time changes momentum.<br>This is exactly why airbags and cricket helmets work: they increase \\(\\Delta t\\)."
+      },
+      {
+        "t": "q::how mech::momentum",
+        "f": "A 0.15 kg ball hits a wall at 30 m/s and bounces straight back. Impulse?",
+        "b": "\\[ J = \\Delta p = m(v_f - v_i) = 0.15(-30 - 30) = \\mathbf{-9.0\\ N\\,s} \\]<br>The sign flips: the wall pushes it back, against the incident direction."
+      },
+      {
+        "t": "q::what mech::momentum",
+        "f": "What three collision types are there, and what is conserved in each?",
+        "b": "| type | \\(p\\) | \\(K\\) |\n|---|---|---|\n| <b>Elastic</b> | conserved | conserved |\n| <b>Inelastic</b> | conserved | lost |\n| <b>Perfectly inelastic</b> | conserved | most lost, objects stick |\nMomentum is conserved in <b>all three</b>."
+      },
+      {
+        "t": "q::how mech::momentum",
+        "f": "A 2 kg object moving at 3 m/s hits a stationary 4 kg object and they stick. Final speed?",
+        "b": "Momentum only (perfectly inelastic, so \\(K\\) is not conserved):<br>\\[\n 2(3) + 4(0) = (2+4)v_f \\;\\Rightarrow\\; v_f = \\mathbf{1\\ m/s}\n\\]<br>Compare with the equal-momentum split in the elastic case: \\(2\\) and \\(1\\) m/s."
+      },
+      {
+        "t": "q::how mech::momentum",
+        "f": "Two 1 kg objects collide head-on: one at 3 m/s, the other at 1 m/s in the opposite sense. Perfectly inelastic: final velocity?",
+        "b": "Take right as positive:<br>\\[\n p_i = 1(3) + 1(-1) = 2 \\;\\Rightarrow\\; v_f = \\frac{2}{2} = \\mathbf{1\\ m/s}\n\\]<br>Momentum adds algebraically, not by averaging speeds."
+      },
+      {
+        "t": "q::what mech::momentum",
+        "f": "Is momentum conserved when a ball bounces off the ground?",
+        "b": "For the <b>ball alone</b>, no &mdash; the ground is an external agent.<br>For the ball<b>+</b>Earth system, yes. Momentum is conserved in any <b>isolated</b> system; \"isolated\" is doing the work in that sentence."
+      },
+      {
+        "t": "q::do mech::momentum",
+        "f": "Why is momentum conserved even though energy 'is lost' in a collision?",
+        "b": "They are different conservation laws with different domains.<br>Momentum is a consequence of spatial translation symmetry; energy of time-translation symmetry. A collision can conserve momentum while turning kinetic energy into internal energy &mdash; total energy still balances."
+      },
+      {
+        "t": "q::what mech::momentum",
+        "f": "What is a variable-mass system and why is rocket propulsion tricky?",
+        "b": "The rocket ejects mass, so \\(m\\) is not constant and \\(\\vec F = d\\vec p/dt \\neq m\\vec a\\).<br>Use \\(\\vec F = \\frac{d}{dt}(m\\vec v)\\), or work in the rocket's instantaneous rest frame to get the clean form \\(F = -u\\,dm/dt\\)."
+      },
+      {
+        "t": "q::how mech::momentum",
+        "f": "State the rocket equation.",
+        "b": "\\[ \\Delta v = v_e \\ln\\frac{m_i}{m_f} = v_e I_{sp} \\]<br>\\(v_e\\) is exhaust speed, \\(I_{sp}\\) the specific impulse.<br>It is <b>independent of mass ratio of fuel to payload</b> &mdash; only total \\(m_i/m_f\\) matters, which is why staging exists."
+      },
+      {
+        "t": "q::do mech::momentum",
+        "f": "Why do staged rockets outperform single-stage ones?",
+        "b": "\\(\\ln(m_i/m_f)\\) is the whole game, and jettisoning empty tanks shrinks \\(m_f\\).<br>Each stage gets its own \\(I_{sp}\\) multiplied by its own mass ratio."
+      },
+      {
+        "t": "q::pitfall mech::momentum",
+        "f": "A ball and a bowling ball collide head-on. Which moves faster afterwards?",
+        "b": "The <b>bowling ball</b> &mdash; its velocity changes less.<br>Momentum is shared, but the lighter ball experiences a much larger \\(\\Delta v\\) for the same \\(\\Delta p\\)."
+      }
+    ],
+    "Physics::Mechanics::Rotation": [
+      {
+        "t": "q::what mech::rotation",
+        "f": "What is angular displacement, velocity and acceleration?",
+        "b": "\\[ \\theta \\; (\\text{rad}), \\qquad \\omega = \\frac{d\\theta}{dt} \\; (\\text{rad/s}), \\qquad \\alpha = \\frac{d\\omega}{dt} \\]<br>Analogue of \\(s, v, a\\). One full turn is \\(2\\pi\\) rad."
+      },
+      {
+        "t": "q::how mech::rotation",
+        "f": "Relate linear and angular quantities for rolling without slipping.",
+        "b": "\\[ v = \\omega r, \\qquad a_t = \\alpha r, \\qquad a_c = \\omega^2 r = \\frac{v^2}{r} \\]<br>Valid only when the object is <b>rolling without slipping</b>; otherwise \\(v \\ne \\omega r\\)."
+      },
+      {
+        "t": "q::how mech::rotation",
+        "f": "A wheel of radius 0.3 m spins at 3 rev/s. What is its rim speed?",
+        "b": "\\[ \\omega = 3(2\\pi) = 6\\pi\\ \\text{rad/s}, \\qquad v = \\omega r = 6\\pi(0.3) = \\mathbf{5.65\\ m/s} \\]<br>Convert rev/s to rad/s <b>before</b> multiplying by \\(r\\)."
+      },
+      {
+        "t": "q::what mech::rotation",
+        "f": "What is moment of inertia and what does it play?",
+        "b": "Rotational analogue of mass: \\(I = \\int r^2\\,dm\\).<br>It measures how strongly a body resists angular acceleration, via \\(\\tau = I\\alpha\\).<br>It depends on the <b>axis</b> chosen and how mass is distributed."
+      },
+      {
+        "t": "q::how mech::rotation",
+        "f": "Moments of inertia for the three basic shapes about their centres.",
+        "b": "\\[ \\text{point: } mr^2 \\]<br>\\[ \\text{rod, axis through centre: } \\tfrac{1}{12}mL^2 \\]<br>\\[ \\text{solid disc or cylinder: } \\tfrac12 mR^2 \\]<br>\\[ \\text{hollow cylinder: } mR^2, \\quad \\text{solid sphere: } \\tfrac25 mR^2 \\]<br>All about an axis through the centre of mass."
+      },
+      {
+        "t": "q::what mech::rotation",
+        "f": "What is torque and how does it relate to angular acceleration?",
+        "b": "\\[ \\vec\\tau = \\vec r \\times \\vec F \\quad\\text{(magnitude } r F\\sin\\theta\\text{)}, \\qquad \\boxed{\\vec\\tau = I\\vec\\alpha} \\]<br>Only the <b>perpendicular</b> component of force produces torque &mdash; pushing along the lever arm does nothing."
+      },
+      {
+        "t": "q::what mech::rotation",
+        "f": "What is angular momentum?",
+        "b": "\\[ \\vec L = I\\vec\\omega \\quad\\text{(about a fixed axis)} \\]<br>The rotational analogue of \\(p = mv\\), and <b>conserved</b> in torque-free motion."
+      },
+      {
+        "t": "q::what mech::rotation",
+        "f": "State the law of conservation of angular momentum.",
+        "b": "\\[ \\vec L_i = \\vec L_f \\quad\\text{when } \\tau_{\\text{ext}} = 0 \\]<br>A spinning skater pulling in their arms spins <b>faster</b>, because \\(I\\) shrinks while \\(L\\) is unchanged, so \\(\\omega\\) rises."
+      },
+      {
+        "t": "q::do mech::rotation",
+        "f": "A skater spins at 2 rev/s with arms out (\\(I = 4\\) kg m²). Arms in, \\(I = 1\\). New spin rate?",
+        "b": "\\[ I\\omega = I'\\omega' \\Rightarrow 4(2) = 1\\,\\omega' \\Rightarrow \\omega' = \\mathbf{8\\ rev/s} \\]<br>Momentum is conserved, kinetic energy is <b>not</b> &mdash; she does work pulling in her arms."
+      },
+      {
+        "t": "q::what mech::rotation",
+        "f": "What is rotational kinetic energy?",
+        "b": "\\[ K_{\\text{rot}} = \\tfrac12 I\\omega^2 \\]<br>For rolling without slipping, total \\(K = \\tfrac12 mv^2 + \\tfrac12 I\\omega^2\\)."
+      },
+      {
+        "t": "q::do mech::rotation",
+        "f": "A solid disc and a hoop of equal mass and radius roll down a ramp. Which wins?",
+        "b": "The <b>disc</b>: \\(I_{\\text{disc}} = \\tfrac12 mR^2 &lt; I_{\\text{hoop}} = mR^2\\).<br>Smaller \\(I\\) means less energy goes into rotation, so more accelerates the centre of mass."
+      },
+      {
+        "t": "q::what mech::rotation",
+        "f": "What is the parallel-axis theorem?",
+        "b": "\\[ I = I_{\\text{cm}} + md^2 \\]<br>Moment of inertia about any axis equals that about the parallel axis through the centre of mass, plus \\(md^2\\).<br>This is how you get the \\(\\tfrac13 mL^2\\) of a rod about its end."
+      },
+      {
+        "t": "q::do mech::rotation",
+        "f": "Moment of inertia of a uniform rod of mass \\(m\\) and length \\(L\\) about one end?",
+        "b": "\\[ I = \\tfrac{1}{12}mL^2 + m\\left(\\tfrac L2\\right)^2 = \\mathbf{\\tfrac13 mL^2} \\]<br>Direct application of the parallel-axis theorem."
+      },
+      {
+        "t": "q::what mech::rotation",
+        "f": "What does the right-hand rule give, and how does it differ from the cross product?",
+        "b": "Curl your fingers from the first vector to the second; the thumb gives the direction of \\(\\vec a\\times\\vec b\\).<br>For \\(\\vec L\\) and torque, \\(\\vec L\\) points along the axis of rotation <b>for clockwise-as-seen-from-that-side</b>."
+      },
+      {
+        "t": "q::what mech::rotation",
+        "f": "What is precession, and what causes it?",
+        "b": "The slow rotation of a spinning top's axis, caused by a torque \\(\\tau = \\vec L \\times \\vec g\\) <b>perpendicular to \\(\\vec L\\)</b>.<br>Since \\(\\tau\\) is perpendicular to \\(L\\), it changes the <b>direction</b> of \\(\\vec L\\) without changing its magnitude."
+      },
+      {
+        "t": "q::do mech::rotation",
+        "f": "Why does a spinning top slow down and eventually fall over?",
+        "b": "Friction at the contact point exerts a torque with a component <b>antiparallel</b> to \\(\\vec L\\), removing angular momentum.<br>As \\(\\vec L\\) tilts, the gravitational torque grows, and precession destabilises it."
+      }
+    ],
+    "Physics::Mechanics::Gravitation": [
+      {
+        "t": "q::what mech::grav",
+        "f": "State Newton's law of universal gravitation.",
+        "b": "\\[ \\boxed{F = G\\frac{m_1m_2}{r^2}} \\qquad G = 6.674\\times10^{-11}\\ \\mathrm{N\\,m^2/kg^2} \\]<br>Always <b>attractive</b> (never repulsive) and falls off as \\(1/r^2\\)."
+      },
+      {
+        "t": "q::how mech::grav",
+        "f": "Why does the \\(1/r^2\\) in \\(F = mg\\) on Earth have to be \\(g/r^2\\)?",
+        "b": "\\[ F = G\\frac{mM}{r^2} = m\\,a \\;\\Rightarrow\\; a = \\frac{GM}{r^2} \\]<br>The mass of the falling object <b>cancels</b> &mdash; that is precisely the universality of free fall."
+      },
+      {
+        "t": "q::how mech::grav",
+        "f": "What is \\(g\\) at the Earth's surface and how is it related to \\(g_{\\text{centre}}\\)?",
+        "b": "\\[ g_{\\text{surface}} = \\frac{GM}{R^2}, \\qquad g_{\\text{centre}} = 0 \\]<br>\\(g = 9.81\\ \\mathrm{m/s^2}\\) at the surface, and it <b>falls to zero</b> at the centre &mdash; not because mass is gone, but by shell theorem the interior shells cancel."
+      },
+      {
+        "t": "q::how mech::grav",
+        "f": "How fast does \\(g\\) fall off with altitude \\(h \\ll R\\)?",
+        "b": "\\[ g(h) = g_0\\left(\\frac{R}{R+h}\\right)^2 \\approx g_0\\left(1 - \\frac{2h}{R}\\right) \\]<br>So \\(g\\) decreases roughly <b>linearly</b> at first: about \\(0.03\\ \\mathrm{m/s^2}\\) per km of altitude."
+      },
+      {
+        "t": "q::what mech::grav",
+        "f": "What is gravitational potential energy and what is the sign convention?",
+        "b": "\\[ U = -\\frac{GMm}{r}, \\qquad U \\to 0 \\text{ as } r \\to \\infty \\]<br>Negative because you must <b>do work</b> to escape to infinity. Bound orbits have negative energy."
+      },
+      {
+        "t": "q::do mech::grav",
+        "f": "What is the escape velocity, and is it \\(11.2\\) km/s?",
+        "b": "\\[ \\tfrac12 mv^2 = \\frac{GMm}{r} \\;\\Rightarrow\\; v_e = \\sqrt{\\frac{2GM}{r}} = \\sqrt{2gr} \\]<br>From Earth's surface \\(v_e \\approx 11.2\\ \\mathrm{km/s}\\).<br>Note it is <b>independent of \\(m\\)</b> &mdash; heavier objects do not escape faster."
+      },
+      {
+        "t": "q::do mech::grav",
+        "f": "A satellite in circular orbit: what is its speed?",
+        "b": "Gravity supplies the centripetal force:<br>\n\\[\n \\frac{GMm}{r^2} = \\frac{mv^2}{r} \\;\\Rightarrow\\; v = \\sqrt{\\frac{GM}{r}}\n\\]<br>Faster at <b>lower</b> altitude &mdash; the opposite of intuition, and a common exam trap."
+      },
+      {
+        "t": "q::how mech::grav",
+        "f": "What is the orbital period from Kepler's third law?",
+        "b": "\\[ T^2 = \\frac{4\\pi^2 r^3}{GM}, \\qquad\\text{or}\\quad T^2 \\propto a^3 \\]<br>\\(T^2/r^3\\) is the <b>same</b> for all satellites around one body.<br>Careful: the third law uses the <b>semi-major axis \\(a\\)</b>, not \\(r\\), for elliptical orbits."
+      },
+      {
+        "t": "q::do mech::grav",
+        "f": "The Moon orbits Earth at \\(r \\approx 3.84\\times10^8\\) m, period \\(\\approx 27.3\\) days. Does that satisfy Kepler's law?",
+        "b": "Yes: \\(T^2/r^3\\) is a constant, and \\(T = 2\\pi\\sqrt{r^3/GM}\\) reproduces 27.3 days.<br>It is the empirical starting point &mdash; Kepler found this from Tycho's data <b>before</b> Newton explained it."
+      },
+      {
+        "t": "q::what mech::grav",
+        "f": "State Kepler's three laws.",
+        "b": "1. <b>Ellipses</b>: orbits are ellipses with the Sun at one focus<br>\n2. <b>Equal areas</b> in equal times &mdash; the radius vector sweeps equal areas<br>\n3. \\(T^2 \\propto a^3\\)<br>Law 2 is conservation of <b>angular momentum</b>."
+      },
+      {
+        "t": "q::do mech::grav",
+        "f": "Why does a comet move fastest at perihelion?",
+        "b": "Kepler's second law: equal areas in equal times. At perihelion the radius is small, so the <b>same</b> area per unit time needs a larger transverse speed.<br>Equivalently, angular momentum \\(L = mrv_\\perp\\) is conserved and \\(r\\) is smallest."
+      },
+      {
+        "t": "q::what mech::grav",
+        "f": "What energy states are possible for a bound orbit?",
+        "b": "\\[ E = -\\frac{GMm}{2a} \\]<br>For a bound (elliptical) orbit \\(E &lt; 0\\). For a parabolic escape \\(E = 0\\). For hyperbolic \\(E > 0\\).<br>The <b>vis-viva</b> equation gives \\(v^2 = GM(2/r - 1/a)\\)."
+      },
+      {
+        "t": "q::do mech::grav",
+        "f": "Is a satellite in a lower orbit moving faster? And a lower circular orbit has what energy?",
+        "b": "<b>Faster:</b> \\(v \\propto 1/\\sqrt r\\).<br>But <b>lower total energy</b> (more negative), because \\(E = -GMm/2r\\).<br>To move inward you must shed energy &mdash; this surprises people every time."
+      },
+      {
+        "t": "q::do mech::grav",
+        "f": "What is tidal acceleration, and what does it depend on?",
+        "b": "The difference in gravitational pull across a body:\\(\\sim 2GMd/R^3\\).<br>It scales as <b>inverse cube</b> of distance, so the Moon dominates Earth's tides despite being far larger &mdash; and the <i>near</i> side feels it slightly more, which is why tides bulge toward the Moon."
+      },
+      {
+        "t": "q::what mech::grav",
+        "f": "What is the Roche limit?",
+        "b": "The distance inside which tidal forces exceed self-gravity, tearing a body apart.<br>It scales as \\(R \\propto (\\rho_{\\text{sat}}/\\rho_{\\text{primary}})^{2/3} r_{\\text{primary}}\\).<br>Saturn's rings sit inside it, which is why there is no moon there."
+      }
+    ],
+    "Physics::Mechanics::Oscillations": [
+      {
+        "t": "q::what mech::osc",
+        "f": "What defines simple harmonic motion?",
+        "b": "\\[ a = -\\omega^2 x \\]<br>Acceleration proportional to displacement and <b>opposite</b> in direction. That single condition is the definition &mdash; it gives \\(x = A\\cos(\\omega t + \\phi)\\), sinusoidal motion."
+      },
+      {
+        "t": "q::what mech::osc",
+        "f": "State the general SHM solution.",
+        "b": "\\[ x(t) = A\\cos(\\omega t + \\phi) \\]<br>\n\\(A\\) amplitude, \\(\\omega = 2\\pi/T\\) angular frequency, \\(\\phi\\) phase constant."
+      },
+      {
+        "t": "q::what mech::osc",
+        "f": "For a mass on a spring, what is the angular frequency and period?",
+        "b": "\\[ \\omega = \\sqrt{\\frac{k}{m}}, \\qquad T = 2\\pi\\sqrt{\\frac{m}{k}} \\]<br><b>Independent of amplitude</b> &mdash; the hallmark of a true simple oscillator. A stiffer spring oscillates faster; a heavier mass slower."
+      },
+      {
+        "t": "q::how mech::osc",
+        "f": "A 0.5 kg mass on a spring of \\(k = 200\\ \\mathrm{N/m}\\). Period?",
+        "b": "\\[ T = 2\\pi\\sqrt{\\frac{0.5}{200}} = 2\\pi(0.05) = \\mathbf{0.31\\ s} \\]<br>The \\(2\\pi\\) factor is the usual slip-up; keep \\(T\\) and \\(\\omega\\) straight."
+      },
+      {
+        "t": "q::what mech::osc",
+        "f": "What is simple pendulum motion exactly, and the small-angle period?",
+        "b": "\\[ T = 2\\pi\\sqrt{\\frac{L}{g}} \\]<br>Valid only for <b>small angles</b> (\\(&lt;15^\\circ\\) roughly), where \\(\\sin\\theta \\approx \\theta\\).<br>The period is independent of mass and of amplitude (within that limit)."
+      },
+      {
+        "t": "q::do mech::osc",
+        "f": "Why does a pendulum's period depend on length but not on mass?",
+        "b": "For small \\(\\theta\\), the restoring torque is \\(-\\!mgL\\theta\\) and \\(I = mL^2\\):<br>\\[\n I\\alpha = -mgL\\theta \\Rightarrow \\alpha = -\\frac gL \\theta\n\\]<br>Mass cancels. That is the same universality as free fall."
+      },
+      {
+        "t": "q::pitfall mech::osc",
+        "f": "A pendulum clock is accurate at \\(20^\\circ\\mathrm{C}\\). What happens on a hot day?",
+        "b": "The rod <b>expands</b>, so \\(L\\) increases and \\(T = 2\\pi\\sqrt{L/g}\\) <b>increases</b>.<br>The clock runs <b>slow</b>. Length increases \\(\\propto\\) temperature, so clocks need thermal compensation."
+      },
+      {
+        "t": "q::what mech::osc",
+        "f": "What is damping, and what are the three regimes?",
+        "b": "A force \\(-b\\dot x\\) opposing velocity.<br>1. <b>Underdamped</b> &mdash; oscillatory decay<br>2. <b>Critically damped</b> &mdash; fastest return, no overshoot<br>3. <b>Overdamped</b> &mdash; slow, non-oscillatory return<br>Same \\(\\omega_0\\), different \\(\\beta\\)."
+      },
+      {
+        "t": "q::do mech::osc",
+        "f": "What is \\(Q\\) in a damped oscillator?",
+        "b": "\\[ Q = \\frac{\\omega_0}{2\\beta} \\]<br>Quality factor: the number of radians by which the oscillator <b>lags</b> its driving force at resonance.<br>\\(Q \\gg 1\\) means a <b>narrow</b>, sharp resonance. High \\(Q\\) also means a long ring-down."
+      },
+      {
+        "t": "q::do mech::osc",
+        "f": "What is resonance in a driven oscillator?",
+        "b": "Large amplitude when the driving frequency matches the natural frequency \\(\\omega_0\\).<br>Energy is pumped in phase, accumulating over each cycle.<br>Used deliberately in tuned circuits, bridges, MRI."
+      },
+      {
+        "t": "q::do mech::osc",
+        "f": "How does the amplitude of a driven oscillator depend on driving frequency?",
+        "b": "\\[ A(\\omega) = \\frac{f_0/m}{\\sqrt{(\\omega_0^2-\\omega^2)^2 + 4\\beta^2\\omega^2}} \\]<br>Peaks at \\(\\omega = \\omega_0\\), and the peak is <b>finite</b>, set by the damping, not by any formal divergence."
+      },
+      {
+        "t": "q::do mech::osc",
+        "f": "What is the width of a resonance peak, and what sets it?",
+        "b": "\\[ \\Delta\\omega \\approx \\frac{2\\beta}{m} \\quad\\Rightarrow\\quad Q = \\frac{\\omega_0}{\\Delta\\omega} \\]<br>More damping means a <b>broader</b>, flatter peak. Heavy damping kills resonance."
+      },
+      {
+        "t": "q::do mech::osc",
+        "f": "What is the energy in a simple harmonic oscillator, and how does it vary?",
+        "b": "\\[ E = \\tfrac12 kA^2 \\]<br><b>Constant</b> in the ideal case &mdash; it sloshes between all kinetic at equilibrium and all potential at the extremes.<br>Velocity and displacement are \\(90^\\circ\\) out of phase."
+      }
+    ],
+    "Physics::Waves": [
+      {
+        "t": "q::what phys::waves",
+        "f": "What is a wave, and what carries energy in a wave?",
+        "b": "A propagating disturbance; in a medium the particles <b>oscillate about equilibrium</b> and the <b>energy</b> travels.<br>No matter is transported on average &mdash; that distinction is the whole point."
+      },
+      {
+        "t": "q::how phys::waves",
+        "f": "State the wave equation and identify every symbol's role.",
+        "b": "\\[ y(x,t) = A\\sin(kx - \\omega t + \\phi) \\]<br>\n\\(A\\) amplitude (m), \\(k = 2\\pi/\\lambda\\) wavenumber, \\(\\lambda\\) wavelength, <br>\\(\\omega\\) angular frequency, \\(f = \\omega/2\\pi\\) frequency, \\(\\phi\\) phase."
+      },
+      {
+        "t": "q::how phys::waves",
+        "f": "What is the wave speed, and is it \\(f\\lambda\\)?",
+        "b": "\\[ v = f\\lambda = \\frac{\\omega}{k} \\]<br>Always true for a travelling wave.<br>Careful: for <b>light</b>, \\(v = c\\) is fixed and \\(f\\lambda\\) still holds, so \\(\\lambda\\) <b>changes</b> with \\(f\\). For sound in a medium, \\(v\\) is set by the medium and \\(f\\) is set by the source."
+      },
+      {
+        "t": "q::do phys::waves",
+        "f": "What determines the speed of a wave on a string?",
+        "b": "\\[ v = \\sqrt{\\frac{T}{\\mu}} \\]<br>\\(T\\) tension, \\(\\mu\\) linear mass density.<br>It is <b>independent of amplitude and frequency</b> &mdash; doubling the amplitude doubles the energy but not the speed."
+      },
+      {
+        "t": "q::what phys::waves",
+        "f": "What is the superposition principle?",
+        "b": "When waves overlap, the <b>displacement adds algebraically</b>.<br>Wave behaviour is <b>linear</b>: the result is the sum of the individual solutions. This is why interference is possible at all."
+      },
+      {
+        "t": "q::what phys::waves",
+        "f": "What is destructive interference and the condition for it?",
+        "b": "Amplitudes cancel: phase difference \\(\\pi\\) (path difference \\(\\lambda/2\\) or odd \\(\\lambda/2\\)).<br>Complete cancellation needs <b>equal amplitudes</b> too."
+      },
+      {
+        "t": "q::do phys::waves",
+        "f": "Two sources emit in phase. Where is the path difference for the first destructive fringe?",
+        "b": "\\[ \\Delta r = \\frac{\\lambda}{2}, \\frac{3\\lambda}{2}, \\frac{5\\lambda}{2}\\dots \\]<br>Constructive fringes are at \\(\\Delta r = n\\lambda\\), including \\(n = 0\\) on the perpendicular bisector."
+      },
+      {
+        "t": "q::what phys::waves",
+        "f": "What is a standing wave and how does it form?",
+        "b": "Two identical waves travelling in <b>opposite</b> directions, producing a fixed interference pattern of <b>nodes and antinodes</b>.<br>No net energy transport &mdash; energy shuttles between the two."
+      },
+      {
+        "t": "q::do phys::waves",
+        "f": "Boundary conditions at the ends of a string: reflection phase?",
+        "b": "<b>Fixed end</b>: \\(\\Delta r = 0\\) &rarr; inversion, \\(\\pi\\) phase shift<br>\n<b>Free end</b>: no shift<br>So a string fixed at both ends has \\(\\lambda_n = 2L/n\\) &mdash; only wavelengths that fit an integer number of half-wavelengths."
+      },
+      {
+        "t": "q::do phys::waves",
+        "f": "Frequencies of a string fixed at both ends?",
+        "b": "\\[ f_n = \\frac{n}{2L}\\sqrt{\\frac{T}{\\mu}}, \\qquad n = 1, 2, 3\\dots \\]<br>Only <b>harmonics</b> survive &mdash; that is why a guitar played exactly right still sounds pure."
+      },
+      {
+        "t": "q::do phys::waves",
+        "f": "What beats are, and what is their beat frequency?",
+        "b": "Two close frequencies superpose into a slow amplitude modulation.<br>\\[\n f_{\\text{beat}} = |f_1 - f_2|\n\\]<br>They were used to measure Planck's constant: the visible beat shift as \\(f\\) is tuned revealed the photon energy \\(hf\\)."
+      },
+      {
+        "t": "q::what phys::waves",
+        "f": "What is the Doppler effect, and what shifts occur?",
+        "b": "A source and observer in relative motion along the line of sight changes the observed frequency.<br><b>Approaching</b> &rarr; higher \\(f\\); <b>receding</b> &rarr; lower \\(f\\).<br>In medium \\(f' = f\\frac{v \\pm v_o}{v \\mp v_s}\\). It depends on <b>relative</b> motion, not on motion through the ether."
+      },
+      {
+        "t": "q::do phys::waves",
+        "f": "A car passes at 30 m/s with a siren at 1000 Hz; sound speed 340 m/s. Frequency heard standing still?",
+        "b": "\\[ f' = f\\frac{v}{v - v_s} = 1000\\frac{340}{340-30} \\approx \\mathbf{1097\\ Hz} \\]<br>Higher as it approaches. As it recedes the denominator becomes \\(v + v_s\\), giving a lower note &mdash; the drop is the audible cue."
+      },
+      {
+        "t": "q::do phys::waves",
+        "f": "What is the intensity of a wave and how does it fall off?",
+        "b": "\\[ I = \\tfrac12 \\rho\\omega^2 A^2 v \\quad\\text{(mechanical)}, \\qquad I = \\tfrac12 \\epsilon_0 c E_0^2 \\quad\\text{(EM)} \\]<br>Power per unit area. For a point source \\(I \\propto 1/r^2\\)."
+      }
+    ]
+  }
+}
