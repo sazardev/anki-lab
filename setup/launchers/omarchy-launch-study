@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+#
+# omarchy-launch-study: open the study workspace.
+#
+# Puts you on a dedicated Hyprland workspace with the three things a session
+# needs, side by side and tiled:
+#
+#   1  Anki            the reviews (step 1 of the loop)
+#   2  a terminal      the dashboard and the drills (step 2)
+#   3  the notebook    worked examples, the cheatsheet (reference)
+#
+# Run it as many times as you like: it focuses what is already open instead of
+# spawning duplicates.
+#
+#   omarchy-launch-study              # open or focus the workspace
+#   omarchy-launch-study --status     # just the dashboard, no window juggling
+#   WORKSPACE=7 omarchy-launch-study  # use another workspace number
+
+set -uo pipefail
+
+LAB="${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}"
+WS="${WORKSPACE:-9}"
+TITLE="Estudio"
+TERMINAL="org.omarchy.terminal"
+
+py=""
+for cand in /usr/bin/python3 "$LAB/.venv/bin/python"; do
+  [[ -x $cand ]] && { py=$cand; break; }
+done
+if [[ -z $py ]]; then
+  echo "no python3 found" >&2
+  exit 1
+fi
+
+if [[ ${1-} == "--status" ]]; then
+  exec "$py" "$LAB/study.py" status
+fi
+
+if ! command -v hyprctl >/dev/null; then
+  echo "hyprctl not found; running the dashboard instead" >&2
+  exec "$py" "$LAB/study.py" status
+fi
+
+# --- helper: launch a window on the study workspace, or focus it if it exists
+# usage: spawn <class> <title-regex> <command...>
+spawn() {
+  local class="$1" match="$2"; shift 2
+  if hyprctl clients -j 2>/dev/null | grep -q "\"class\": *\"$class\""; then
+    hyprctl dispatch focuswindow "class:$class" >/dev/null 2>&1
+    return
+  fi
+  hyprctl dispatch movetoworkspacesilent "$WS:$WS" >/dev/null 2>&1
+  uwsm-app -- "$@" >/dev/null 2>&1 &
+  sleep 0.4
+  hyprctl dispatch movewindow "class:$class" "workspace:$WS" silent >/dev/null 2>&1
+  hyprctl dispatch pin "class:$class" >/dev/null 2>&1
+  : # $match kept for readability; matching is done via class
+}
+
+# --- go to the workspace first, so everything lands there
+hyprctl dispatch workspace "$WS" >/dev/null 2>&1
+hyprctl dispatch layout dwindle >/dev/null 2>&1
+
+# 1. Anki
+if ! pgrep -x anki >/dev/null 2>&1; then
+  uwsm-app -- anki >/dev/null 2>&1 &
+  sleep 1.2
+fi
+hyprctl clients -j 2>/dev/null | grep -q '"class": *"anki"' \
+  && hyprctl dispatch movewindow "class:anki" "workspace:$WS" silent >/dev/null 2>&1
+hyprctl dispatch pin "class:anki" >/dev/null 2>&1
+
+# 2. terminal running the dashboard
+uwsm-app -- xdg-terminal-exec \
+  --app-id="$TERMINAL" --title="$TITLE" --dir="$LAB" \
+  -e bash -c "'$py' '$LAB/study.py' status; echo; read -rp 'enter para cerrar ' _" \
+  >/dev/null 2>&1 &
+sleep 1.0
+hyprctl dispatch pin "class:$TERMINAL" >/dev/null 2>&1
+
+# 3. the notebook, already tiled left from a previous run
+if pgrep -f "jupyter-lab" >/dev/null 2>&1; then
+  hyprctl clients -j 2>/dev/null \
+    | grep -q '"class": *"jupyter-lab"' \
+    && hyprctl dispatch movewindow "class:jupyter-lab" "workspace:$WS" silent >/dev/null 2>&1
+  hyprctl dispatch pin "class:jupyter-lab" >/dev/null 2>&1
+fi
+
+echo "workspace $WS lista: Anki + panel de estudio.  'omarchy menu summon math' para el menu."

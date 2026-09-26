@@ -1,6 +1,6 @@
 {
-  // Omarchy menu extension: a "Math" submenu for the algebra lab and the
-  // Anki deck collection.  See README.md for how to install this.
+  // Omarchy menu extension: a "Study" desk for the algebra lab, the Anki decks
+  // and the drill generators.  See README.md for how to install this.
   //
   // The file you merge this into is:
   //   ~/.config/omarchy/extensions/omarchy-menu.jsonc
@@ -15,10 +15,29 @@
   //   description Optional subtitle, also searchable.
   //   when        Shell condition; the row is hidden when it fails.
   //
-  // Every path below is $HOME-relative and every row is guarded by a `when`
-  // test, so a missing clone hides the entry instead of erroring.
+  // Every path is $HOME-relative and every row is guarded by a `when` test, so
+  // a missing clone hides the entry instead of erroring.
 
   "math": {"icon":"󰃮","label":"Math","aliases":["maths","algebra","mates","study"]},
+
+  "math.workspace": {
+    "icon":"󰈙","label":"Study workspace",
+    "description":"Anki + dashboard + notebook, tiled on workspace 9",
+    "action":"$HOME/.local/bin/omarchy-launch-study",
+    "when":"test -f ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}/study.py"
+  },
+  "math.status": {
+    "icon":"󰗠","label":"What is due",
+    "description":"Dashboard: new and review counts per deck, streak",
+    "action":"uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title=\"Que toca hoy\" --dir=\"${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}\" -e bash -c 'python3 study.py status; read -p \"enter to close\"'",
+    "when":"test -f ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}/study.py"
+  },
+  "math.session": {
+    "icon":"󰄬","label":"Session (review, drill, anchor)",
+    "description":"The 3-step loop, spelled out per subject",
+    "action":"uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title=\"Sesion de estudio\" --dir=\"${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}\" -e bash -c 'python3 study.py menu'",
+    "when":"test -f ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}/study.py"
+  },
 
   "math.algebra-lab": {
     "icon":"󰲚","label":"Algebra Lab (Jupyter)",
@@ -32,16 +51,23 @@
     "action":"uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --dir=\"${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}\" -e bash -c './run.sh menu; read -p \"enter to close\"'",
     "when":"test -d ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}"
   },
+  "math.drill": {
+    "icon":"󰃬","label":"Drill one method",
+    "description":"factoring / systems / gauss / eigen / det, graded",
+    "action":"uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title=\"Drill\" --dir=\"${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}\" -e bash -c 'python3 study.py drill; read -p \"enter to close\"'",
+    "when":"test -f ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}/algebra_lab.py"
+  },
   "math.cheatsheet": {
     "icon":"󰈙","label":"Algebra Rules Bible",
-    "description":"Expanded cheatsheet, renders LaTeX",
+    "description":"Decision tree for which method, plus all 8 techniques",
     "action":"$HOME/.local/bin/omarchy-launch-cheatsheet",
     "when":"test -f ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}/CHEATSHEET.md"
   },
-  "math.readme": {
-    "icon":"󰲚","label":"Lab README (how to run it)",
-    "action":"omarchy-launch-editor ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}/README.md",
-    "when":"test -d ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}"
+  "math.flow": {
+    "icon":"󰆄","label":"Study flow (the loop)",
+    "description":"Why review, then drill, then anchor -- in that order",
+    "action":"omarchy-launch-editor ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab}/STUDY-FLOW.md",
+    "when":"test -f ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab}/STUDY-FLOW.md"
   },
 
   "math.anki": {
@@ -52,19 +78,25 @@
   "math.anki.validate": {
     "icon":"󰌶","label":"Validate the decks",
     "description":"Check every card for LaTeX and tag problems",
-    "action":"uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title=\"Anki deck check\" --dir=\"${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}\" -e bash -c '/usr/bin/python3 anki_decks.py --check; echo; /usr/bin/python3 anki_decks.py --stats; read -p \"enter to close\"'",
+    "action":"uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title=\"Anki deck check\" --dir=\"${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}\" -e bash -c 'python3 anki_decks.py --check; echo; python3 anki_decks.py --stats; read -p \"enter to close\"'",
     "when":"test -f ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}/anki_decks.py"
   },
   "math.anki.preview": {
     "icon":"󰖶","label":"Preview the decks in a browser",
     "description":"Renders all 1101 formulas with MathJax and checks them",
-    "action":"uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title=\"Anki deck preview\" --dir=\"${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}\" -e bash -c '/usr/bin/python3 anki_preview.py --open; read -p \"enter to close\"'",
+    "action":"uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title=\"Anki deck preview\" --dir=\"${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}\" -e bash -c 'python3 anki_preview.py --open; read -p \"enter to close\"'",
     "when":"test -f ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}/anki_preview.py"
+  },
+  "math.anki.limits": {
+    "icon":"󰄪","label":"New cards per day",
+    "description":"Currently 60 on these decks; 20 elsewhere",
+    "action":"uwsm-app -- xdg-terminal-exec --app-id=org.omarchy.terminal --title=\"Anki limits\" --dir=\"${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}\" -e bash -c 'python3 set_anki_limits.py --show; read -p \"enter to close\"'",
+    "when":"test -f ${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}/set_anki_limits.py"
   },
 
   "math.geogebra": {
     "icon":"󰋗","label":"GeoGebra",
-    "description":"Visual: matrices as transformations, eigenvectors",
+    "description":"Visual: row reduction as a linear transformation",
     "action":"$HOME/.local/bin/omarchy-launch-geogebra"
   },
   "math.maxima": {

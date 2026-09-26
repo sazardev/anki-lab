@@ -24,6 +24,44 @@ JSON or in a Python generator, never in a binary blob.
 | `setup/` | Omarchy menu extension, launchers, Jupyter config |
 | `install.sh` | one-shot, re-runnable installer |
 | `.github/workflows/` | re-validates and re-renders on every push |
+| `STUDY-FLOW.md` | the review → drill → anchor loop, and why the order matters |
+
+## The study loop
+
+Read [`STUDY-FLOW.md`](STUDY-FLOW.md) first; it is the one thing worth
+memorising. In short:
+
+```
+1. REVIEW   ->  Anki, only what is due.         ~5 min
+2. DRILL    ->  one method, with --practice.    ~15 min
+3. ANCHOR   ->  5 new cards from THAT method.   ~5 min
+```
+
+Step 3 is last on purpose: a new card is worth much more right after you
+solved a problem of that type. Step 2 is the one that actually teaches —
+Anki recognises a rule, the drill makes you execute it.
+
+`study.py` drives it:
+
+```bash
+cd algebra-lab
+python3 study.py status              # what is due, per deck, with a streak
+python3 study.py session algebra     # the loop spelled out for that deck
+python3 study.py drill factoring -n 15
+python3 study.py menu                # interactive picker
+python3 study.py workspace           # tiled Hyprland workspace
+```
+
+`status` needs Anki closed (it holds the collection lock); when Anki is running
+it falls back to the last `study.py sync` snapshot and says so rather than
+failing. On Omarchy everything is one keystroke away:
+
+```bash
+omarchy menu summon math
+```
+
+which gives the study workspace, the dashboard, the drills, the cheatsheet, the
+deck validator, the MathJax preview and the per-deck limits.
 
 ## Install
 
