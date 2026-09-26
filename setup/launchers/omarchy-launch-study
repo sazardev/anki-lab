@@ -2,26 +2,30 @@
 #
 # omarchy-launch-study: open the study workspace.
 #
-# Puts you on a dedicated Hyprland workspace with the three things a session
-# needs, side by side and tiled:
+# Puts you on a dedicated Hyprland workspace with what a session needs, tiled:
 #
 #   1  Anki            the reviews (step 1 of the loop)
 #   2  a terminal      the dashboard and the drills (step 2)
-#   3  the notebook    worked examples, the cheatsheet (reference)
+#   3  the notebook    worked examples (reference), if already running
 #
-# Run it as many times as you like: it focuses what is already open instead of
-# spawning duplicates.
+# Run it as often as you like: it focuses what is open instead of spawning
+# duplicates.
 #
 #   omarchy-launch-study              # open or focus the workspace
 #   omarchy-launch-study --status     # just the dashboard, no window juggling
-#   WORKSPACE=7 omarchy-launch-study  # use another workspace number
+#   WORKSPACE=7 omarchy-launch-study  # a different workspace number
+#
+# Note on dispatch syntax: this Hyprland is the Lua-flavoured one, where
+# `hyprctl dispatch movewindow class:anki workspace:9 silent` is a syntax error.
+# The working forms are hl.dsp.focus({workspace=...}) and
+# hl.dsp.window.move({...}), which is what Omarchy's own bindings use.
 
 set -uo pipefail
 
 LAB="${ALGEBRA_LAB_DIR:-$HOME/Work/anki-lab/algebra-lab}"
 WS="${WORKSPACE:-9}"
 TITLE="Estudio"
-TERMINAL="org.omarchy.terminal"
+TERMINAL_CLASS="org.omarchy.terminal"
 
 py=""
 for cand in /usr/bin/python3 "$LAB/.venv/bin/python"; do
@@ -36,54 +40,90 @@ if [[ ${1-} == "--status" ]]; then
   exec "$py" "$LAB/study.py" status
 fi
 
+# ---------------------------------------------------------------- guards
+# hyprctl needs HYPRLAND_INSTANCE_SIGNATURE, which you only get inside the
+# graphical session. Without it, say so and fall back to the dashboard rather
+# than failing with a core dump.
 if ! command -v hyprctl >/dev/null; then
-  echo "hyprctl not found; running the dashboard instead" >&2
+  echo "hyprctl not found; showing the dashboard instead" >&2
+  exec "$py" "$LAB/study.py" status
+fi
+if hyprctl activeworkspace >/dev/null 2>&1; then
+  dispatch() { hyprctl dispatch "$1" >/dev/null 2>&1; }
+else
+  echo "not inside a Hyprland session (no HYPRLAND_INSTANCE_SIGNATURE)." >&2
+  echo "run this from a terminal in your desktop, or just read the dashboard:" >&2
+  echo >&2
   exec "$py" "$LAB/study.py" status
 fi
 
-# --- helper: launch a window on the study workspace, or focus it if it exists
-# usage: spawn <class> <title-regex> <command...>
-spawn() {
-  local class="$1" match="$2"; shift 2
-  if hyprctl clients -j 2>/dev/null | grep -q "\"class\": *\"$class\""; then
-    hyprctl dispatch focuswindow "class:$class" >/dev/null 2>&1
-    return
-  fi
-  hyprctl dispatch movetoworkspacesilent "$WS:$WS" >/dev/null 2>&1
-  uwsm-app -- "$@" >/dev/null 2>&1 &
-  sleep 0.4
-  hyprctl dispatch movewindow "class:$class" "workspace:$WS" silent >/dev/null 2>&1
-  hyprctl dispatch pin "class:$class" >/dev/null 2>&1
-  : # $match kept for readability; matching is done via class
+# `hyprctl clients` without -j prints YAML, so grepping it for "class": never
+# matches. Always use -j and let python do the parsing.
+has_class() {
+  hyprctl clients -j 2>/dev/null | "$py" -c '
+import json, sys
+try: cs = json.load(sys.stdin)
+except Exception: sys.exit(1)
+sys.exit(0 if any(c.get("class") == sys.argv[1] for c in cs) else 1)' "$1"
 }
 
-# --- go to the workspace first, so everything lands there
-hyprctl dispatch workspace "$WS" >/dev/null 2>&1
-hyprctl dispatch layout dwindle >/dev/null 2>&1
+# on_workspace <class> <id>
+on_workspace() {
+  hyprctl clients -j 2>/dev/null | "$py" -c '
+import json, sys
+try: cs = json.load(sys.stdin)
+except Exception: sys.exit(1)
+cls, ws = sys.argv[1], int(sys.argv[2])
+sys.exit(0 if any(c.get("class") == cls and c.get("workspace", {}).get("id") == ws
+                  for c in cs) else 1)' "$1" "$2"
+}
 
-# 1. Anki
+# Anki and the terminal take a variable time to map their window, so poll
+# instead of sleeping a fixed amount.
+wait_for_class() {
+  local class="$1" tries="${2:-30}"
+  for ((i = 0; i < tries; i++)); do
+    has_class "$class" && return 0
+    sleep 0.5
+  done
+  return 1
+}
+
+# ---------------------------------------------------------------- go there
+dispatch "hl.dsp.focus({ workspace = '$WS' })"
+dispatch "hl.dsp.layout({ workspace = '$WS', layout = 'dwindle' })"
+
+# ---------------------------------------------------------------- 1. Anki
 if ! pgrep -x anki >/dev/null 2>&1; then
   uwsm-app -- anki >/dev/null 2>&1 &
-  sleep 1.2
 fi
-hyprctl clients -j 2>/dev/null | grep -q '"class": *"anki"' \
-  && hyprctl dispatch movewindow "class:anki" "workspace:$WS" silent >/dev/null 2>&1
-hyprctl dispatch pin "class:anki" >/dev/null 2>&1
-
-# 2. terminal running the dashboard
-uwsm-app -- xdg-terminal-exec \
-  --app-id="$TERMINAL" --title="$TITLE" --dir="$LAB" \
-  -e bash -c "'$py' '$LAB/study.py' status; echo; read -rp 'enter para cerrar ' _" \
-  >/dev/null 2>&1 &
-sleep 1.0
-hyprctl dispatch pin "class:$TERMINAL" >/dev/null 2>&1
-
-# 3. the notebook, already tiled left from a previous run
-if pgrep -f "jupyter-lab" >/dev/null 2>&1; then
-  hyprctl clients -j 2>/dev/null \
-    | grep -q '"class": *"jupyter-lab"' \
-    && hyprctl dispatch movewindow "class:jupyter-lab" "workspace:$WS" silent >/dev/null 2>&1
-  hyprctl dispatch pin "class:jupyter-lab" >/dev/null 2>&1
+if wait_for_class anki 40; then
+  dispatch "hl.dsp.window.move({ 'class:anki', workspace = '$WS' })"
+  dispatch "hl.dsp.focus({ 'class:anki' })"
+  dispatch "hl.dsp.window.pin({ 'class:anki' })"
+else
+  echo "note: Anki did not come up. Close it fully (check the collection lock)" >&2
 fi
 
-echo "workspace $WS lista: Anki + panel de estudio.  'omarchy menu summon math' para el menu."
+# ---------------------------------------------------------------- 2. dashboard
+if ! on_workspace "$TERMINAL_CLASS" "$WS"; then
+  uwsm-app -- xdg-terminal-exec \
+    --app-id="$TERMINAL_CLASS" --title="$TITLE" --dir="$LAB" \
+    -e bash -c "'$py' '$LAB/study.py' status; echo; read -rp 'enter para cerrar ' _" \
+    >/dev/null 2>&1 &
+  if wait_for_class "$TERMINAL_CLASS" 20; then
+    dispatch "hl.dsp.window.move({ '$TERMINAL_CLASS', workspace = '$WS' })"
+  else
+    echo "note: the dashboard terminal did not open" >&2
+  fi
+fi
+
+# ---------------------------------------------------------------- 3. notebook
+if has_class jupyter-lab; then
+  dispatch "hl.dsp.window.move({ 'class:jupyter-lab', workspace = '$WS' })"
+  dispatch "hl.dsp.window.pin({ 'class:jupyter-lab' })"
+else
+  echo "note: the notebook is not running; open it from the menu when you need it" >&2
+fi
+
+echo "workspace $WS lista.  Menu: omarchy menu summon math"
